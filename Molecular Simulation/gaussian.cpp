@@ -11,6 +11,8 @@
 #include <math.h>
 #include <time.h>
 
+//deneme
+
 // uses box-muller transformation
 // if u1 and u2 are two uniformly distributed random variables between 0 and 1
 // then the expression z0 below is a standard normal variable
