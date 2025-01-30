@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		89C2F6E32D4A7DC80066998B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89C2F6E22D4A7DC80066998B /* main.cpp */; };
+		89C2F6EB2D4A7DE60066998B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C2F6EA2D4A7DE60066998B /* OpenGL.framework */; };
+		89C2F6ED2D4A7E120066998B /* libglfw.3.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C2F6EC2D4A7E120066998B /* libglfw.3.4.dylib */; };
+		89C2F6EE2D4A7E120066998B /* libglfw.3.4.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 89C2F6EC2D4A7E120066998B /* libglfw.3.4.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		89C2F6F22D4A84860066998B /* particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89C2F6F02D4A84860066998B /* particle.cpp */; };
+		89C2F6F92D4AB1390066998B /* simulation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89C2F6F72D4AB1390066998B /* simulation.cpp */; };
+		89C2F7052D4AEA450066998B /* gaussian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89C2F7032D4AEA450066998B /* gaussian.cpp */; };
+		89C2F70A2D4B5B1B0066998B /* receiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89C2F7082D4B5B1B0066998B /* receiver.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -20,11 +27,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		89C2F6EF2D4A7E120066998B /* Embed Libraries */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				89C2F6EE2D4A7E120066998B /* libglfw.3.4.dylib in Embed Libraries */,
+			);
+			name = "Embed Libraries";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		89C2F6DF2D4A7DC80066998B /* Molecular Simulation */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Molecular Simulation"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89C2F6E22D4A7DC80066998B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		89C2F6EA2D4A7DE60066998B /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		89C2F6EC2D4A7E120066998B /* libglfw.3.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.4.dylib; path = ../../../../../opt/homebrew/Cellar/glfw/3.4/lib/libglfw.3.4.dylib; sourceTree = "<group>"; };
+		89C2F6F02D4A84860066998B /* particle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = particle.cpp; sourceTree = "<group>"; };
+		89C2F6F12D4A84860066998B /* particle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = particle.hpp; sourceTree = "<group>"; };
+		89C2F6F42D4A8F640066998B /* vertexshader.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = vertexshader.txt; sourceTree = "<group>"; };
+		89C2F6F52D4A8F730066998B /* fragmentshader.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = fragmentshader.txt; sourceTree = "<group>"; };
+		89C2F6F62D4A90270066998B /* shader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shader.h; sourceTree = "<group>"; };
+		89C2F6F72D4AB1390066998B /* simulation.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = simulation.cpp; sourceTree = "<group>"; };
+		89C2F6F82D4AB1390066998B /* simulation.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = simulation.hpp; sourceTree = "<group>"; };
+		89C2F7032D4AEA450066998B /* gaussian.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = gaussian.cpp; sourceTree = "<group>"; };
+		89C2F7042D4AEA450066998B /* gaussian.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = gaussian.hpp; sourceTree = "<group>"; };
+		89C2F7072D4AEB870066998B /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		89C2F7082D4B5B1B0066998B /* receiver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = receiver.cpp; sourceTree = "<group>"; };
+		89C2F7092D4B5B1B0066998B /* receiver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = receiver.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +64,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89C2F6EB2D4A7DE60066998B /* OpenGL.framework in Frameworks */,
+				89C2F6ED2D4A7E120066998B /* libglfw.3.4.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +77,7 @@
 			children = (
 				89C2F6E12D4A7DC80066998B /* Molecular Simulation */,
 				89C2F6E02D4A7DC80066998B /* Products */,
+				89C2F6E92D4A7DE60066998B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,9 +92,46 @@
 		89C2F6E12D4A7DC80066998B /* Molecular Simulation */ = {
 			isa = PBXGroup;
 			children = (
+				89C2F6F32D4A8F400066998B /* Shaders */,
 				89C2F6E22D4A7DC80066998B /* main.cpp */,
+				89C2F7082D4B5B1B0066998B /* receiver.cpp */,
+				89C2F7092D4B5B1B0066998B /* receiver.hpp */,
+				89C2F7062D4AEAD00066998B /* Config */,
+				89C2F6F72D4AB1390066998B /* simulation.cpp */,
+				89C2F6F82D4AB1390066998B /* simulation.hpp */,
+				89C2F7032D4AEA450066998B /* gaussian.cpp */,
+				89C2F7042D4AEA450066998B /* gaussian.hpp */,
+				89C2F6F02D4A84860066998B /* particle.cpp */,
+				89C2F6F12D4A84860066998B /* particle.hpp */,
 			);
 			path = "Molecular Simulation";
+			sourceTree = "<group>";
+		};
+		89C2F6E92D4A7DE60066998B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				89C2F6EC2D4A7E120066998B /* libglfw.3.4.dylib */,
+				89C2F6EA2D4A7DE60066998B /* OpenGL.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		89C2F6F32D4A8F400066998B /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				89C2F6F62D4A90270066998B /* shader.h */,
+				89C2F6F42D4A8F640066998B /* vertexshader.txt */,
+				89C2F6F52D4A8F730066998B /* fragmentshader.txt */,
+			);
+			path = Shaders;
+			sourceTree = "<group>";
+		};
+		89C2F7062D4AEAD00066998B /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				89C2F7072D4AEB870066998B /* config.h */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -69,6 +141,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 89C2F6E62D4A7DC80066998B /* Build configuration list for PBXNativeTarget "Molecular Simulation" */;
 			buildPhases = (
+				89C2F6EF2D4A7E120066998B /* Embed Libraries */,
 				89C2F6DB2D4A7DC80066998B /* Sources */,
 				89C2F6DC2D4A7DC80066998B /* Frameworks */,
 				89C2F6DD2D4A7DC80066998B /* CopyFiles */,
@@ -119,7 +192,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89C2F7052D4AEA450066998B /* gaussian.cpp in Sources */,
+				89C2F70A2D4B5B1B0066998B /* receiver.cpp in Sources */,
 				89C2F6E32D4A7DC80066998B /* main.cpp in Sources */,
+				89C2F6F22D4A84860066998B /* particle.cpp in Sources */,
+				89C2F6F92D4AB1390066998B /* simulation.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +324,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8J7MLRZ5KW;
 				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					/opt/homebrew/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/homebrew/Cellar/glfw/3.4/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -257,6 +342,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8J7MLRZ5KW;
 				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					/opt/homebrew/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/homebrew/Cellar/glfw/3.4/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
