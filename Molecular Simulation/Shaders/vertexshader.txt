@@ -1,0 +1,11 @@
+#version 330 core
+layout (location = 0) in vec2 aPos;
+
+uniform vec2 objectPos;   // Position of the object (either particle or receiver)
+uniform float objectSize; // Size (either particle size or receiver radius)
+
+void main()
+{
+    vec2 scaledPos = aPos * objectSize + objectPos;
+    gl_Position = vec4(scaledPos, 0.0, 1.0);
+}
