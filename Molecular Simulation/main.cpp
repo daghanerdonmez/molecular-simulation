@@ -13,7 +13,7 @@
 #include <GLFW/glfw3.h>
 #include <OpenGL/gl3.h>
 #include <OpenGL/gl3ext.h>
-#include "shader.h"
+#include "Shaders/shader.h"
 #include <glm/glm.hpp>
 #include <vector>
 
@@ -128,17 +128,17 @@ int main() {
         
         //Iterate the simulation
         iterateSimulation(5);
-        std::vector<glm::vec3> positions = getParticlePositions();
+        std::vector<glm::dvec3> positions = getParticlePositions();
         
         //Draw the receiver
         std::vector<Receiver> receivers = getReceivers();
         Receiver receiver = receivers[0];
-        glm::vec3 receiverPosition = receiver.getPosition();
+        glm::dvec3 receiverPosition = receiver.getPosition();
         float receiverRadius = receiver.getRadius();
         
-        particleShader.setVec2("objectPos", glm::vec2(receiverPosition.x, receiverPosition.y));
+        particleShader.setVec2("objectPos", glm::dvec2(receiverPosition.x, receiverPosition.y));
         particleShader.setFloat("objectSize", receiverRadius);
-        particleShader.setVec3("objectColor", glm::vec3(0.0, 0.7, 0.7)); // Blue for receiver
+        particleShader.setVec3("objectColor", glm::dvec3(0.0, 0.7, 0.7)); // Blue for receiver
 
         glBindVertexArray(circleVAO);
         glDrawArrays(GL_TRIANGLE_FAN, 0, circleSegments + 2);
@@ -148,9 +148,9 @@ int main() {
         glBindVertexArray(VAO);
         
         for (int i = 0; i < PARTICLE_COUNT; ++i) {
-            particleShader.setVec2("objectPos", glm::vec2(positions[i].x, positions[i].y));
+            particleShader.setVec2("objectPos", glm::dvec2(positions[i].x, positions[i].y));
             particleShader.setFloat("objectSize", particleSize);
-            particleShader.setVec3("objectColor", glm::vec3(1.0, 0.5, 0.0));
+            particleShader.setVec3("objectColor", glm::dvec3(1.0, 0.5, 0.0));
             
             glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         }

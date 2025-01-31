@@ -7,23 +7,23 @@
 
 #include "receiver.hpp"
 
-Receiver::Receiver(glm::vec3 position, float radius): position(position), radius(radius)
+Receiver::Receiver(glm::dvec3 position, double radius): position(position), radius(radius)
 {
     
 };
 
-bool Receiver::hit(glm::vec3 particlePosition)
+bool Receiver::hit(glm::dvec3 particlePosition)
 {
-    float len = glm::length(particlePosition - position);
+    double len = glm::length(particlePosition - position);
     return (len < radius);
 };
 
-glm::vec3 Receiver::getPosition()
+glm::dvec3 Receiver::getPosition()
 {
     return position;
 }
 
-float Receiver::getRadius()
+double Receiver::getRadius()
 {
     return radius;
 }

@@ -12,7 +12,7 @@
 #include "../Config/config.h"
 #include <glm/glm.hpp>
 
-bool boxIsOutsideBoundaries(glm::vec3 position);
-glm::vec3 boxReflectParticle(glm::vec3 position);
+bool boxIsOutsideBoundaries(glm::dvec3 position);
+glm::dvec3 boxReflectParticle(glm::dvec3 position);
 
 #endif /* Box_hpp */

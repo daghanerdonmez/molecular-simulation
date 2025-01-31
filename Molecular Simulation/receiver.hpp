@@ -15,13 +15,13 @@
 class Receiver
 {
 private:
-    glm::vec3 position;
-    float radius;
+    glm::dvec3 position;
+    double radius;
 public:
-    Receiver(glm::vec3 position, float radius);
-    bool hit(glm::vec3 particlePosition);
-    glm::vec3 getPosition();
-    float getRadius();
+    Receiver(glm::dvec3 position, double radius);
+    bool hit(glm::dvec3 particlePosition);
+    glm::dvec3 getPosition();
+    double getRadius();
 };
 
 #endif /* receiver_hpp */

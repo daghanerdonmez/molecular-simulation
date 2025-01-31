@@ -7,25 +7,31 @@
 
 #include "particle.hpp"
 
-Particle::Particle(float x, float y, float z) : position(x,y,z)
+Particle::Particle(double x, double y, double z) : position(x,y,z)
 {
     //std::cout << "Particle created" << std::endl;
 }
 
-void Particle::move(float dx, float dy, float dz)
+void Particle::move(double dx, double dy, double dz)
 {
     if (APPLIED_BOUNDARY == 0) { // no boundary
-        position += glm::vec3(dx,dy,dz);
+        position += glm::dvec3(dx,dy,dz);
     } else if (APPLIED_BOUNDARY == 1) { // box boundary
-        glm::vec3 newPosition = position + glm::vec3(dx,dy,dz);
+        glm::dvec3 newPosition = position + glm::dvec3(dx,dy,dz);
         if (boxIsOutsideBoundaries(newPosition)) {
             newPosition = boxReflectParticle(newPosition);
+        }
+        position = newPosition;
+    } else if (APPLIED_BOUNDARY == 2) { // cylinder boundary
+        glm::dvec3 newPosition = position + glm::dvec3(dx,dy,dz);
+        while(cylinderIsOutsideBoundaries(newPosition)) {
+            newPosition = cylinderReflectParticle(position, newPosition);
         }
         position = newPosition;
     }
 }
 
-glm::vec3 Particle::getPosition()
+glm::dvec3 Particle::getPosition()
 {
     return position;
 }

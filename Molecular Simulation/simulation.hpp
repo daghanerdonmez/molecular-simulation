@@ -13,13 +13,13 @@
 #include "receiver.hpp"
 #include <vector>
 #include <glm/vec3.hpp>
-#include "gaussian.hpp"
+#include "Math/gaussian.hpp"
 #include "Config/config.h"
 
 
 void initializeSimulation();
 void iterateSimulation(int iterationCount);
-std::vector<glm::vec3> getParticlePositions();
+std::vector<glm::dvec3> getParticlePositions();
 std::vector<Receiver> getReceivers();
 bool checkReceivedForParticle(Particle particle, Receiver receiver);
 

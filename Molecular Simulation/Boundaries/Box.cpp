@@ -7,22 +7,22 @@
 
 #include "Box.hpp"
 
-float Box_Z(float x, float y)
+double Box_Z(double x, double y)
 {
     return BOX_BOUNDARY_Z;
 }
 
-float Box_Y(float x, float z)
+double Box_Y(double x, double z)
 {
     return BOX_BOUNDARY_Y;
 }
 
-float Box_X(float y, float z)
+double Box_X(double y, double z)
 {
     return BOX_BOUNDARY_X;
 }
 
-bool boxIsOutsideBoundaries(glm::vec3 position)
+bool boxIsOutsideBoundaries(glm::dvec3 position)
 {
     // simply check if the particle is inside the box boundaries
     return (position.x > BOX_BOUNDARY_X || position.x < -BOX_BOUNDARY_X ||
@@ -30,7 +30,7 @@ bool boxIsOutsideBoundaries(glm::vec3 position)
             position.z > BOX_BOUNDARY_Z || position.z < -BOX_BOUNDARY_Z);
 }
 
-glm::vec3 boxReflectParticle(glm::vec3 position)
+glm::dvec3 boxReflectParticle(glm::dvec3 position)
 {
     glm::vec3 reflectedPosition = position;
 

@@ -13,15 +13,16 @@
 #include <glm/glm.hpp>
 #include "Config/config.h"
 #include "Boundaries/Box.hpp"
+#include "Boundaries/Cylinder.hpp"
 
 class Particle
 {
 private:
-    glm::vec3 position;
+    glm::dvec3 position;
 public:
-    Particle(float x, float y, float z);
-    void move(float dx, float dy, float dz);
-    glm::vec3 getPosition();
+    Particle(double x, double y, double z);
+    void move(double dx, double dy, double dz);
+    glm::dvec3 getPosition();
 };
 
 #endif /* particle_hpp */

@@ -23,7 +23,7 @@ void initializeSimulation()
     
     //initialize the receiver
     receivers.reserve(RECEIVER_COUNT);
-    receivers.emplace_back(glm::vec3(RECEIVER_X, RECEIVER_Y, RECEIVER_Z), RECEIVER_RADIUS);
+    receivers.emplace_back(glm::dvec3(RECEIVER_X, RECEIVER_Y, RECEIVER_Z), RECEIVER_RADIUS);
     
 }
 
@@ -35,9 +35,9 @@ void iterateSimulation(int iterationCount)
         for(int j = 0; j < PARTICLE_COUNT; ++j) {
             // calculate their displacements
             // in brownian motion displacements in each iteration are standard normal distributions
-            float dx = (float) generateGaussian(0.0, BROWNIAN_STD_DEV);
-            float dy = (float) generateGaussian(0.0, BROWNIAN_STD_DEV);
-            float dz = (float) generateGaussian(0.0, BROWNIAN_STD_DEV);
+            double dx = generateGaussian(0.0, BROWNIAN_STD_DEV);
+            double dy = generateGaussian(0.0, BROWNIAN_STD_DEV);
+            double dz = generateGaussian(0.0, BROWNIAN_STD_DEV);
             particles[j].move(dx, dy, dz);
             
             //check if they are received by the receiver
@@ -55,10 +55,10 @@ bool checkReceivedForParticle(Particle particle, Receiver receiver)
     return receiver.hit(particle.getPosition());
 }
 
-std::vector<glm::vec3> getParticlePositions()
+std::vector<glm::dvec3> getParticlePositions()
 {
     //declare and initialize the positions vector with needed free slots
-    std::vector<glm::vec3> positions;
+    std::vector<glm::dvec3> positions;
     positions.reserve(PARTICLE_COUNT);
     
     //put each position in it's place by getting it from the object
