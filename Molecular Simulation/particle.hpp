@@ -11,6 +11,8 @@
 #include <stdio.h>
 #include <iostream>
 #include <glm/glm.hpp>
+#include "Config/config.h"
+#include "Boundaries/Box.hpp"
 
 class Particle
 {

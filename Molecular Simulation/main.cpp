@@ -47,7 +47,7 @@ int main() {
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     
     // Compile shaders
-    Shader particleShader("/Users/daghanerdonmez/Desktop/Molecular Sim/Molecular Simulation/Molecular Simulation/Shaders/vertexshader.txt", "/Users/daghanerdonmez/Desktop/Molecular Sim/Molecular Simulation/Molecular Simulation/Shaders/fragmentshader.txt");
+    Shader particleShader("/Users/daghanerdonmez/Desktop/Molecular-Simulation/Molecular Simulation/Shaders/vertexshader.txt", "/Users/daghanerdonmez/Desktop/Molecular-Simulation/Molecular Simulation/Shaders/fragmentshader.txt");
     
     // For transparency
     glEnable(GL_BLEND);

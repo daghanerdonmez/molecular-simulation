@@ -14,7 +14,15 @@ Particle::Particle(float x, float y, float z) : position(x,y,z)
 
 void Particle::move(float dx, float dy, float dz)
 {
-    position += glm::vec3(dx,dy,dz);
+    if (APPLIED_BOUNDARY == 0) { // no boundary
+        position += glm::vec3(dx,dy,dz);
+    } else if (APPLIED_BOUNDARY == 1) { // box boundary
+        glm::vec3 newPosition = position + glm::vec3(dx,dy,dz);
+        if (boxIsOutsideBoundaries(newPosition)) {
+            newPosition = boxReflectParticle(newPosition);
+        }
+        position = newPosition;
+    }
 }
 
 glm::vec3 Particle::getPosition()

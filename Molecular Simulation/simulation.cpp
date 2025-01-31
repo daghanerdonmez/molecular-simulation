@@ -29,13 +29,18 @@ void initializeSimulation()
 
 void iterateSimulation(int iterationCount)
 {
+    // for each iteration
     for(int i = 0; i < iterationCount; ++i) {
+        // for each particle
         for(int j = 0; j < PARTICLE_COUNT; ++j) {
+            // calculate their displacements
+            // in brownian motion displacements in each iteration are standard normal distributions
             float dx = (float) generateGaussian(0.0, BROWNIAN_STD_DEV);
             float dy = (float) generateGaussian(0.0, BROWNIAN_STD_DEV);
             float dz = (float) generateGaussian(0.0, BROWNIAN_STD_DEV);
             particles[j].move(dx, dy, dz);
             
+            //check if they are received by the receiver
             //TODO: I'm just sending these to another galaxy right now, not deleting them
             //TODO: But Ali Emre Pusane said it's okay :p
             if (checkReceivedForParticle(particles[j], receivers[0])) {
