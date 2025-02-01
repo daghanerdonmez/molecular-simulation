@@ -128,7 +128,7 @@ int main() {
         
         //Iterate the simulation
         iterateSimulation(1);
-        std::vector<glm::dvec3> positions = getParticlePositions();
+        std::vector<glm::dvec3> positions = getAliveParticlePositions();
         
         //Draw the receiver
         std::vector<Receiver> receivers = getReceivers();

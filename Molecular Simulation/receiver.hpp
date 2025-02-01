@@ -11,12 +11,14 @@
 #include <stdio.h>
 #include <glm/vec3.hpp>
 #include <glm/glm.hpp>
+#include "Config/config.h"
 
 class Receiver
 {
 private:
     glm::dvec3 position;
     double radius;
+    int particlesReceived[NUMBER_OF_ITERATIONS];
 public:
     Receiver(glm::dvec3 position, double radius);
     bool hit(glm::dvec3 particlePosition);

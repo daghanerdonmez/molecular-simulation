@@ -19,7 +19,7 @@
 
 void initializeSimulation();
 void iterateSimulation(int iterationCount);
-std::vector<glm::dvec3> getParticlePositions();
+std::vector<glm::dvec3> getAliveParticlePositions();
 std::vector<Receiver> getReceivers();
 bool checkReceivedForParticle(Particle particle, Receiver receiver);
 

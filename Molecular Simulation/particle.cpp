@@ -35,3 +35,13 @@ glm::dvec3 Particle::getPosition()
 {
     return position;
 }
+
+void Particle::kill()
+{
+    alive = false;
+}
+
+bool Particle::isAlive()
+{
+    return alive;
+}

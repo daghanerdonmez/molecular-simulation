@@ -19,10 +19,13 @@ class Particle
 {
 private:
     glm::dvec3 position;
+    bool alive = true;
 public:
     Particle(double x, double y, double z);
     void move(double dx, double dy, double dz);
     glm::dvec3 getPosition();
+    void kill();
+    bool isAlive();
 };
 
 #endif /* particle_hpp */

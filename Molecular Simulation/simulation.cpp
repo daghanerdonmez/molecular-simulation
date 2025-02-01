@@ -33,18 +33,22 @@ void iterateSimulation(int iterationCount)
     for(int i = 0; i < iterationCount; ++i) {
         // for each particle
         for(int j = 0; j < PARTICLE_COUNT; ++j) {
-            // calculate their displacements
-            // in brownian motion displacements in each iteration are standard normal distributions
-            double dx = generateGaussian(0.0, BROWNIAN_STD_DEV);
-            double dy = generateGaussian(0.0, BROWNIAN_STD_DEV);
-            double dz = generateGaussian(0.0, BROWNIAN_STD_DEV);
-            particles[j].move(dx, dy, dz);
-            
-            //check if they are received by the receiver
-            //TODO: I'm just sending these to another galaxy right now, not deleting them
-            //TODO: But Ali Emre Pusane said it's okay :p
-            if (checkReceivedForParticle(particles[j], receivers[0])) {
-                particles[j].move(100000.0, 0.0, 0.0);
+            if (particles[j].isAlive()) {
+                for (int k = 0; k < RECEIVER_COUNT; ++k) {
+                    // calculate their displacements
+                    // in brownian motion displacements in each iteration are standard normal distributions
+                    double dx = generateGaussian(0.0, BROWNIAN_STD_DEV);
+                    double dy = generateGaussian(0.0, BROWNIAN_STD_DEV);
+                    double dz = generateGaussian(0.0, BROWNIAN_STD_DEV);
+                    particles[j].move(dx, dy, dz);
+                    
+                    //check if they are received by the receivers
+                    //TODO: I'm just sending these to another galaxy right now, not deleting them
+                    //TODO: But Ali Emre Pusane said it's okay :p
+                    if (checkReceivedForParticle(particles[j], receivers[k])) {
+                        particles[j].kill();
+                    }
+                }
             }
         }
     }
@@ -55,7 +59,7 @@ bool checkReceivedForParticle(Particle particle, Receiver receiver)
     return receiver.hit(particle.getPosition());
 }
 
-std::vector<glm::dvec3> getParticlePositions()
+std::vector<glm::dvec3> getAliveParticlePositions()
 {
     //declare and initialize the positions vector with needed free slots
     std::vector<glm::dvec3> positions;
@@ -63,7 +67,9 @@ std::vector<glm::dvec3> getParticlePositions()
     
     //put each position in it's place by getting it from the object
     for (int i = 0; i < PARTICLE_COUNT; ++i) {
-        positions.emplace_back(particles[i].getPosition());
+        if (particles[i].isAlive()) {
+            positions.emplace_back(particles[i].getPosition());
+        }
     }
     
     return positions;

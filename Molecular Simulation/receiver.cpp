@@ -9,7 +9,10 @@
 
 Receiver::Receiver(glm::dvec3 position, double radius): position(position), radius(radius)
 {
-    
+    // initialize particles received to all 0
+    for (int i = 0; i < NUMBER_OF_ITERATIONS; ++i) {
+        particlesReceived[i] = 0;
+    }
 };
 
 bool Receiver::hit(glm::dvec3 particlePosition)
