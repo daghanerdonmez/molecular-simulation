@@ -16,6 +16,7 @@
 #include "Shaders/shader.h"
 #include <glm/glm.hpp>
 #include <vector>
+#include "Config/config.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
@@ -117,7 +118,9 @@ int main() {
 //    std::cout << receiver.getRadius() << std::endl;
     
     // Render loop
-    while (!glfwWindowShouldClose(window))
+    int totalFrames = NUMBER_OF_ITERATIONS / ITERATIONS_PER_FRAME;
+    int currentFrame = 0;
+    while (!glfwWindowShouldClose(window) && currentFrame < totalFrames)
     {
         // Input
         processInput(window);
@@ -127,27 +130,31 @@ int main() {
         glClear(GL_COLOR_BUFFER_BIT);
         
         //Iterate the simulation
-        iterateSimulation(1);
-        std::vector<glm::dvec3> positions = getAliveParticlePositions();
+        iterateSimulation(ITERATIONS_PER_FRAME, currentFrame);
         
         //Draw the receiver
         std::vector<Receiver> receivers = getReceivers();
-        Receiver receiver = receivers[0];
-        glm::dvec3 receiverPosition = receiver.getPosition();
-        float receiverRadius = receiver.getRadius();
         
-        particleShader.setVec2("objectPos", glm::dvec2(receiverPosition.x, receiverPosition.y));
-        particleShader.setFloat("objectSize", receiverRadius);
-        particleShader.setVec3("objectColor", glm::dvec3(0.0, 0.7, 0.7)); // Blue for receiver
+        for (int i = 0; i < RECEIVER_COUNT; ++i) {
+            Receiver receiver = receivers[i];
+            glm::dvec3 receiverPosition = receiver.getPosition();
+            float receiverRadius = receiver.getRadius();
+            
+            particleShader.setVec2("objectPos", glm::dvec2(receiverPosition.x, receiverPosition.y));
+            particleShader.setFloat("objectSize", receiverRadius);
+            particleShader.setVec3("objectColor", glm::dvec3(0.0, 0.7, 0.7)); // Blue for receiver
 
-        glBindVertexArray(circleVAO);
-        glDrawArrays(GL_TRIANGLE_FAN, 0, circleSegments + 2);
+            glBindVertexArray(circleVAO);
+            glDrawArrays(GL_TRIANGLE_FAN, 0, circleSegments + 2);
+        }
         
         // Draw the particles
         particleShader.use();
         glBindVertexArray(VAO);
         
-        for (int i = 0; i < PARTICLE_COUNT; ++i) {
+        std::vector<glm::dvec3> positions = getAliveParticlePositions();
+        
+        for (int i = 0; i < positions.size(); ++i) {
             particleShader.setVec2("objectPos", glm::dvec2(positions[i].x, positions[i].y));
             particleShader.setFloat("objectSize", particleSize);
             particleShader.setVec3("objectColor", glm::dvec3(1.0, 0.5, 0.0));
@@ -158,7 +165,12 @@ int main() {
 
         glfwSwapBuffers(window);
         glfwPollEvents();
+        
+        currentFrame++;
     }
+    
+    std::vector<Receiver> receivers = getReceivers();
+    receivers[0].writeOutput();
 
     // Clean up
     glDeleteVertexArrays(1, &VAO);

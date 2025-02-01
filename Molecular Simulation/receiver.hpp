@@ -12,6 +12,8 @@
 #include <glm/vec3.hpp>
 #include <glm/glm.hpp>
 #include "Config/config.h"
+#include <string>
+#include "Output/writer.hpp"
 
 class Receiver
 {
@@ -24,6 +26,8 @@ public:
     bool hit(glm::dvec3 particlePosition);
     glm::dvec3 getPosition();
     double getRadius();
+    void increaseParticlesReceived(int iterationNumber);
+    void writeOutput();
 };
 
 #endif /* receiver_hpp */

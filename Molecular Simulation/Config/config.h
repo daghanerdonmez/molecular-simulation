@@ -9,14 +9,14 @@
 #define config_h
 
 #define NUMBER_OF_ITERATIONS 10000
-#define ITERATIONS_PER_FRAME 5
+#define ITERATIONS_PER_FRAME 1
 
-#define PARTICLE_COUNT 1000
+#define PARTICLE_COUNT 100000
 #define BROWNIAN_STD_DEV 0.003
 
 #define RECEIVER_COUNT 1 // I only handle the 1 case right now
-#define RECEIVER_RADIUS 0.2
-#define RECEIVER_X 0.5
+#define RECEIVER_RADIUS 0.1
+#define RECEIVER_X 0.3
 #define RECEIVER_Y 0
 #define RECEIVER_Z 0
 

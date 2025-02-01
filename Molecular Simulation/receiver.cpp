@@ -30,3 +30,19 @@ double Receiver::getRadius()
 {
     return radius;
 }
+
+void Receiver::increaseParticlesReceived(int iterationNumber)
+{
+    particlesReceived[iterationNumber]++;
+}
+
+void Receiver::writeOutput()
+{
+    std::string output = "";
+    
+    for (int i = 0; i < NUMBER_OF_ITERATIONS; ++i) {
+        output += std::to_string(particlesReceived[i]) + ",";
+    }
+    
+    writeToFile("/Users/daghanerdonmez/Desktop/Molecular-Simulation/Molecular Simulation/Output/Outputs/r1output.txt", output);
+}
