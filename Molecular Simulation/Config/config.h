@@ -8,13 +8,15 @@
 #ifndef config_h
 #define config_h
 
-#define NUMBER_OF_ITERATIONS 10000
-#define ITERATIONS_PER_FRAME 1
+#define OUTPUT_RESULTS false
 
-#define PARTICLE_COUNT 100000
+#define NUMBER_OF_ITERATIONS 10000
+#define ITERATIONS_PER_FRAME 100
+
+#define PARTICLE_COUNT 10000
 #define BROWNIAN_STD_DEV 0.003
 
-#define RECEIVER_COUNT 1 // I only handle the 1 case right now
+#define RECEIVER_COUNT 1 // I only handle the 0 or 1 case right now
 #define RECEIVER_RADIUS 0.1
 #define RECEIVER_X 0.3
 #define RECEIVER_Y 0
@@ -23,7 +25,7 @@
 // 0 for no boundary
 // 1 for box boundary
 // 2 for cylinder boundary
-#define APPLIED_BOUNDARY 0
+#define APPLIED_BOUNDARY 2
 
 #define BOX_BOUNDARY_Z 0.5
 #define BOX_BOUNDARY_Y 0.5

@@ -169,9 +169,11 @@ int main() {
         currentFrame++;
     }
     
-    std::vector<Receiver> receivers = getReceivers();
-    receivers[0].writeOutput();
-
+    if (OUTPUT_RESULTS) {
+        std::vector<Receiver> receivers = getReceivers();
+        receivers[0].writeOutput();
+    }
+    
     // Clean up
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
