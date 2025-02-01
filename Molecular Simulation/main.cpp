@@ -127,7 +127,7 @@ int main() {
         glClear(GL_COLOR_BUFFER_BIT);
         
         //Iterate the simulation
-        iterateSimulation(5);
+        iterateSimulation(1);
         std::vector<glm::dvec3> positions = getParticlePositions();
         
         //Draw the receiver

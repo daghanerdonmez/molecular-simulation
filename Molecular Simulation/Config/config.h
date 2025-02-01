@@ -26,7 +26,8 @@
 #define BOX_BOUNDARY_Y 0.5
 #define BOX_BOUNDARY_X 0.5
 
-#define CYLINDER_R 0.2
-#define CYLINDER_Z 0.3 // 0 for infinite height cylinder
+#define CYLINDER_ORIENTATION 0 // Central axis of cylinder along: 0=X 1=Y 2=Z
+#define CYLINDER_R 0.3
+#define CYLINDER_Z 0 // 0 for infinite height cylinder
 
 #endif /* config_h */
