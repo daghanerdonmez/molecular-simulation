@@ -18,15 +18,44 @@
 #include <vector>
 #include "Config/config.h"
 
+
+
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
 std::vector<float> generateCircleVertices(float radius, int segments);
+int runWithGraphics();
+int runWithoutGraphics();
 
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 800;
 
 int main() {
-    
+    if (GRAPHICS_ON) {
+        runWithGraphics();
+    } else {
+        runWithoutGraphics();
+    }
+    return 0;
+}
+
+int runWithoutGraphics()
+{
+    initializeSimulation();
+    int totalFrames = NUMBER_OF_ITERATIONS / ITERATIONS_PER_FRAME;
+    int currentFrame = 0;
+    while (currentFrame < totalFrames) {
+        iterateSimulation(ITERATIONS_PER_FRAME, currentFrame);
+        currentFrame++;
+    }
+    if (OUTPUT_RESULTS) {
+        std::vector<Receiver> receivers = getReceivers();
+        receivers[0].writeOutput();
+    }
+    return 0;
+}
+
+int runWithGraphics() 
+{
     // Initialize GLFW
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -208,3 +237,5 @@ std::vector<float> generateCircleVertices(float radius, int segments) {
     }
     return vertices;
 }
+
+
