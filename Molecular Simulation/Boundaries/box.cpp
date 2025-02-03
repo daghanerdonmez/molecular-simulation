@@ -5,7 +5,7 @@
 //  Created by Dağhan Erdönmez on 31.01.2025.
 //
 
-#include "Box.hpp"
+#include "box.hpp"
 
 Box::Box() {
     if (MODE == 0) {

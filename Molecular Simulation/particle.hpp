@@ -12,10 +12,10 @@
 #include <iostream>
 #include <glm/glm.hpp>
 #include "Config/config.h"
-#include "Boundaries/Box.hpp"
-#include "Boundaries/Cylinder.hpp"
-#include "Boundaries/NoBoundary.hpp"
-#include "Boundaries/Boundary.hpp"
+#include "Boundaries/box.hpp"
+#include "Boundaries/cylinder.hpp"
+#include "Boundaries/noBoundary.hpp"
+#include "Boundaries/boundary.hpp"
 
 class Particle
 {

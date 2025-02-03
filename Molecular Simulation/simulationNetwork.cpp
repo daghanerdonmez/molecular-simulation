@@ -6,13 +6,8 @@
 //
 
 #include "simulationNetwork.hpp"
-#include "simulation.hpp"
-#include "Config/config.h"
 
-class SimulationNetwork
+SimulationNetwork::SimulationNetwork()
 {
-private:
-    Simulation* simulations;
-public:
-    SimulationNetwork();
-};
+    
+}

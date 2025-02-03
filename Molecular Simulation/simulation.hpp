@@ -15,6 +15,8 @@
 #include <glm/vec3.hpp>
 #include "Math/gaussian.hpp"
 #include "Config/config.h"
+#include "Boundaries/boundary.hpp"
+#include <stdexcept>
 
 class Simulation
 {
@@ -22,10 +24,7 @@ private:
     std::vector<Particle> particles;
     std::vector<Receiver> receivers;
     int aliveParticleCount;
-    int leftSimulationCount;
-    int RightSimulationCount;
-    Simulation* leftSimulations;
-    Simulation* rightSimulations;
+    Boundary* boundary = nullptr;
     
 public:
     Simulation();
@@ -33,6 +32,7 @@ public:
     std::vector<glm::dvec3> getAliveParticlePositions();
     std::vector<Receiver> getReceivers();
     bool checkReceivedForParticle(const Particle& particle,const Receiver& receiver);
+    double getBoundaryRadius(); // should only be called when boundary type is cylinder
 };
 
 

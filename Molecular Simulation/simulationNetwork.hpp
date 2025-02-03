@@ -9,5 +9,15 @@
 #define simulationNetwork_hpp
 
 #include <stdio.h>
+#include "simulation.hpp"
+#include "Config/config.h"
+
+class SimulationNetwork
+{
+private:
+    Simulation* simulations;
+public:
+    SimulationNetwork();
+};
 
 #endif /* simulationNetwork_hpp */

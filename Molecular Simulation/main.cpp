@@ -24,6 +24,9 @@ int main() {
         printf("Time taken: %.2fs\n", (double)(clock() - tStart)/CLOCKS_PER_SEC);
         return 0;
     }
+    if (MODE == 1) { // simulation network
+        return 0;
+    }
 }
 
 

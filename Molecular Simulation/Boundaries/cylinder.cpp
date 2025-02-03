@@ -5,7 +5,7 @@
 //  Created by Dağhan Erdönmez on 31.01.2025.
 //
 
-#include "Cylinder.hpp"
+#include "cylinder.hpp"
 
 Cylinder::Cylinder() {
     if (MODE == 0) {
@@ -69,5 +69,9 @@ glm::dvec3 Cylinder::reflectParticle(const glm::dvec3& oldPos, const glm::dvec3&
     }
 
     return deorientPosition(reflectedPos);
+}
+
+double Cylinder::getRadius() const {
+    return radius;
 }
 

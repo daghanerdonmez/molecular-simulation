@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include "../Config/config.h"
 #include <glm/glm.hpp>
-#include "Boundary.hpp"
+#include "boundary.hpp"
 
 class Box: public Boundary { // inheriting from boundary
 private:

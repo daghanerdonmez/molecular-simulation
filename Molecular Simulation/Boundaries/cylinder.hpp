@@ -11,7 +11,7 @@
 #include <glm/glm.hpp>
 #include "../Config/config.h"
 #include "../Math/geometry2d.hpp"
-#include "Boundary.hpp"
+#include "boundary.hpp"
 
 class Cylinder: public Boundary {
 private:
@@ -27,6 +27,7 @@ public:
     
     bool isOutsideBoundaries(const glm::dvec3& position) const override;
     glm::dvec3 reflectParticle(const glm::dvec3& oldPosition, const glm::dvec3& newPosition) const override;
+    double getRadius() const;
 };
 
 #endif /* Cylinder_hpp */

@@ -5,7 +5,7 @@
 //  Created by Dağhan Erdönmez on 29.01.2025.
 //
 
-#include "particle.hpp"
+#include "sarticle.hpp"
 
 Particle::Particle(double x, double y, double z) : position(x,y,z)
 {

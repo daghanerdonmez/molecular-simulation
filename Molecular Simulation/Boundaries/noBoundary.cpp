@@ -5,7 +5,7 @@
 //  Created by Dağhan Erdönmez on 3.02.2025.
 //
 
-#include "NoBoundary.hpp"
+#include "noBoundary.hpp"
 
 NoBoundary::NoBoundary(){}
 

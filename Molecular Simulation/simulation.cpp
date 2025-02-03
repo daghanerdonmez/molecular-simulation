@@ -11,7 +11,6 @@ Simulation::Simulation() {
     if (MODE == 0) { // Single simulation
         aliveParticleCount = PARTICLE_COUNT;
         
-        Boundary* boundary = nullptr;
         if (SINGLE_APPLIED_BOUNDARY == 0) {
             boundary = new NoBoundary();
         } else if(SINGLE_APPLIED_BOUNDARY == 1) {
@@ -28,8 +27,6 @@ Simulation::Simulation() {
             particles.emplace_back(0.0, 0.0, 0.0);
             particles[i].setBoundary(boundary);
         }
-        
-        
         
         //initialize the receiver
         if (SINGLE_RECEIVER_COUNT != 0) {
@@ -109,4 +106,20 @@ std::vector<glm::dvec3> Simulation::getAliveParticlePositions()
 std::vector<Receiver> Simulation::getReceivers()
 {
     return receivers;
+}
+
+double Simulation::getBoundaryRadius()
+{
+    Cylinder* cylinderBoundary = dynamic_cast<Cylinder*>(boundary);
+    
+    // If boundary is of type Cylinder* the dynamic cast will return the pointer to the boundary
+    // Else it will return nullptr and we are checking that below
+    // So basically we are returning the radius of the cylinder boundary if it is a cylinder
+    // Else throwing an error, because we shouldn't have called this function
+    
+    if (cylinderBoundary) {
+        return cylinderBoundary->getRadius();
+    } else {
+        throw std::runtime_error("Boundary is not of type Cylinder.");
+    }
 }

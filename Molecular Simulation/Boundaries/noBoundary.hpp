@@ -9,7 +9,7 @@
 #define NoBoundary_hpp
 
 #include <stdio.h>
-#include "Boundary.hpp"
+#include "boundary.hpp"
 
 class NoBoundary: public Boundary
 {
