@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
-filename = "./Output/Outputs/r1output.txt"
-resultCompressionRate = 50;
+filename = "./Output/Outputs/r3output.txt"
+resultCompressionRate = 10;
 
 # import os
 # print(os.getcwd())

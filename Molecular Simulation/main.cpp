@@ -17,8 +17,7 @@
 #include <glm/glm.hpp>
 #include <vector>
 #include "Config/config.h"
-
-
+#include <time.h>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
@@ -30,23 +29,20 @@ const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 800;
 
 int main() {
+    clock_t tStart = clock();
     if (GRAPHICS_ON) {
         runWithGraphics();
     } else {
         runWithoutGraphics();
     }
+    printf("Time taken: %.2fs\n", (double)(clock() - tStart)/CLOCKS_PER_SEC);
     return 0;
 }
 
 int runWithoutGraphics()
 {
     initializeSimulation();
-    int totalFrames = NUMBER_OF_ITERATIONS / ITERATIONS_PER_FRAME;
-    int currentFrame = 0;
-    while (currentFrame < totalFrames) {
-        iterateSimulation(ITERATIONS_PER_FRAME, currentFrame);
-        currentFrame++;
-    }
+    iterateSimulation(NUMBER_OF_ITERATIONS, 0);
     if (OUTPUT_RESULTS) {
         std::vector<Receiver> receivers = getReceivers();
         receivers[0].writeOutput();
@@ -168,6 +164,8 @@ int runWithGraphics()
             Receiver receiver = receivers[i];
             glm::dvec3 receiverPosition = receiver.getPosition();
             float receiverRadius = receiver.getRadius();
+            receiverPosition *= GRAPHICS_ZOOM_MULTIPLIER;
+            receiverRadius *= GRAPHICS_ZOOM_MULTIPLIER;
             
             particleShader.setVec2("objectPos", glm::dvec2(receiverPosition.x, receiverPosition.y));
             particleShader.setFloat("objectSize", receiverRadius);
@@ -181,10 +179,11 @@ int runWithGraphics()
         particleShader.use();
         glBindVertexArray(VAO);
         
-        std::vector<glm::dvec3> positions = getAliveParticlePositions();
+        std::vector<glm::dvec3> particlePositions = getAliveParticlePositions();
         
-        for (int i = 0; i < positions.size(); ++i) {
-            particleShader.setVec2("objectPos", glm::dvec2(positions[i].x, positions[i].y));
+        for (int i = 0; i < particlePositions.size(); ++i) {
+            glm::dvec3 partcilePosition = particlePositions[i] * GRAPHICS_ZOOM_MULTIPLIER;
+            particleShader.setVec2("objectPos", glm::dvec2(partcilePosition.x, partcilePosition.y));
             particleShader.setFloat("objectSize", particleSize);
             particleShader.setVec3("objectColor", glm::dvec3(1.0, 0.5, 0.0));
             

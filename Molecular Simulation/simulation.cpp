@@ -24,9 +24,10 @@ void initializeSimulation()
     }
     
     //initialize the receiver
-    receivers.reserve(RECEIVER_COUNT);
-    receivers.emplace_back(glm::dvec3(RECEIVER_X, RECEIVER_Y, RECEIVER_Z), RECEIVER_RADIUS);
-    
+    if (RECEIVER_COUNT != 0) {
+        receivers.reserve(RECEIVER_COUNT);
+        receivers.emplace_back(glm::dvec3(RECEIVER_X, RECEIVER_Y, RECEIVER_Z), RECEIVER_RADIUS);
+    }
 }
 
 void iterateSimulation(int iterationCount, int currentFrame)
@@ -37,21 +38,19 @@ void iterateSimulation(int iterationCount, int currentFrame)
             // for each particle
             for(int j = 0; j < PARTICLE_COUNT; ++j) {
                 if (particles[j].isAlive()) {
+                    // calculate their displacements
+                    // in brownian motion displacements in each iteration are standard normal distributions
+                    double dx = generateGaussian(0.0, sqrt(2 * D * DT));
+                    double dy = generateGaussian(0.0, sqrt(2 * D * DT));
+                    double dz = generateGaussian(0.0, sqrt(2 * D * DT));
+                    particles[j].move(dx, dy, dz);
+                    
                     for (int k = 0; k < RECEIVER_COUNT; ++k) {
-                        // calculate their displacements
-                        // in brownian motion displacements in each iteration are standard normal distributions
-                        double dx = generateGaussian(0.0, BROWNIAN_STD_DEV);
-                        double dy = generateGaussian(0.0, BROWNIAN_STD_DEV);
-                        double dz = generateGaussian(0.0, BROWNIAN_STD_DEV);
-                        particles[j].move(dx, dy, dz);
-                        
                         //check if they are received by the receivers
-                        //TODO: I'm just sending these to another galaxy right now, not deleting them
-                        //TODO: But Ali Emre Pusane said it's okay :p
                         if (checkReceivedForParticle(particles[j], receivers[k])) {
                             particles[j].kill();
                             aliveParticleCount--;
-                            receivers[k].increaseParticlesReceived(currentFrame);
+                            receivers[k].increaseParticlesReceived(currentFrame * ITERATIONS_PER_FRAME + i);
                         }
                     }
                 }
@@ -65,9 +64,9 @@ void iterateSimulation(int iterationCount, int currentFrame)
                 if (particles[j].isAlive()) {
                     // calculate their displacements
                     // in brownian motion displacements in each iteration are standard normal distributions
-                    double dx = generateGaussian(0.0, BROWNIAN_STD_DEV);
-                    double dy = generateGaussian(0.0, BROWNIAN_STD_DEV);
-                    double dz = generateGaussian(0.0, BROWNIAN_STD_DEV);
+                    double dx = generateGaussian(0.0, sqrt(2 * D * DT));
+                    double dy = generateGaussian(0.0, sqrt(2 * D * DT));
+                    double dz = generateGaussian(0.0, sqrt(2 * D * DT));
                     particles[j].move(dx, dy, dz);
                 }
             }

@@ -7,13 +7,9 @@
 
 #include "receiver.hpp"
 
-Receiver::Receiver(glm::dvec3 position, double radius): position(position), radius(radius)
-{
-    // initialize particles received to all 0
-    for (int i = 0; i < NUMBER_OF_ITERATIONS; ++i) {
-        particlesReceived[i] = 0;
-    }
-};
+Receiver::Receiver(glm::dvec3 position, double radius) : position(position), radius(radius) {
+    particlesReceived = new int[NUMBER_OF_ITERATIONS]();
+}
 
 bool Receiver::hit(glm::dvec3 particlePosition)
 {
@@ -41,8 +37,11 @@ void Receiver::writeOutput()
     std::string output = "";
     
     for (int i = 0; i < NUMBER_OF_ITERATIONS; ++i) {
-        output += std::to_string(particlesReceived[i]) + ",";
+        output += std::to_string(particlesReceived[i]);
+        if (i != NUMBER_OF_ITERATIONS-1) {
+            output += ",";
+        }
     }
     
-    writeToFile("/Users/daghanerdonmez/Desktop/Molecular-Simulation/Molecular Simulation/Output/Outputs/r1output.txt", output);
+    writeToFile("/Users/daghanerdonmez/Desktop/Molecular-Simulation/Molecular Simulation/Output/Outputs/r3output.txt", output);
 }

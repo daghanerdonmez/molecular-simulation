@@ -8,18 +8,21 @@
 #ifndef config_h
 #define config_h
 
-#define OUTPUT_RESULTS false
-#define GRAPHICS_ON false
+#define OUTPUT_RESULTS true
+#define GRAPHICS_ON true
 
-#define NUMBER_OF_ITERATIONS 10000
-#define ITERATIONS_PER_FRAME 100
+#define NUMBER_OF_ITERATIONS 2000
+#define DT 1e-3
+#define ITERATIONS_PER_FRAME 10
 
-#define PARTICLE_COUNT 1000
-#define BROWNIAN_STD_DEV 0.003
+#define PARTICLE_COUNT 10000
+#define D 79.4e-12 // diffusion coefficient
+
+#define GRAPHICS_ZOOM_MULTIPLIER 1e4
 
 #define RECEIVER_COUNT 1 // I only handle the 0 or 1 case right now
-#define RECEIVER_RADIUS 0.1
-#define RECEIVER_X 0.3
+#define RECEIVER_RADIUS 5e-6
+#define RECEIVER_X 1e-5
 #define RECEIVER_Y 0
 #define RECEIVER_Z 0
 
