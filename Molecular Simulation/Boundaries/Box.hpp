@@ -11,8 +11,24 @@
 #include <stdio.h>
 #include "../Config/config.h"
 #include <glm/glm.hpp>
+#include "Boundary.hpp"
 
-bool boxIsOutsideBoundaries(glm::dvec3 position);
-glm::dvec3 boxReflectParticle(glm::dvec3 position);
+class Box: public Boundary { // inheriting from boundary
+private:
+    double boundaryX;
+    double boundaryY;
+    double boundaryZ;
+
+public:
+    Box();
+
+    double getBoundaryZ(double x, double y) const;
+    double getBoundaryY(double x, double z) const;
+    double getBoundaryX(double y, double z) const;
+
+    bool isOutsideBoundaries(const glm::dvec3& position) const override;
+    glm::dvec3 reflectParticle(const glm::dvec3& oldPosition, const glm::dvec3& newPosition) const override;
+};
 
 #endif /* Box_hpp */
+

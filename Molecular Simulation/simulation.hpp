@@ -16,11 +16,24 @@
 #include "Math/gaussian.hpp"
 #include "Config/config.h"
 
+class Simulation
+{
+private:
+    std::vector<Particle> particles;
+    std::vector<Receiver> receivers;
+    int aliveParticleCount;
+    int leftSimulationCount;
+    int RightSimulationCount;
+    Simulation* leftSimulations;
+    Simulation* rightSimulations;
+    
+public:
+    Simulation();
+    void iterateSimulation(int iterationCount, int currentFrame);
+    std::vector<glm::dvec3> getAliveParticlePositions();
+    std::vector<Receiver> getReceivers();
+    bool checkReceivedForParticle(const Particle& particle,const Receiver& receiver);
+};
 
-void initializeSimulation();
-void iterateSimulation(int iterationCount, int currentFrame);
-std::vector<glm::dvec3> getAliveParticlePositions();
-std::vector<Receiver> getReceivers();
-bool checkReceivedForParticle(Particle particle, Receiver receiver);
 
 #endif /* simulation_hpp */

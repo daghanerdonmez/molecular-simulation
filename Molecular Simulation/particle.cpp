@@ -14,26 +14,23 @@ Particle::Particle(double x, double y, double z) : position(x,y,z)
 
 void Particle::move(double dx, double dy, double dz)
 {
-    if (APPLIED_BOUNDARY == 0) { // no boundary
-        position += glm::dvec3(dx,dy,dz);
-    } else if (APPLIED_BOUNDARY == 1) { // box boundary
+    if (MODE == 0) {
         glm::dvec3 newPosition = position + glm::dvec3(dx,dy,dz);
-        if (boxIsOutsideBoundaries(newPosition)) {
-            newPosition = boxReflectParticle(newPosition);
-        }
-        position = newPosition;
-    } else if (APPLIED_BOUNDARY == 2) { // cylinder boundary
-        glm::dvec3 newPosition = position + glm::dvec3(dx,dy,dz);
-        while(cylinderIsOutsideBoundaries(newPosition)) {
-            newPosition = cylinderReflectParticle(position, newPosition);
+        while (associatedBoundary->isOutsideBoundaries(newPosition)) {
+            newPosition = associatedBoundary->reflectParticle(position, newPosition);
         }
         position = newPosition;
     }
 }
 
-glm::dvec3 Particle::getPosition()
+glm::dvec3 Particle::getPosition() const
 {
     return position;
+}
+
+void Particle::setBoundary(Boundary* boundary)
+{
+    associatedBoundary = boundary;
 }
 
 void Particle::kill()

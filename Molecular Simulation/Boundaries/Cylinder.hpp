@@ -8,12 +8,26 @@
 #ifndef Cylinder_hpp
 #define Cylinder_hpp
 
-#include <stdio.h>
 #include <glm/glm.hpp>
 #include "../Config/config.h"
 #include "../Math/geometry2d.hpp"
+#include "Boundary.hpp"
 
-bool cylinderIsOutsideBoundaries(glm::dvec3 position);
-glm::dvec3 cylinderReflectParticle(glm::dvec3 oldPosition, glm::dvec3 newPosition);
+class Cylinder: public Boundary {
+private:
+    int orientation;
+    double radius;
+    double zLimit;
+
+    glm::dvec3 orientPosition(const glm::dvec3& position) const;
+    glm::dvec3 deorientPosition(const glm::dvec3& position) const;
+
+public:
+    Cylinder();
+    
+    bool isOutsideBoundaries(const glm::dvec3& position) const override;
+    glm::dvec3 reflectParticle(const glm::dvec3& oldPosition, const glm::dvec3& newPosition) const override;
+};
 
 #endif /* Cylinder_hpp */
+

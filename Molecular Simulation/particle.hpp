@@ -14,16 +14,20 @@
 #include "Config/config.h"
 #include "Boundaries/Box.hpp"
 #include "Boundaries/Cylinder.hpp"
+#include "Boundaries/NoBoundary.hpp"
+#include "Boundaries/Boundary.hpp"
 
 class Particle
 {
 private:
     glm::dvec3 position;
     bool alive = true;
+    Boundary* associatedBoundary;
 public:
     Particle(double x, double y, double z);
     void move(double dx, double dy, double dz);
-    glm::dvec3 getPosition();
+    glm::dvec3 getPosition() const;
+    void setBoundary(Boundary* boundary);
     void kill();
     bool isAlive();
 };

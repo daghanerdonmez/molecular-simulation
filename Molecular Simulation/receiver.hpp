@@ -28,9 +28,9 @@ private:
     // Now the complexity is theta(n) as expected
 public:
     Receiver(glm::dvec3 position, double radius);
-    bool hit(glm::dvec3 particlePosition);
-    glm::dvec3 getPosition();
-    double getRadius();
+    bool hit(glm::dvec3 particlePosition) const;
+    glm::dvec3 getPosition() const;
+    double getRadius() const;
     void increaseParticlesReceived(int iterationNumber);
     void writeOutput();
 };
