@@ -41,13 +41,20 @@ void Particle::move(double dx, double dy, double dz)
                 if (DEBUG_CHECKPOINT_PRINTS) {
                     printf("c4\n");
                 }
-                printf("d");
-                associatedSimulation->giveParticleToRight(this);
+                if (associatedSimulation->getRightConnection() == nullptr) {
+                    newPosition = associatedBoundary->reflectParticle(position, newPosition);
+                } else {
+                    associatedSimulation->giveParticleToRight(this);
+                }
             } else if (cylinderBoundary->isOutsideLeftZBoundary(newPosition)) {
                 if (DEBUG_CHECKPOINT_PRINTS) {
                     printf("c5\n");
                 }
-                associatedSimulation->giveParticleToLeft(this);
+                if (associatedSimulation->getLeftConnection() == nullptr) {
+                    newPosition = associatedBoundary->reflectParticle(position, newPosition);
+                } else {
+                    associatedSimulation->giveParticleToLeft(this);
+                }
             } else {
                 if (DEBUG_CHECKPOINT_PRINTS) {
                     printf("c6\n");

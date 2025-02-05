@@ -100,6 +100,7 @@ int networkRunWithGraphics(){
     
     //Initialize the simulation
     SimulationNetwork network;
+    Simulation* firstSimulation = network.getFirstSimulation();
     
     // Render loop
     int totalFrames = NUMBER_OF_ITERATIONS / ITERATIONS_PER_FRAME;
@@ -107,6 +108,7 @@ int networkRunWithGraphics(){
     
     while (!glfwWindowShouldClose(window) && currentFrame < totalFrames)
     {
+        
         // Input
         processInput(window);
 
@@ -116,7 +118,6 @@ int networkRunWithGraphics(){
         
         //Iterate the simulation
         network.iterateNetwork(ITERATIONS_PER_FRAME, currentFrame);
-        Simulation* firstSimulation = network.getFirstSimulation();
         
         //Draw the receiver
 

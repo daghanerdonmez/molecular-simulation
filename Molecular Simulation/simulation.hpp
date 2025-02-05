@@ -29,13 +29,14 @@ private:
     std::vector<Receiver> receivers;
     int aliveParticleCount;
     Boundary* boundary = nullptr;
-    Connection* leftConnection;
-    Connection* rightConnection;
+    Connection* leftConnection = nullptr;
+    Connection* rightConnection = nullptr;
     
 public:
     Simulation();
     void iterateSimulation(int iterationCount, int currentFrame);
     std::vector<glm::dvec3> getAliveParticlePositions();
+    int getAliveParticleCount();
     std::vector<Receiver> getReceivers();
     bool checkReceivedForParticle(const Particle& particle,const Receiver& receiver);
     double getBoundaryRadius(); // should only be called when boundary type is cylinder
@@ -45,8 +46,11 @@ public:
     void giveParticleToRight(Particle* particle);
     void receiveParticle(Particle* particle, Direction direction) override;
     
-    void setLeftHub(Connection* connection);
-    void setRightHub(Connection* connection);
+    void setLeftConnection(Connection* connection);
+    void setRightConnection(Connection* connection);
+    
+    Connection* getLeftConnection();
+    Connection* getRightConnection();
 };
 
 

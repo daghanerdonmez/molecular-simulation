@@ -15,11 +15,11 @@ SimulationNetwork::SimulationNetwork()
 void SimulationNetwork::iterateNetwork(int iterationCount, int currentFrame)
 {
     for (int i = 0; i < iterationCount; ++i) {
-        for(Simulation simulation: simulations) {
+        for(int j = 0; j < simulations.size(); ++j) {
             if (DEBUG_CHECKPOINT_PRINTS) {
                 printf("a\n");
             }
-            simulation.iterateSimulation(1, currentFrame);
+            simulations[j].iterateSimulation(1, currentFrame);
         }
     }
 }

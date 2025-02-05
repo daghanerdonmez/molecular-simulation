@@ -129,11 +129,12 @@ std::vector<glm::dvec3> Simulation::getAliveParticlePositions()
     positions.reserve(aliveParticleCount);
     
     //put each position in it's place by getting it from the object
-    for (int i = 0; i < aliveParticleCount; ++i) {
+    for (int i = 0; i < PARTICLE_COUNT; ++i) {
         if (particles[i].isAlive()) {
             positions.emplace_back(particles[i].getPosition());
         }
     }
+    
     
     return positions;
 }
@@ -141,6 +142,11 @@ std::vector<glm::dvec3> Simulation::getAliveParticlePositions()
 std::vector<Receiver> Simulation::getReceivers()
 {
     return receivers;
+}
+
+int Simulation::getAliveParticleCount()
+{
+    return aliveParticleCount;
 }
 
 double Simulation::getBoundaryRadius()
@@ -206,3 +212,25 @@ void Simulation::receiveParticle(Particle* particle, Direction direction)
     aliveParticleCount++;
     particles[aliveParticleCount] = newParticle;
 }
+
+void Simulation::setLeftConnection(Connection *connection)
+{
+    leftConnection = connection;
+}
+
+void Simulation::setRightConnection(Connection *connection)
+{
+    rightConnection = connection;
+}
+
+Connection* Simulation::getLeftConnection()
+{
+    return leftConnection;
+}
+
+Connection* Simulation::getRightConnection()
+{
+    return rightConnection;
+}
+
+
