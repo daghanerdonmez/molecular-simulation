@@ -9,22 +9,30 @@
 #define hub_hpp
 
 #include <stdio.h>
-#include "simulation.hpp"
 #include <vector>
 #include <random>
+#include "connection.hpp"
 
-class Hub
+struct DirectedConnection {
+    Connection* connection;
+    Direction direction;
+};
+
+class Hub: public Connection
 {
 private:
-    std::vector<Simulation> connectingSimulations;
+    std::vector<DirectedConnection> directedConnections;
     double totalSquaredRadius = 0;
     std::vector<double> cumulativeProbabilities;
     
 public:
     Hub();
-    void addSimulation(Simulation);
+    void addDirectedConnection(DirectedConnection directedConnection);
     void simulateParticleTransaction();
-    void Hub::initializeProbabilities();
+    void initializeProbabilities();
+    
+    void receiveParticle(Particle* particle, Direction direction) override;
 };
 
 #endif /* hub_hpp */
+

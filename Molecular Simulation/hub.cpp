@@ -6,23 +6,29 @@
 //
 
 #include "hub.hpp"
+#include "simulation.hpp"
 
 Hub::Hub()
 {
     
 }
 
-void Hub::addSimulation(Simulation simulation) 
-{
-    connectingSimulations.push_back(simulation);
+void Hub::addDirectedConnection(DirectedConnection directedConnection) {
+    directedConnections.push_back(directedConnection);
 }
 
-void Hub::initializeProbabilities()
-{
-    for (int i = 0; i < connectingSimulations.size(); ++i) {
-        double radius = connectingSimulations[i].getBoundaryRadius();
-        totalSquaredRadius += radius * radius;
-        cumulativeProbabilities.push_back(totalSquaredRadius);
+void Hub::initializeProbabilities() {
+    totalSquaredRadius = 0;
+    cumulativeProbabilities.clear();
+
+    for (DirectedConnection directedConnection : directedConnections) {
+        // Assuming only Simulation connections have boundaries
+        Simulation* sim = dynamic_cast<Simulation*>(directedConnection.connection);
+        if (sim) {
+            double radius = sim->getBoundaryRadius();
+            totalSquaredRadius += radius * radius;
+            cumulativeProbabilities.push_back(totalSquaredRadius);
+        }
     }
 }
 
@@ -40,4 +46,9 @@ void Hub::simulateParticleTransaction()
                 break;
             }
         }
+}
+
+void Hub::receiveParticle(Particle* particle, Direction direction)
+{
+    simulateParticleTransaction();
 }

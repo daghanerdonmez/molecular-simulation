@@ -1,28 +1,23 @@
 //
-//  singleExecution.cpp
+//  networkExecution.cpp
 //  Molecular Simulation
 //
-//  Created by Dağhan Erdönmez on 3.02.2025.
+//  Created by Dağhan Erdönmez on 5.02.2025.
 //
 
-#include "singleExecution.hpp"
+#include "networkExecution.hpp"
 
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 800;
 
-int singleRunWithoutGraphics()
+int networkRunWithoutGraphics()
 {
-    Simulation simulation;
-    simulation.iterateSimulation(NUMBER_OF_ITERATIONS, 0);
-    if (OUTPUT_RESULTS) {
-        std::vector<Receiver> receivers = simulation.getReceivers();
-        receivers[0].writeOutput();
-    }
+    SimulationNetwork network;
+    network.iterateNetwork(NUMBER_OF_ITERATIONS,0);
     return 0;
 }
 
-int singleRunWithGraphics()
-{
+int networkRunWithGraphics(){
     // Initialize GLFW
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -102,21 +97,14 @@ int singleRunWithGraphics()
     glBindVertexArray(0);
     
     double particleSize = 0.01;
-
     
     //Initialize the simulation
-    Simulation simulation;
-    
-//    std::vector<glm::vec3> positions = getParticlePositions();
-//    std::vector<Receiver> receivers = getReceivers();
-//    Receiver receiver = receivers[0];
-//    glm::vec3 receiverPosition = receiver.getPosition();
-//    std::cout << glm::length(positions[0] - receiverPosition) << std::endl;
-//    std::cout << receiver.getRadius() << std::endl;
+    SimulationNetwork network;
     
     // Render loop
     int totalFrames = NUMBER_OF_ITERATIONS / ITERATIONS_PER_FRAME;
     int currentFrame = 0;
+    
     while (!glfwWindowShouldClose(window) && currentFrame < totalFrames)
     {
         // Input
@@ -127,31 +115,33 @@ int singleRunWithGraphics()
         glClear(GL_COLOR_BUFFER_BIT);
         
         //Iterate the simulation
-        simulation.iterateSimulation(ITERATIONS_PER_FRAME, currentFrame);
+        network.iterateNetwork(ITERATIONS_PER_FRAME, currentFrame);
+        Simulation* firstSimulation = network.getFirstSimulation();
         
         //Draw the receiver
-        std::vector<Receiver> receivers = simulation.getReceivers();
-        
-        for (int i = 0; i < SINGLE_RECEIVER_COUNT; ++i) {
-            Receiver receiver = receivers[i];
-            glm::dvec3 receiverPosition = receiver.getPosition();
-            float receiverRadius = receiver.getRadius();
-            receiverPosition *= GRAPHICS_ZOOM_MULTIPLIER;
-            receiverRadius *= GRAPHICS_ZOOM_MULTIPLIER;
-            
-            particleShader.setVec2("objectPos", glm::dvec2(receiverPosition.x, receiverPosition.y));
-            particleShader.setFloat("objectSize", receiverRadius);
-            particleShader.setVec3("objectColor", glm::dvec3(0.0, 0.7, 0.7)); // Blue for receiver
 
-            glBindVertexArray(circleVAO);
-            glDrawArrays(GL_TRIANGLE_FAN, 0, circleSegments + 2);
-        }
+//        std::vector<Receiver> receivers = firstSimulation->getReceivers();
+//        
+//        for (int i = 0; i < SINGLE_RECEIVER_COUNT; ++i) {
+//            Receiver receiver = receivers[i];
+//            glm::dvec3 receiverPosition = receiver.getPosition();
+//            float receiverRadius = receiver.getRadius();
+//            receiverPosition *= GRAPHICS_ZOOM_MULTIPLIER;
+//            receiverRadius *= GRAPHICS_ZOOM_MULTIPLIER;
+//            
+//            particleShader.setVec2("objectPos", glm::dvec2(receiverPosition.x, receiverPosition.y));
+//            particleShader.setFloat("objectSize", receiverRadius);
+//            particleShader.setVec3("objectColor", glm::dvec3(0.0, 0.7, 0.7)); // Blue for receiver
+//
+//            glBindVertexArray(circleVAO);
+//            glDrawArrays(GL_TRIANGLE_FAN, 0, circleSegments + 2);
+//        }
         
         // Draw the particles
         particleShader.use();
         glBindVertexArray(VAO);
         
-        std::vector<glm::dvec3> particlePositions = simulation.getAliveParticlePositions();
+        std::vector<glm::dvec3> particlePositions = firstSimulation->getAliveParticlePositions();
         
         for (int i = 0; i < particlePositions.size(); ++i) {
             glm::dvec3 partcilePosition = particlePositions[i] * GRAPHICS_ZOOM_MULTIPLIER;
@@ -169,11 +159,6 @@ int singleRunWithGraphics()
         currentFrame++;
     }
     
-    if (OUTPUT_RESULTS) {
-        std::vector<Receiver> receivers = simulation.getReceivers();
-        receivers[0].writeOutput();
-    }
-    
     // Clean up
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
@@ -182,3 +167,5 @@ int singleRunWithGraphics()
     glfwTerminate();
     return 0;
 }
+
+

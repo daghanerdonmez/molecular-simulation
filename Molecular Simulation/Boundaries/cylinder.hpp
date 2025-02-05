@@ -28,6 +28,10 @@ public:
     bool isOutsideBoundaries(const glm::dvec3& position) const override;
     glm::dvec3 reflectParticle(const glm::dvec3& oldPosition, const glm::dvec3& newPosition) const override;
     double getRadius() const;
+    double getHeight() const;
+    // By right and left I assume the cylinder is laid along z-axis where +z is right and -z is left.
+    bool isOutsideRightZBoundary(const glm::dvec3& position) const;
+    bool isOutsideLeftZBoundary(const glm::dvec3& position) const;
 };
 
 #endif /* Cylinder_hpp */

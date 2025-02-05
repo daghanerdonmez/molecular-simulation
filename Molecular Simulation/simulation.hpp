@@ -17,14 +17,20 @@
 #include "Config/config.h"
 #include "Boundaries/boundary.hpp"
 #include <stdexcept>
+#include "Math/random.hpp"
+#include "connection.hpp"
 
-class Simulation
+class Particle;
+
+class Simulation: public Connection
 {
 private:
     std::vector<Particle> particles;
     std::vector<Receiver> receivers;
     int aliveParticleCount;
     Boundary* boundary = nullptr;
+    Connection* leftConnection;
+    Connection* rightConnection;
     
 public:
     Simulation();
@@ -33,6 +39,14 @@ public:
     std::vector<Receiver> getReceivers();
     bool checkReceivedForParticle(const Particle& particle,const Receiver& receiver);
     double getBoundaryRadius(); // should only be called when boundary type is cylinder
+    double getBoundaryHeight(); // should only be called when boundary type is cylinder
+    
+    void giveParticleToLeft(Particle* particle);
+    void giveParticleToRight(Particle* particle);
+    void receiveParticle(Particle* particle, Direction direction) override;
+    
+    void setLeftHub(Connection* connection);
+    void setRightHub(Connection* connection);
 };
 
 

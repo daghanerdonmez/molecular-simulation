@@ -17,17 +17,22 @@
 #include "Boundaries/noBoundary.hpp"
 #include "Boundaries/boundary.hpp"
 
+class Simulation;
+
 class Particle
 {
 private:
     glm::dvec3 position;
     bool alive = true;
     Boundary* associatedBoundary;
+    Simulation* associatedSimulation;
+    
 public:
     Particle(double x, double y, double z);
     void move(double dx, double dy, double dz);
     glm::dvec3 getPosition() const;
     void setBoundary(Boundary* boundary);
+    void setSimulation(Simulation* simulation);
     void kill();
     bool isAlive();
 };

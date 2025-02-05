@@ -12,6 +12,10 @@ Cylinder::Cylinder() {
         orientation = SINGLE_CYLINDER_ORIENTATION;
         radius = SINGLE_CYLINDER_R;
         zLimit = SINGLE_CYLINDER_Z;
+    } else if (MODE == 1) {
+        orientation = 2;
+        radius = SINGLE_CYLINDER_R;
+        zLimit = SINGLE_CYLINDER_Z;
     }
 }
 
@@ -38,6 +42,14 @@ bool Cylinder::isOutsideBoundaries(const glm::dvec3& position) const {
     if (zLimit > 0.0 && (orientedPos.z > zLimit || orientedPos.z < -zLimit)) return true;
 
     return false;
+}
+
+bool Cylinder::isOutsideRightZBoundary(const glm::dvec3& position) const {
+    return (position.z > zLimit);
+}
+
+bool Cylinder::isOutsideLeftZBoundary(const glm::dvec3& position) const {
+    return (position.z < -zLimit);
 }
 
 glm::dvec3 Cylinder::reflectParticle(const glm::dvec3& oldPos, const glm::dvec3& newPos) const {
@@ -73,5 +85,9 @@ glm::dvec3 Cylinder::reflectParticle(const glm::dvec3& oldPos, const glm::dvec3&
 
 double Cylinder::getRadius() const {
     return radius;
+}
+
+double Cylinder::getHeight() const {
+    return zLimit;
 }
 

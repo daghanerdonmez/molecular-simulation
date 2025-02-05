@@ -14,7 +14,7 @@
 #include <variant>
 #include <iostream>
 
-#include "../Boundaries/Cylinder.hpp"
+#include "../Boundaries/cylinder.hpp"
 
 
 std::tuple<double, double> lineOfTwoPoints(glm::dvec2 point1, glm::dvec2 point2);

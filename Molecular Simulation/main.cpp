@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include "singleExecution.hpp"
+#include "networkExecution.hpp"
 #include <vector>
 #include "Config/config.h"
 #include <time.h>
@@ -25,6 +26,13 @@ int main() {
         return 0;
     }
     if (MODE == 1) { // simulation network
+        clock_t tStart = clock();
+        if (GRAPHICS_ON) {
+            networkRunWithGraphics();
+        } else {
+            networkRunWithoutGraphics();
+        }
+        printf("Time taken: %.2fs\n", (double)(clock() - tStart)/CLOCKS_PER_SEC);
         return 0;
     }
 }

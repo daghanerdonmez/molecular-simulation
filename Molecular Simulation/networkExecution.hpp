@@ -1,12 +1,12 @@
 //
-//  singleExecution.hpp
+//  networkExecution.hpp
 //  Molecular Simulation
 //
-//  Created by Dağhan Erdönmez on 3.02.2025.
+//  Created by Dağhan Erdönmez on 5.02.2025.
 //
 
-#ifndef singleExecution_hpp
-#define singleExecution_hpp
+#ifndef networkExecution_hpp
+#define networkExecution_hpp
 
 #define GL_SILENCE_DEPRECATION
 
@@ -22,9 +22,10 @@
 #include <vector>
 #include "Config/config.h"
 #include <time.h>
+#include "simulationNetwork.hpp"
 #include "GLHeaders/commonHeaders.hpp"
 
-int singleRunWithGraphics();
-int singleRunWithoutGraphics();
+int networkRunWithoutGraphics();
+int networkRunWithGraphics();
 
-#endif /* singleExecution_hpp */
+#endif /* networkExecution_hpp */
