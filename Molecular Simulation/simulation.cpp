@@ -46,6 +46,7 @@ Simulation::Simulation() {
             particles.emplace_back(0.0, 0.0, 0.0);
             particles[i].setBoundary(boundary);
             particles[i].setSimulation(this);
+            std::cout << "Simulation instance address: " << this << std::endl;
         }
     }
 }
@@ -57,19 +58,20 @@ void Simulation::iterateSimulation(int iterationCount, int currentFrame)
             // for each iteration
             for(int i = 0; i < iterationCount; ++i) {
                 // for each particle
-                for(int j = 0; j < PARTICLE_COUNT; ++j) {
+                for(int j = 0; j < particles.size(); ++j) {
                     if (particles[j].isAlive()) {
                         // calculate their displacements
                         // in brownian motion displacements in each iteration are standard normal distributions
                         double dx = generateGaussian(0.0, sqrt(2 * D * DT));
                         double dy = generateGaussian(0.0, sqrt(2 * D * DT));
                         double dz = generateGaussian(0.0, sqrt(2 * D * DT));
-                        particles[j].move(dx, dy, dz);
+                        bool toBeKilled = false;
+                        particles[j].move(dx, dy, dz, &toBeKilled);
                         
                         for (int k = 0; k < SINGLE_RECEIVER_COUNT; ++k) {
                             //check if they are received by the receivers
                             if (checkReceivedForParticle(particles[j], receivers[k])) {
-                                particles[j].kill();
+                                killParticle(j);
                                 aliveParticleCount--;
                                 receivers[k].increaseParticlesReceived(currentFrame * ITERATIONS_PER_FRAME + i);
                             }
@@ -81,14 +83,15 @@ void Simulation::iterateSimulation(int iterationCount, int currentFrame)
             // for each iteration
             for(int i = 0; i < iterationCount; ++i) {
                 // for each particle
-                for(int j = 0; j < PARTICLE_COUNT; ++j) {
+                for(int j = 0; j < particles.size(); ++j) {
                     if (particles[j].isAlive()) {
                         // calculate their displacements
                         // in brownian motion displacements in each iteration are standard normal distributions
                         double dx = generateGaussian(0.0, sqrt(2 * D * DT));
                         double dy = generateGaussian(0.0, sqrt(2 * D * DT));
                         double dz = generateGaussian(0.0, sqrt(2 * D * DT));
-                        particles[j].move(dx, dy, dz);
+                        bool toBeKilled = false;
+                        particles[j].move(dx, dy, dz, &toBeKilled);
                     }
                 }
             }
@@ -110,7 +113,11 @@ void Simulation::iterateSimulation(int iterationCount, int currentFrame)
                     double dx = generateGaussian(0.0, sqrt(2 * D * DT));
                     double dy = generateGaussian(0.0, sqrt(2 * D * DT));
                     double dz = generateGaussian(0.0, sqrt(2 * D * DT));
-                    particles[j].move(dx, dy, dz);
+                    bool toBeKilled = false;
+                    particles[j].move(dx, dy, dz, &toBeKilled);
+                    if (toBeKilled) {
+                        killParticle(j);
+                    }
                 }
             }
         }
@@ -129,7 +136,7 @@ std::vector<glm::dvec3> Simulation::getAliveParticlePositions()
     positions.reserve(aliveParticleCount);
     
     //put each position in it's place by getting it from the object
-    for (int i = 0; i < PARTICLE_COUNT; ++i) {
+    for (int i = 0; i < particles.size(); ++i) {
         if (particles[i].isAlive()) {
             positions.emplace_back(particles[i].getPosition());
         }
@@ -183,18 +190,28 @@ double Simulation::getBoundaryHeight()
 
 void Simulation::giveParticleToLeft(Particle* particle)
 {
-    Hub* leftHub = dynamic_cast<Hub*>(leftConnection);
-    Direction left = Direction::LEFT; // this left is arbitrary direction is not used when giving particle from simulation to hub
-    leftHub->receiveParticle(particle, left);
+    //std::cout << "giving particle left" << std::endl;
+    //std::cout << "çağrılan simülasyon: " << this << std::endl;
+    Hub* hubConnection = dynamic_cast<Hub*>(leftConnection);
+    if (hubConnection) {
+        hubConnection->receiveParticle(particle, Direction::LEFT);
+    } else {
+        std::cerr << "Error: leftConnection is not a Hub or is nullptr." << std::endl;
+    }
     particle->kill();
     aliveParticleCount--;
 }
 
 void Simulation::giveParticleToRight(Particle* particle)
 {
-    Hub* rightHub = dynamic_cast<Hub*>(leftConnection);
-    Direction left = Direction::LEFT; // this left is arbitrary direction is not used when giving particle from simulation to hub
-    rightHub->receiveParticle(particle, left);
+    //std::cout << "giving particle right" << std::endl;
+    //std::cout << "çağrılan simülasyon: " << this << std::endl;
+    Hub* hubConnection = dynamic_cast<Hub*>(rightConnection);
+    if (hubConnection) {
+        hubConnection->receiveParticle(particle, Direction::RIGHT);
+    } else {
+        std::cerr << "Error: rightConnection is not a Hub or is nullptr." << std::endl;
+    }
     particle->kill();
     aliveParticleCount--;
 }
@@ -208,9 +225,11 @@ void Simulation::receiveParticle(Particle* particle, Direction direction)
     } else if (direction == Direction::RIGHT) {
         zCoord = getBoundaryHeight();
     }
-    Particle newParticle = Particle(xypair.first, xypair.second, zCoord);
+    Particle newParticle(xypair.first, xypair.second, zCoord);
+    newParticle.setBoundary(boundary);
+    newParticle.setSimulation(this);
+    addParticle(newParticle);
     aliveParticleCount++;
-    particles[aliveParticleCount] = newParticle;
 }
 
 void Simulation::setLeftConnection(Connection *connection)
@@ -231,6 +250,22 @@ Connection* Simulation::getLeftConnection()
 Connection* Simulation::getRightConnection()
 {
     return rightConnection;
+}
+
+void Simulation::addParticle(const Particle& newParticle) {
+    if (!inactiveIndices.empty()) {
+        int index = inactiveIndices.top();
+        inactiveIndices.pop();
+        particles[index] = newParticle;
+        particles[index].revive();
+    } else {
+        particles.push_back(newParticle);
+    }
+}
+
+void Simulation::killParticle(int index) {
+    particles[index].kill();
+    inactiveIndices.push(index);
 }
 
 

@@ -29,11 +29,12 @@ private:
     
 public:
     Particle(double x, double y, double z);
-    void move(double dx, double dy, double dz);
+    void move(double dx, double dy, double dz, bool* toBeKilled);
     glm::dvec3 getPosition() const;
     void setBoundary(Boundary* boundary);
     void setSimulation(Simulation* simulation);
     void kill();
+    void revive();
     bool isAlive();
 };
 

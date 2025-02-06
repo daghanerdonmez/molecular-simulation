@@ -10,7 +10,8 @@
 
 Hub::Hub()
 {
-    
+    std::random_device rd;
+    gen = std::mt19937(rd());
 }
 
 void Hub::addDirectedConnection(DirectedConnection directedConnection) {
@@ -32,17 +33,37 @@ void Hub::initializeProbabilities() {
     }
 }
 
-void Hub::simulateParticleTransaction()
+// Overload the output operator for Direction
+// For debug purposes
+// To be deleted
+std::ostream& operator<<(std::ostream& os, Direction direction) {
+    switch (direction) {
+        case Direction::LEFT:
+            os << "LEFT";
+            break;
+        case Direction::RIGHT:
+            os << "RIGHT";
+            break;
+        default:
+            os << "UNKNOWN";
+    }
+    return os;
+}
+
+void Hub::simulateParticleTransaction(Particle* particle)
 {
-    std::random_device rd;
-    std::mt19937 gen(rd());
     std::uniform_real_distribution<> dis(0, totalSquaredRadius);
     double randomValue = dis(gen);
     
+    //std::cout << "ürettiğim random değer:" << randomValue << std::endl;
+    
     for (size_t i = 0; i < cumulativeProbabilities.size(); ++i) {
             if (randomValue < cumulativeProbabilities[i]) {
-                // Simulation i is selected
-                // I will implement this part.
+                //std::cout << "seçilen i: " << i <<std::endl;
+                DirectedConnection dc = directedConnections[i];
+                Simulation* sim = dynamic_cast<Simulation*>(dc.connection);
+                //std::cout << "onun directionu da: " << dc.direction << std::endl;
+                sim->receiveParticle(particle, dc.direction);
                 break;
             }
         }
@@ -50,5 +71,5 @@ void Hub::simulateParticleTransaction()
 
 void Hub::receiveParticle(Particle* particle, Direction direction)
 {
-    simulateParticleTransaction();
+    simulateParticleTransaction(particle);
 }

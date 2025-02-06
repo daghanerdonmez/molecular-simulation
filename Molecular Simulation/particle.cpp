@@ -13,7 +13,7 @@ Particle::Particle(double x, double y, double z) : position(x,y,z)
     //std::cout << "Particle created" << std::endl;
 }
 
-void Particle::move(double dx, double dy, double dz)
+void Particle::move(double dx, double dy, double dz, bool* toBeKilled)
 {
     if (MODE == 0) {
         glm::dvec3 newPosition = position + glm::dvec3(dx,dy,dz);
@@ -23,42 +23,34 @@ void Particle::move(double dx, double dy, double dz)
         position = newPosition;
     } else if (MODE == 1) {
         glm::dvec3 newPosition = position + glm::dvec3(dx,dy,dz);
-        if (DEBUG_CHECKPOINT_PRINTS) {
-            printf("c1\n");
-        }
         
+        if (!associatedBoundary) {
+            throw std::runtime_error("associatedBoundary is null.");
+        }
+        if (!associatedSimulation) {
+            throw std::runtime_error("associatedSimulation is null.");
+        }
         // TODO: bunu her seferinde böyle kontrol etmek inefficient olabilir. belki de başta bir kere kontrol edip particle'ın bir özelliği olarak tutmam lazım particle initialize edildiği zaman
         Cylinder* cylinderBoundary = dynamic_cast<Cylinder*>(associatedBoundary);
-        if (DEBUG_CHECKPOINT_PRINTS) {
-            printf("c2\n");
-        }
         
         if (cylinderBoundary) {
-            if (DEBUG_CHECKPOINT_PRINTS) {
-                printf("c3\n");
-            }
             if (cylinderBoundary->isOutsideRightZBoundary(newPosition)) {
-                if (DEBUG_CHECKPOINT_PRINTS) {
-                    printf("c4\n");
-                }
                 if (associatedSimulation->getRightConnection() == nullptr) {
                     newPosition = associatedBoundary->reflectParticle(position, newPosition);
                 } else {
+                    //std::cout << "sağı çağırdım" << std::endl;
                     associatedSimulation->giveParticleToRight(this);
+                    *toBeKilled = true;
                 }
             } else if (cylinderBoundary->isOutsideLeftZBoundary(newPosition)) {
-                if (DEBUG_CHECKPOINT_PRINTS) {
-                    printf("c5\n");
-                }
                 if (associatedSimulation->getLeftConnection() == nullptr) {
                     newPosition = associatedBoundary->reflectParticle(position, newPosition);
                 } else {
+                    //std::cout << "solu çağırdım" << std::endl;
                     associatedSimulation->giveParticleToLeft(this);
+                    *toBeKilled = true;
                 }
             } else {
-                if (DEBUG_CHECKPOINT_PRINTS) {
-                    printf("c6\n");
-                }
                 while (associatedBoundary->isOutsideBoundaries(newPosition)) {
                     newPosition = associatedBoundary->reflectParticle(position, newPosition);
                 }
@@ -88,6 +80,10 @@ void Particle::setSimulation(Simulation *simulation)
 void Particle::kill()
 {
     alive = false;
+}
+
+void Particle::revive(){
+    alive = true;
 }
 
 bool Particle::isAlive()

@@ -12,6 +12,7 @@
 #include "particle.hpp"
 #include "receiver.hpp"
 #include <vector>
+#include <stack>
 #include <glm/vec3.hpp>
 #include "Math/gaussian.hpp"
 #include "Config/config.h"
@@ -26,6 +27,7 @@ class Simulation: public Connection
 {
 private:
     std::vector<Particle> particles;
+    std::stack<int> inactiveIndices; // Indices of inactive particles
     std::vector<Receiver> receivers;
     int aliveParticleCount;
     Boundary* boundary = nullptr;
@@ -35,10 +37,16 @@ private:
 public:
     Simulation();
     void iterateSimulation(int iterationCount, int currentFrame);
+    
+    void addParticle(const Particle& addParticle);
+    void killParticle(int index);
+    
     std::vector<glm::dvec3> getAliveParticlePositions();
     int getAliveParticleCount();
     std::vector<Receiver> getReceivers();
+    
     bool checkReceivedForParticle(const Particle& particle,const Receiver& receiver);
+    
     double getBoundaryRadius(); // should only be called when boundary type is cylinder
     double getBoundaryHeight(); // should only be called when boundary type is cylinder
     

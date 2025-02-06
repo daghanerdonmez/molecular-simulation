@@ -18,9 +18,9 @@
 
 #define NUMBER_OF_ITERATIONS 2000
 #define DT 1e-3
-#define ITERATIONS_PER_FRAME 100
+#define ITERATIONS_PER_FRAME 10
 
-#define PARTICLE_COUNT 10000
+#define PARTICLE_COUNT 100
 #define D 79.4e-12 // diffusion coefficient
 
 #define GRAPHICS_ZOOM_MULTIPLIER 1e4

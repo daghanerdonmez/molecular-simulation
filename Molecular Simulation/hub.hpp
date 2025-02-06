@@ -24,11 +24,12 @@ private:
     std::vector<DirectedConnection> directedConnections;
     double totalSquaredRadius = 0;
     std::vector<double> cumulativeProbabilities;
+    std::mt19937 gen;
     
 public:
     Hub();
     void addDirectedConnection(DirectedConnection directedConnection);
-    void simulateParticleTransaction();
+    void simulateParticleTransaction(Particle* particle);
     void initializeProbabilities();
     
     void receiveParticle(Particle* particle, Direction direction) override;

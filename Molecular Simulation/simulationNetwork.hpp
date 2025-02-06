@@ -12,11 +12,13 @@
 #include <vector>
 #include "simulation.hpp"
 #include "Config/config.h"
+#include "hub.hpp"
 
 class SimulationNetwork
 {
 private:
-    std::vector<Simulation> simulations;
+    std::vector<std::unique_ptr<Simulation>> simulations;
+    std::vector<Hub> hubs;
 public:
     SimulationNetwork();
     void iterateNetwork(int iterationCount, int currentFrame);
