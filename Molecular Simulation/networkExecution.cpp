@@ -7,8 +7,8 @@
 
 #include "networkExecution.hpp"
 
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 800;
+const unsigned int SCR_WIDTH = 400;
+const unsigned int SCR_HEIGHT = 400;
 
 int networkRunWithoutGraphics()
 {
@@ -101,6 +101,8 @@ int networkRunWithGraphics(){
     //Initialize the simulation
     SimulationNetwork network;
     Simulation* firstSimulation = network.getFirstSimulation();
+    Simulation* secondSimulation = network.getSecondSimulation();
+
     
     // Render loop
     int totalFrames = NUMBER_OF_ITERATIONS / ITERATIONS_PER_FRAME;
@@ -143,10 +145,14 @@ int networkRunWithGraphics(){
         glBindVertexArray(VAO);
         
         std::vector<glm::dvec3> particlePositions = firstSimulation->getAliveParticlePositions();
+        std::vector<glm::dvec3> particlePositions2 = secondSimulation->getAliveParticlePositions();
+
+        //std::cout << particlePositions.size() << "," << particlePositions2.size() << std::endl;
+
         
         for (int i = 0; i < particlePositions.size(); ++i) {
             glm::dvec3 partcilePosition = particlePositions[i] * GRAPHICS_ZOOM_MULTIPLIER;
-            particleShader.setVec2("objectPos", glm::dvec2(partcilePosition.x, partcilePosition.y));
+            particleShader.setVec2("objectPos", glm::dvec2(partcilePosition.z, partcilePosition.y));
             particleShader.setFloat("objectSize", particleSize);
             particleShader.setVec3("objectColor", glm::dvec3(1.0, 0.5, 0.0));
             

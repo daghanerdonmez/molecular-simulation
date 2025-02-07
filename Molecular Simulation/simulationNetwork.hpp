@@ -23,6 +23,7 @@ public:
     SimulationNetwork();
     void iterateNetwork(int iterationCount, int currentFrame);
     Simulation* getFirstSimulation();
+    Simulation* getSecondSimulation();
 };
 
 #endif /* simulationNetwork_hpp */

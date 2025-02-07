@@ -15,6 +15,7 @@ Particle::Particle(double x, double y, double z) : position(x,y,z)
 
 void Particle::move(double dx, double dy, double dz, bool* toBeKilled)
 {
+    //std::cout << "move particle working for particle: " << this << std::endl;
     if (MODE == 0) {
         glm::dvec3 newPosition = position + glm::dvec3(dx,dy,dz);
         while (associatedBoundary->isOutsideBoundaries(newPosition)) {

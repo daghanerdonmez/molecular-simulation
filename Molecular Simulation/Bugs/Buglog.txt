@@ -9,18 +9,18 @@
 #define config_h
 
 #define OUTPUT_RESULTS false
-#define GRAPHICS_ON false
+#define GRAPHICS_ON true
 
 // 0 for single simulation
 // 1 for simulation network
 // If simulation network is chosen, applied boundary is automatically cylinder boundary,
 #define MODE 1
 
-#define NUMBER_OF_ITERATIONS 5000
+#define NUMBER_OF_ITERATIONS 50000
 #define DT 1e-4
 #define ITERATIONS_PER_FRAME 10
 
-#define PARTICLE_COUNT 100
+#define PARTICLE_COUNT 1
 #define D 79.4e-12 // diffusion coefficient
 
 #define GRAPHICS_ZOOM_MULTIPLIER 1e4
@@ -44,7 +44,7 @@
 
 #define SINGLE_CYLINDER_ORIENTATION 0 // Central axis of cylinder along: 0=X 1=Y 2=Z
 #define SINGLE_CYLINDER_R 0.3e-4
-#define SINGLE_CYLINDER_Z 0.2e-4 // 0 for infinite height cylinder
+#define SINGLE_CYLINDER_Z 0.2e-5 // 0 for infinite height cylinder
 
 // ---------------------------- SINGLE SIMULATION CONFIGURATION END-------------------------------
 
@@ -60,3 +60,13 @@
 #define DEBUG_CHECKPOINT_PRINTS false
 
 #endif /* config_h */
+
+Bu configle çalıştırınca tek particle ile, arada sırada %50 falan şu hata geliyo:
+
+Molecular Simulation(89822,0x1f6c14c00) malloc: Heap corruption detected, free list is damaged at 0x600002842220
+*** Incorrect guard value: 13747679200883990815
+Molecular Simulation(89822,0x1f6c14c00) malloc: *** set a breakpoint in malloc_error_break to debug
+
+Günlerce uğraştım sebebini anlamak için ama çözemedim.
+
+Yüksek particle size'larda olmuyo. Yüksek particle size'lara odaklanarak geliştirmeye devam edicem. Edge case bug'ı olarak dursun kenarda.

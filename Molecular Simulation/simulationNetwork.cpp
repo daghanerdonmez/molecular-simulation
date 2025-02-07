@@ -50,5 +50,10 @@ Simulation* SimulationNetwork::getFirstSimulation()
     return simulations[0].get();
 }
 
+Simulation* SimulationNetwork::getSecondSimulation()
+{
+    return simulations[1].get();
+}
+
 
 

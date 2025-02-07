@@ -63,6 +63,7 @@ void Hub::simulateParticleTransaction(Particle* particle)
                 DirectedConnection dc = directedConnections[i];
                 Simulation* sim = dynamic_cast<Simulation*>(dc.connection);
                 //std::cout << "onun directionu da: " << dc.direction << std::endl;
+                //std::cout << "seçilen sim: " << sim << std::endl;
                 sim->receiveParticle(particle, dc.direction);
                 break;
             }

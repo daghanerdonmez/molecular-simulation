@@ -35,6 +35,7 @@ private:
     Connection* rightConnection = nullptr;
     
 public:
+    ~Simulation();
     Simulation();
     void iterateSimulation(int iterationCount, int currentFrame);
     

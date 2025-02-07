@@ -8,6 +8,11 @@
 #include "simulation.hpp"
 #include "hub.hpp"
 
+Simulation::~Simulation() {
+    delete boundary;
+    boundary = nullptr;
+}
+
 Simulation::Simulation() {
     if (MODE == 0) { // Single simulation
         aliveParticleCount = PARTICLE_COUNT;
@@ -46,7 +51,7 @@ Simulation::Simulation() {
             particles.emplace_back(0.0, 0.0, 0.0);
             particles[i].setBoundary(boundary);
             particles[i].setSimulation(this);
-            std::cout << "Simulation instance address: " << this << std::endl;
+            //std::cout << "Simulation instance address: " << this << std::endl;
         }
     }
 }
@@ -100,11 +105,12 @@ void Simulation::iterateSimulation(int iterationCount, int currentFrame)
         // for each iteration
         for(int i = 0; i < iterationCount; ++i) {
             // for each particle
-            for(int j = 0; j < PARTICLE_COUNT; ++j) {
+            for(int j = 0; j < particles.size(); ++j) {
                 if (DEBUG_CHECKPOINT_PRINTS) {
                     printf("b1\n");
                 }
                 if (particles[j].isAlive()) {
+                    //std::cout << "Simulation: " << this << " running iteration" << std::endl;
                     if (DEBUG_CHECKPOINT_PRINTS) {
                         printf("b2\n");
                     }
@@ -198,8 +204,6 @@ void Simulation::giveParticleToLeft(Particle* particle)
     } else {
         std::cerr << "Error: leftConnection is not a Hub or is nullptr." << std::endl;
     }
-    particle->kill();
-    aliveParticleCount--;
 }
 
 void Simulation::giveParticleToRight(Particle* particle)
@@ -212,8 +216,6 @@ void Simulation::giveParticleToRight(Particle* particle)
     } else {
         std::cerr << "Error: rightConnection is not a Hub or is nullptr." << std::endl;
     }
-    particle->kill();
-    aliveParticleCount--;
 }
 
 void Simulation::receiveParticle(Particle* particle, Direction direction)
@@ -253,19 +255,44 @@ Connection* Simulation::getRightConnection()
 }
 
 void Simulation::addParticle(const Particle& newParticle) {
+    //std::cout << "addParticleWorking: " << this << std::endl;
+    
     if (!inactiveIndices.empty()) {
         int index = inactiveIndices.top();
         inactiveIndices.pop();
-        particles[index] = newParticle;
-        particles[index].revive();
+
+        // Ensure index is within valid bounds before accessing the vector
+        if (index >= 0 && index < particles.size()) {
+            particles[index] = newParticle;
+            particles[index].revive();
+        } else {
+            std::cerr << "!!!!!!!!!  Error: Retrieved invalid index from inactiveIndices. !!!!!!!!!!!!!\n";
+        }
     } else {
         particles.push_back(newParticle);
     }
 }
 
+
 void Simulation::killParticle(int index) {
+    if (index < 0 || index >= particles.size()) {
+        std::cerr << "Error: Invalid particle index in killParticle\n";
+        return;
+    }
+
+    if (!particles[index].isAlive()) {
+        std::cerr << "Warning: Trying to kill an already dead particle.\n";
+        return;
+    }
+
+    //std::cout << "killParticleWorking: " << this << std::endl;
     particles[index].kill();
+
+    // Push the killed particle's index into inactiveIndices for reuse
     inactiveIndices.push(index);
+
+    aliveParticleCount--;
 }
+
 
 
