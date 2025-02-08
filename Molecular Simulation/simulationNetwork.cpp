@@ -36,12 +36,19 @@ SimulationNetwork::SimulationNetwork()
 
 void SimulationNetwork::iterateNetwork(int iterationCount, int currentFrame)
 {
+    int localCurrentFrame = 0;
+    
     for (int i = 0; i < iterationCount; ++i) {
         for(int j = 0; j < simulations.size(); ++j) {
             simulations[j]->iterateSimulation(1, currentFrame);
-            std::cout << simulations[j]->getAliveParticleCount() << std::endl;
+            if (localCurrentFrame % 1000 == 0) {
+                std::cout << simulations[j]->getAliveParticleCount() << std::endl;
+            }
         }
-        std::cout << "--" << std::endl;
+        localCurrentFrame++;
+        if (localCurrentFrame % 1000 == 0) {
+            std::cout << "--" << std::endl;
+        }
     }
 }
 

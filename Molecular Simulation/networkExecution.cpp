@@ -101,7 +101,7 @@ int networkRunWithGraphics(){
     //Initialize the simulation
     auto network = SimulationNetworkLoader::loadFromYAML("/Users/daghanerdonmez/Desktop/Molecular-Simulation/Molecular Simulation/Config/network_config.yaml");
     Simulation* firstSimulation = network->getFirstSimulation();
-    Simulation* secondSimulation = network->getSecondSimulation();
+//    Simulation* secondSimulation = network->getSecondSimulation();
 
     
     // Render loop
@@ -145,9 +145,9 @@ int networkRunWithGraphics(){
         glBindVertexArray(VAO);
         
         std::vector<glm::dvec3> particlePositions = firstSimulation->getAliveParticlePositions();
-        double radius = firstSimulation->getBoundaryRadius();
+        //double radius = firstSimulation->getBoundaryRadius();
 
-        std::cout << "radius: " << radius << std::endl;
+        //std::cout << "radius: " << radius << std::endl;
 
         
         for (int i = 0; i < particlePositions.size(); ++i) {

@@ -9,7 +9,7 @@
 #define config_h
 
 #define OUTPUT_RESULTS false
-#define GRAPHICS_ON true
+#define GRAPHICS_ON false
 
 // 0 for single simulation
 // 1 for simulation network
@@ -21,7 +21,7 @@
 #define ITERATIONS_PER_FRAME 10
 
 #define PARTICLE_COUNT 100
-#define D 79.4e-12 // diffusion coefficient
+#define D 79.4e-11 // diffusion coefficient
 
 #define GRAPHICS_ZOOM_MULTIPLIER 1e3
 
