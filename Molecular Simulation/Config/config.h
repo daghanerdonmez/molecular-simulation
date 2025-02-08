@@ -14,20 +14,20 @@
 // 0 for single simulation
 // 1 for simulation network
 // If simulation network is chosen, applied boundary is automatically cylinder boundary,
-#define MODE 1
+#define MODE 0
 
 #define NUMBER_OF_ITERATIONS 50000
 #define DT 1e-2
 #define ITERATIONS_PER_FRAME 10
 
-#define PARTICLE_COUNT 100
+#define PARTICLE_COUNT 2000
 #define D 79.4e-11 // diffusion coefficient
 
 #define GRAPHICS_ZOOM_MULTIPLIER 1e3
 
 // ---------------------------- SINGLE SIMULATION CONFIGURATION BEGIN-------------------------------
 
-#define SINGLE_RECEIVER_COUNT 1 // I only handle the 0 or 1 case right now
+#define SINGLE_RECEIVER_COUNT 0 // I only handle the 0 or 1 case right now
 #define SINGLE_RECEIVER_RADIUS 5e-6
 #define SINGLE_RECEIVER_X 1e-5
 #define SINGLE_RECEIVER_Y 0
@@ -43,8 +43,8 @@
 #define SINGLE_BOX_BOUNDARY_X 0.2e-4
 
 #define SINGLE_CYLINDER_ORIENTATION 0 // Central axis of cylinder along: 0=X 1=Y 2=Z
-#define SINGLE_CYLINDER_R 0.3e-4
-#define SINGLE_CYLINDER_Z 0.2e-5 // 0 for infinite height cylinder
+#define SINGLE_CYLINDER_R 3e-4
+#define SINGLE_CYLINDER_Z 5e-4 // 0 for infinite height cylinder
 
 // ---------------------------- SINGLE SIMULATION CONFIGURATION END-------------------------------
 
