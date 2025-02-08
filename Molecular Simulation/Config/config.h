@@ -17,7 +17,7 @@
 #define MODE 1
 
 #define NUMBER_OF_ITERATIONS 5000
-#define DT 1e-4
+#define DT 1e-2
 #define ITERATIONS_PER_FRAME 10
 
 #define PARTICLE_COUNT 100
@@ -44,7 +44,7 @@
 
 #define SINGLE_CYLINDER_ORIENTATION 0 // Central axis of cylinder along: 0=X 1=Y 2=Z
 #define SINGLE_CYLINDER_R 0.3e-4
-#define SINGLE_CYLINDER_Z 0.2e-4 // 0 for infinite height cylinder
+#define SINGLE_CYLINDER_Z 0.2e-5 // 0 for infinite height cylinder
 
 // ---------------------------- SINGLE SIMULATION CONFIGURATION END-------------------------------
 

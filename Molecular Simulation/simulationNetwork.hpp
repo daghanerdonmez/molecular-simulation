@@ -18,7 +18,7 @@ class SimulationNetwork
 {
 private:
     std::vector<std::unique_ptr<Simulation>> simulations;
-    std::vector<Hub> hubs;
+    std::vector<std::unique_ptr<Hub>> hubs;
 public:
     SimulationNetwork();
     void iterateNetwork(int iterationCount, int currentFrame);

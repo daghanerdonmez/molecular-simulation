@@ -10,6 +10,8 @@
 
 Particle::Particle(double x, double y, double z) : position(x,y,z)
 {
+    associatedBoundary = nullptr;
+    associatedSimulation = nullptr;
     //std::cout << "Particle created" << std::endl;
 }
 

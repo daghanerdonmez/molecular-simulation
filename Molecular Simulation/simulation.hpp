@@ -30,13 +30,14 @@ private:
     std::stack<int> inactiveIndices; // Indices of inactive particles
     std::vector<Receiver> receivers;
     int aliveParticleCount;
-    Boundary* boundary = nullptr;
+    std::unique_ptr<Boundary> boundary;
+    //gpt bu connectionları düz pointer olarak tutma weakptr sharedptr falan kullan diyo da bence gerek yok.
     Connection* leftConnection = nullptr;
     Connection* rightConnection = nullptr;
     
 public:
     ~Simulation();
-    Simulation();
+    Simulation(int particleCount = PARTICLE_COUNT);
     void iterateSimulation(int iterationCount, int currentFrame);
     
     void addParticle(const Particle& addParticle);

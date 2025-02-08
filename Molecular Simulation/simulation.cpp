@@ -8,30 +8,28 @@
 #include "simulation.hpp"
 #include "hub.hpp"
 
-Simulation::~Simulation() {
-    delete boundary;
-    boundary = nullptr;
-}
+Simulation::~Simulation() {}
 
-Simulation::Simulation() {
+Simulation::Simulation(int particleCount) {
     if (MODE == 0) { // Single simulation
-        aliveParticleCount = PARTICLE_COUNT;
+        aliveParticleCount = particleCount;
         
         if (SINGLE_APPLIED_BOUNDARY == 0) {
-            boundary = new NoBoundary();
-        } else if(SINGLE_APPLIED_BOUNDARY == 1) {
-            boundary = new Box();
+            boundary = std::make_unique<NoBoundary>();
+        } else if (SINGLE_APPLIED_BOUNDARY == 1) {
+            boundary = std::make_unique<Box>();
         } else if (SINGLE_APPLIED_BOUNDARY == 2) {
-            boundary = new Cylinder();
+            boundary = std::make_unique<Cylinder>();
         }
+
         
-        //initialize the particles vector with particle_count amount of free slots
-        particles.reserve(PARTICLE_COUNT);
+        //initialize the particles vector with particleCount amount of free slots
+        particles.reserve(particleCount);
         
-        for (int i = 0; i < PARTICLE_COUNT; ++i) {
+        for (int i = 0; i < particleCount; ++i) {
             //this is an efficient method of constructing the particles in-place
             particles.emplace_back(0.0, 0.0, 0.0);
-            particles[i].setBoundary(boundary);
+            particles[i].setBoundary(boundary.get());
             particles[i].setSimulation(this);
         }
         
@@ -41,15 +39,15 @@ Simulation::Simulation() {
             receivers.emplace_back(glm::dvec3(SINGLE_RECEIVER_X, SINGLE_RECEIVER_Y, SINGLE_RECEIVER_Z), SINGLE_RECEIVER_RADIUS);
         }
     } else if (MODE == 1) {
-        aliveParticleCount = PARTICLE_COUNT;
-        boundary = new Cylinder();
+        aliveParticleCount = particleCount;
+        boundary = std::make_unique<Cylinder>();
         
-        particles.reserve(PARTICLE_COUNT);
+        particles.reserve(particleCount);
         
-        for (int i = 0; i < PARTICLE_COUNT; ++i) {
+        for (int i = 0; i < particleCount; ++i) {
             //this is an efficient method of constructing the particles in-place
             particles.emplace_back(0.0, 0.0, 0.0);
-            particles[i].setBoundary(boundary);
+            particles[i].setBoundary(boundary.get());
             particles[i].setSimulation(this);
             //std::cout << "Simulation instance address: " << this << std::endl;
         }
@@ -164,7 +162,7 @@ int Simulation::getAliveParticleCount()
 
 double Simulation::getBoundaryRadius()
 {
-    Cylinder* cylinderBoundary = dynamic_cast<Cylinder*>(boundary);
+    Cylinder* cylinderBoundary = dynamic_cast<Cylinder*>(boundary.get());
     
     // If boundary is of type Cylinder* the dynamic cast will return the pointer to the boundary
     // Else it will return nullptr and we are checking that below
@@ -180,7 +178,7 @@ double Simulation::getBoundaryRadius()
 
 double Simulation::getBoundaryHeight()
 {
-    Cylinder* cylinderBoundary = dynamic_cast<Cylinder*>(boundary);
+    Cylinder* cylinderBoundary = dynamic_cast<Cylinder*>(boundary.get());
     
     // If boundary is of type Cylinder* the dynamic cast will return the pointer to the boundary
     // Else it will return nullptr and we are checking that below
@@ -228,7 +226,7 @@ void Simulation::receiveParticle(Particle* particle, Direction direction)
         zCoord = getBoundaryHeight();
     }
     Particle newParticle(xypair.first, xypair.second, zCoord);
-    newParticle.setBoundary(boundary);
+    newParticle.setBoundary(boundary.get());
     newParticle.setSimulation(this);
     addParticle(newParticle);
     aliveParticleCount++;
@@ -269,6 +267,12 @@ void Simulation::addParticle(const Particle& newParticle) {
             std::cerr << "!!!!!!!!!  Error: Retrieved invalid index from inactiveIndices. !!!!!!!!!!!!!\n";
         }
     } else {
+        // when I remove this part the big bug that I'm facing occurs.
+        // when the particles vector is empty and inactive indices is also empty
+        // it gives an error while trying to allocate new space for the vector
+        if (particles.capacity() == 0) {
+            particles.reserve(100);  // Adjust based on expected usage
+        }
         particles.push_back(newParticle);
     }
 }
