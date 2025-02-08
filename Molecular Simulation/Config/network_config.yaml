@@ -1,11 +1,21 @@
+---
 pipes:
   A:
-    length: 5
-    radius: 3
+    length: 5e-4
+    radius: 3e-4
     left_connections: []
-    right_connections: [B]
+    right_connections:
+      - B
   B:
-    length: 7
-    radius: 2
-    left_connections: [A]
+    length: 7e-4
+    radius: 2e-4
+    left_connections:
+      - A
+    right_connections:
+      - C
+  C:
+    length: 4e-4
+    radius: 3e-4
+    left_connections:
+      - B
     right_connections: []

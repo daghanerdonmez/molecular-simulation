@@ -10,7 +10,7 @@
 
 Simulation::~Simulation() {}
 
-Simulation::Simulation(int particleCount) {
+Simulation::Simulation(int particleCount, double radius, double length) {
     if (MODE == 0) { // Single simulation
         aliveParticleCount = particleCount;
         
@@ -40,7 +40,7 @@ Simulation::Simulation(int particleCount) {
         }
     } else if (MODE == 1) {
         aliveParticleCount = particleCount;
-        boundary = std::make_unique<Cylinder>();
+        boundary = std::make_unique<Cylinder>(radius, length);
         
         particles.reserve(particleCount);
         

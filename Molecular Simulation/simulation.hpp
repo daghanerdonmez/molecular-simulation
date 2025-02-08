@@ -37,7 +37,7 @@ private:
     
 public:
     ~Simulation();
-    Simulation(int particleCount = PARTICLE_COUNT);
+    Simulation(int particleCount = PARTICLE_COUNT, double radius = SINGLE_CYLINDER_R, double length = SINGLE_CYLINDER_Z);
     void iterateSimulation(int iterationCount, int currentFrame);
     
     void addParticle(const Particle& addParticle);

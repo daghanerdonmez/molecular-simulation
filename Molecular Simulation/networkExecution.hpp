@@ -24,6 +24,7 @@
 #include <time.h>
 #include "simulationNetwork.hpp"
 #include "GLHeaders/commonHeaders.hpp"
+#include "simulationNetworkLoader.hpp"
 
 int networkRunWithoutGraphics();
 int networkRunWithGraphics();

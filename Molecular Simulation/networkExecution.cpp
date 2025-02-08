@@ -12,8 +12,8 @@ const unsigned int SCR_HEIGHT = 400;
 
 int networkRunWithoutGraphics()
 {
-    SimulationNetwork network;
-    network.iterateNetwork(NUMBER_OF_ITERATIONS,0);
+    auto network = SimulationNetworkLoader::loadFromYAML("/Users/daghanerdonmez/Desktop/Molecular-Simulation/Molecular Simulation/Config/network_config.yaml");
+    network->iterateNetwork(NUMBER_OF_ITERATIONS,0);
     return 0;
 }
 
@@ -99,9 +99,9 @@ int networkRunWithGraphics(){
     double particleSize = 0.01;
     
     //Initialize the simulation
-    SimulationNetwork network;
-    Simulation* firstSimulation = network.getFirstSimulation();
-    Simulation* secondSimulation = network.getSecondSimulation();
+    auto network = SimulationNetworkLoader::loadFromYAML("/Users/daghanerdonmez/Desktop/Molecular-Simulation/Molecular Simulation/Config/network_config.yaml");
+    Simulation* firstSimulation = network->getFirstSimulation();
+    Simulation* secondSimulation = network->getSecondSimulation();
 
     
     // Render loop
@@ -119,7 +119,7 @@ int networkRunWithGraphics(){
         glClear(GL_COLOR_BUFFER_BIT);
         
         //Iterate the simulation
-        network.iterateNetwork(ITERATIONS_PER_FRAME, currentFrame);
+        network->iterateNetwork(ITERATIONS_PER_FRAME, currentFrame);
         
         //Draw the receiver
 
@@ -145,9 +145,9 @@ int networkRunWithGraphics(){
         glBindVertexArray(VAO);
         
         std::vector<glm::dvec3> particlePositions = firstSimulation->getAliveParticlePositions();
-        std::vector<glm::dvec3> particlePositions2 = secondSimulation->getAliveParticlePositions();
+        double radius = firstSimulation->getBoundaryRadius();
 
-        //std::cout << particlePositions.size() << "," << particlePositions2.size() << std::endl;
+        std::cout << "radius: " << radius << std::endl;
 
         
         for (int i = 0; i < particlePositions.size(); ++i) {

@@ -9,21 +9,21 @@
 #define config_h
 
 #define OUTPUT_RESULTS false
-#define GRAPHICS_ON false
+#define GRAPHICS_ON true
 
 // 0 for single simulation
 // 1 for simulation network
 // If simulation network is chosen, applied boundary is automatically cylinder boundary,
 #define MODE 1
 
-#define NUMBER_OF_ITERATIONS 5000
+#define NUMBER_OF_ITERATIONS 50000
 #define DT 1e-2
 #define ITERATIONS_PER_FRAME 10
 
 #define PARTICLE_COUNT 100
 #define D 79.4e-12 // diffusion coefficient
 
-#define GRAPHICS_ZOOM_MULTIPLIER 1e4
+#define GRAPHICS_ZOOM_MULTIPLIER 1e3
 
 // ---------------------------- SINGLE SIMULATION CONFIGURATION BEGIN-------------------------------
 

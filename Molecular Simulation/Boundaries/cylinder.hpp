@@ -23,7 +23,7 @@ private:
     glm::dvec3 deorientPosition(const glm::dvec3& position) const;
 
 public:
-    Cylinder();
+    Cylinder(double radius = SINGLE_CYLINDER_R, double length = SINGLE_CYLINDER_Z);
     
     bool isOutsideBoundaries(const glm::dvec3& position) const override;
     glm::dvec3 reflectParticle(const glm::dvec3& oldPosition, const glm::dvec3& newPosition) const override;

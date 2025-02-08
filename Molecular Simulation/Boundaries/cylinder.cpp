@@ -7,15 +7,15 @@
 
 #include "cylinder.hpp"
 
-Cylinder::Cylinder() {
+Cylinder::Cylinder(double radius, double length) {
     if (MODE == 0) {
         orientation = SINGLE_CYLINDER_ORIENTATION;
-        radius = SINGLE_CYLINDER_R;
-        zLimit = SINGLE_CYLINDER_Z;
+        this->radius = radius;
+        zLimit = length;
     } else if (MODE == 1) {
         orientation = 2;
-        radius = SINGLE_CYLINDER_R;
-        zLimit = SINGLE_CYLINDER_Z;
+        this->radius = radius;
+        zLimit = length;
     }
 }
 
