@@ -8,16 +8,12 @@
 #include "particle.hpp"
 #include "simulation.hpp"
 
-Particle::Particle(double x, double y, double z) : position(x,y,z)
-{
-    associatedBoundary = nullptr;
-    associatedSimulation = nullptr;
-    //std::cout << "Particle created" << std::endl;
-}
+Particle::Particle(double x, double y, double z)
+    : position(x, y, z), alive(true), associatedBoundary(nullptr), associatedSimulation(nullptr) {}
+
 
 void Particle::move(double dx, double dy, double dz, bool* toBeKilled)
 {
-    //std::cout << "move particle working for particle: " << this << std::endl;
     if (MODE == 0) {
         glm::dvec3 newPosition = position + glm::dvec3(dx,dy,dz);
         while (associatedBoundary->isOutsideBoundaries(newPosition)) {
@@ -41,7 +37,6 @@ void Particle::move(double dx, double dy, double dz, bool* toBeKilled)
                 if (associatedSimulation->getRightConnection() == nullptr) {
                     newPosition = associatedBoundary->reflectParticle(position, newPosition);
                 } else {
-                    //std::cout << "sağı çağırdım" << std::endl;
                     associatedSimulation->giveParticleToRight(this);
                     *toBeKilled = true;
                 }
@@ -49,7 +44,6 @@ void Particle::move(double dx, double dy, double dz, bool* toBeKilled)
                 if (associatedSimulation->getLeftConnection() == nullptr) {
                     newPosition = associatedBoundary->reflectParticle(position, newPosition);
                 } else {
-                    //std::cout << "solu çağırdım" << std::endl;
                     associatedSimulation->giveParticleToLeft(this);
                     *toBeKilled = true;
                 }
@@ -65,31 +59,4 @@ void Particle::move(double dx, double dy, double dz, bool* toBeKilled)
     }
 }
 
-glm::dvec3 Particle::getPosition() const
-{
-    return position;
-}
 
-void Particle::setBoundary(Boundary* boundary)
-{
-    associatedBoundary = boundary;
-}
-
-void Particle::setSimulation(Simulation *simulation)
-{
-    associatedSimulation = simulation;
-}
-
-void Particle::kill()
-{
-    alive = false;
-}
-
-void Particle::revive(){
-    alive = true;
-}
-
-bool Particle::isAlive()
-{
-    return alive;
-}

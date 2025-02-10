@@ -1,10 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
-filename = "./Output/Outputs/r3output.txt"
-resultCompressionRate = 10;
+filename = "/Users/daghanerdonmez/Desktop/Molecular-Simulation/Molecular Simulation/Output/Outputs/r2output.txt"
+resultCompressionRate = 400;
 
-# import os
-# print(os.getcwd())
+import os
+print(os.getcwd())
 
 def read_integers_from_file(filename):
     with open(filename, 'r') as file:

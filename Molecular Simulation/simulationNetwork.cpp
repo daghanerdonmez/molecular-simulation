@@ -8,31 +8,7 @@
 #include "simulationNetwork.hpp"
 
 SimulationNetwork::SimulationNetwork()
-{
-    //TODO: buralar çok karıştı bunların ne olduğuna bakmam lazım her şey birbirine girmek üzere
-//    simulations.emplace_back(std::make_unique<Simulation>(100));
-//    simulations.emplace_back(std::make_unique<Simulation>(250));
-//    simulations.emplace_back(std::make_unique<Simulation>(150));
-//    hubs.emplace_back(std::make_unique<Hub>());
-//    hubs.emplace_back(std::make_unique<Hub>());
-//    Hub* hub1 = hubs[0].get();
-//    Hub* hub2 = hubs[1].get();
-//    simulations[0]->setLeftConnection(hub1);
-//    simulations[1]->setRightConnection(hub1);
-//    DirectedConnection dc1{simulations[0].get(), Direction::LEFT};
-//    DirectedConnection dc2{simulations[1].get(), Direction::RIGHT};
-//    hub1->addDirectedConnection(dc1);
-//    hub1->addDirectedConnection(dc2);
-//    hub1->initializeProbabilities();
-//    simulations[1]->setLeftConnection(hub2);
-//    simulations[2]->setRightConnection(hub2);
-//    DirectedConnection dc3{simulations[1].get(), Direction::LEFT};
-//    DirectedConnection dc4{simulations[2].get(), Direction::RIGHT};
-//    hub2->addDirectedConnection(dc3);
-//    hub2->addDirectedConnection(dc4);
-//    hub2->initializeProbabilities();
-    
-}
+{}
 
 void SimulationNetwork::iterateNetwork(int iterationCount, int currentFrame)
 {
