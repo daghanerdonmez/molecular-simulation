@@ -35,4 +35,26 @@ public:
     void writeOutput();
 };
 
+
+inline bool Receiver::hit(glm::dvec3 particlePosition) const
+{
+    double len = glm::length(particlePosition - position);
+    return (len < radius);
+};
+
+inline glm::dvec3 Receiver::getPosition() const
+{
+    return position;
+}
+
+inline double Receiver::getRadius() const
+{
+    return radius;
+}
+
+inline void Receiver::increaseParticlesReceived(int iterationNumber)
+{
+    particlesReceived[iterationNumber]++;
+}
+
 #endif /* receiver_hpp */

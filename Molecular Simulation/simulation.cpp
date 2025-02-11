@@ -49,7 +49,6 @@ Simulation::Simulation(int particleCount, double radius, double length) {
             particles.emplace_back(0.0, 0.0, 0.0);
             particles[i].setBoundary(boundary.get());
             particles[i].setSimulation(this);
-            //std::cout << "Simulation instance address: " << this << std::endl;
         }
     }
 }
@@ -108,7 +107,6 @@ void Simulation::iterateSimulation(int iterationCount, int currentFrame)
                     printf("b1\n");
                 }
                 if (particles[j].isAlive()) {
-                    //std::cout << "Simulation: " << this << " running iteration" << std::endl;
                     if (DEBUG_CHECKPOINT_PRINTS) {
                         printf("b2\n");
                     }
@@ -128,12 +126,12 @@ void Simulation::iterateSimulation(int iterationCount, int currentFrame)
     }
 }
 
-bool Simulation::checkReceivedForParticle(const Particle& particle, const Receiver& receiver)
+bool Simulation::checkReceivedForParticle(const Particle& particle, const Receiver& receiver) const
 {
     return receiver.hit(particle.getPosition());
 }
 
-std::vector<glm::dvec3> Simulation::getAliveParticlePositions()
+std::vector<glm::dvec3> Simulation::getAliveParticlePositions() const
 {
     //declare and initialize the positions vector with needed free slots
     std::vector<glm::dvec3> positions;
@@ -150,17 +148,7 @@ std::vector<glm::dvec3> Simulation::getAliveParticlePositions()
     return positions;
 }
 
-std::vector<Receiver> Simulation::getReceivers()
-{
-    return receivers;
-}
-
-int Simulation::getAliveParticleCount()
-{
-    return aliveParticleCount;
-}
-
-double Simulation::getBoundaryRadius()
+double Simulation::getBoundaryRadius() const
 {
     Cylinder* cylinderBoundary = dynamic_cast<Cylinder*>(boundary.get());
     
@@ -176,7 +164,7 @@ double Simulation::getBoundaryRadius()
     }
 }
 
-double Simulation::getBoundaryHeight()
+double Simulation::getBoundaryHeight() const
 {
     Cylinder* cylinderBoundary = dynamic_cast<Cylinder*>(boundary.get());
     
@@ -194,8 +182,6 @@ double Simulation::getBoundaryHeight()
 
 void Simulation::giveParticleToLeft(Particle* particle)
 {
-    //std::cout << "giving particle left" << std::endl;
-    //std::cout << "çağrılan simülasyon: " << this << std::endl;
     Hub* hubConnection = dynamic_cast<Hub*>(leftConnection);
     if (hubConnection) {
         hubConnection->receiveParticle(particle, Direction::LEFT);
@@ -206,8 +192,6 @@ void Simulation::giveParticleToLeft(Particle* particle)
 
 void Simulation::giveParticleToRight(Particle* particle)
 {
-    //std::cout << "giving particle right" << std::endl;
-    //std::cout << "çağrılan simülasyon: " << this << std::endl;
     Hub* hubConnection = dynamic_cast<Hub*>(rightConnection);
     if (hubConnection) {
         hubConnection->receiveParticle(particle, Direction::RIGHT);
@@ -232,28 +216,7 @@ void Simulation::receiveParticle(Particle* particle, Direction direction)
     aliveParticleCount++;
 }
 
-void Simulation::setLeftConnection(Connection *connection)
-{
-    leftConnection = connection;
-}
-
-void Simulation::setRightConnection(Connection *connection)
-{
-    rightConnection = connection;
-}
-
-Connection* Simulation::getLeftConnection()
-{
-    return leftConnection;
-}
-
-Connection* Simulation::getRightConnection()
-{
-    return rightConnection;
-}
-
 void Simulation::addParticle(const Particle& newParticle) {
-    //std::cout << "addParticleWorking: " << this << std::endl;
     
     if (!inactiveIndices.empty()) {
         int index = inactiveIndices.top();
@@ -289,7 +252,6 @@ void Simulation::killParticle(int index) {
         return;
     }
 
-    //std::cout << "killParticleWorking: " << this << std::endl;
     particles[index].kill();
 
     // Push the killed particle's index into inactiveIndices for reuse

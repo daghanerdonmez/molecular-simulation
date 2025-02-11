@@ -11,27 +11,6 @@ Receiver::Receiver(glm::dvec3 position, double radius) : position(position), rad
     particlesReceived = new int[NUMBER_OF_ITERATIONS]();
 }
 
-bool Receiver::hit(glm::dvec3 particlePosition) const
-{
-    double len = glm::length(particlePosition - position);
-    return (len < radius);
-};
-
-glm::dvec3 Receiver::getPosition() const
-{
-    return position;
-}
-
-double Receiver::getRadius() const
-{
-    return radius;
-}
-
-void Receiver::increaseParticlesReceived(int iterationNumber)
-{
-    particlesReceived[iterationNumber]++;
-}
-
 void Receiver::writeOutput()
 {
     std::string output = "";

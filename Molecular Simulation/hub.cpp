@@ -55,21 +55,17 @@ void Hub::simulateParticleTransaction(Particle* particle)
     std::uniform_real_distribution<> dis(0, totalSquaredRadius);
     double randomValue = dis(gen);
     
-    //std::cout << "ürettiğim random değer:" << randomValue << std::endl;
-    
     for (size_t i = 0; i < cumulativeProbabilities.size(); ++i) {
             if (randomValue < cumulativeProbabilities[i]) {
-                //std::cout << "seçilen i: " << i <<std::endl;
                 DirectedConnection dc = directedConnections[i];
                 Simulation* sim = dynamic_cast<Simulation*>(dc.connection);
-                //std::cout << "onun directionu da: " << dc.direction << std::endl;
-                //std::cout << "seçilen sim: " << sim << std::endl;
                 sim->receiveParticle(particle, dc.direction);
                 break;
             }
         }
 }
 
+// I am not actually using the particle pointer in any of the operations in this functions but I don't know whether it is a good idea to delete them. It causes no problem for now so I'll just leave it.
 void Hub::receiveParticle(Particle* particle, Direction direction)
 {
     simulateParticleTransaction(particle);

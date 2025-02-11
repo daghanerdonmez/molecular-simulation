@@ -43,14 +43,14 @@ public:
     void addParticle(const Particle& addParticle);
     void killParticle(int index);
     
-    std::vector<glm::dvec3> getAliveParticlePositions();
-    int getAliveParticleCount();
-    std::vector<Receiver> getReceivers();
+    std::vector<glm::dvec3> getAliveParticlePositions() const;
+    int getAliveParticleCount() const;
+    std::vector<Receiver> getReceivers() const;
     
-    bool checkReceivedForParticle(const Particle& particle,const Receiver& receiver);
+    bool checkReceivedForParticle(const Particle& particle,const Receiver& receiver) const;
     
-    double getBoundaryRadius(); // should only be called when boundary type is cylinder
-    double getBoundaryHeight(); // should only be called when boundary type is cylinder
+    double getBoundaryRadius() const; // should only be called when boundary type is cylinder
+    double getBoundaryHeight() const; // should only be called when boundary type is cylinder
     
     void giveParticleToLeft(Particle* particle);
     void giveParticleToRight(Particle* particle);
@@ -58,10 +58,18 @@ public:
     
     void setLeftConnection(Connection* connection);
     void setRightConnection(Connection* connection);
-    
-    Connection* getLeftConnection();
-    Connection* getRightConnection();
+    Connection* getLeftConnection() const;
+    Connection* getRightConnection() const;
 };
+
+
+inline std::vector<Receiver> Simulation::getReceivers() const { return receivers; }
+inline int Simulation::getAliveParticleCount() const { return aliveParticleCount; }
+
+inline void Simulation::setLeftConnection(Connection *connection){ leftConnection = connection; }
+inline void Simulation::setRightConnection(Connection *connection){ rightConnection = connection; }
+inline Connection* Simulation::getLeftConnection() const{ return leftConnection; }
+inline Connection* Simulation::getRightConnection() const{ return rightConnection; }
 
 
 #endif /* simulation_hpp */
