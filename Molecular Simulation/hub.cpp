@@ -60,7 +60,7 @@ void Hub::simulateParticleTransaction(Particle* particle)
                 DirectedConnection dc = directedConnections[i];
                 Simulation* sim = dynamic_cast<Simulation*>(dc.connection);
                 sim->receiveParticle(particle, dc.direction);
-                break;
+                return;
             }
         }
 }

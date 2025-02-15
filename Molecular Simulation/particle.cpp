@@ -39,6 +39,7 @@ void Particle::move(double dx, double dy, double dz, bool* toBeKilled)
                 } else {
                     associatedSimulation->giveParticleToRight(this);
                     *toBeKilled = true;
+                    return;
                 }
             } else if (cylinderBoundary->isOutsideLeftZBoundary(newPosition)) {
                 if (associatedSimulation->getLeftConnection() == nullptr) {
@@ -46,6 +47,7 @@ void Particle::move(double dx, double dy, double dz, bool* toBeKilled)
                 } else {
                     associatedSimulation->giveParticleToLeft(this);
                     *toBeKilled = true;
+                    return;
                 }
             } else {
                 while (associatedBoundary->isOutsideBoundaries(newPosition)) {
