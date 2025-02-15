@@ -17,7 +17,7 @@ enum class Direction {
 
 class Connection {
 public:
-    virtual void receiveParticle(Particle* particle, Direction direction) = 0; // Pure virtual function
+    virtual void receiveParticle(Particle* particle, Direction direction, double overflow) = 0; // Pure virtual function
     virtual ~Connection() = default; // Virtual destructor for proper cleanup
 };
 

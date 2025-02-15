@@ -180,34 +180,34 @@ double Simulation::getBoundaryHeight() const
     }
 }
 
-void Simulation::giveParticleToLeft(Particle* particle)
+void Simulation::giveParticleToLeft(Particle* particle, double overflow)
 {
     Hub* hubConnection = dynamic_cast<Hub*>(leftConnection);
     if (hubConnection) {
-        hubConnection->receiveParticle(particle, Direction::LEFT);
+        hubConnection->receiveParticle(particle, Direction::LEFT, overflow);
     } else {
         std::cerr << "Error: leftConnection is not a Hub or is nullptr." << std::endl;
     }
 }
 
-void Simulation::giveParticleToRight(Particle* particle)
+void Simulation::giveParticleToRight(Particle* particle, double overflow)
 {
     Hub* hubConnection = dynamic_cast<Hub*>(rightConnection);
     if (hubConnection) {
-        hubConnection->receiveParticle(particle, Direction::RIGHT);
+        hubConnection->receiveParticle(particle, Direction::RIGHT, overflow);
     } else {
         std::cerr << "Error: rightConnection is not a Hub or is nullptr." << std::endl;
     }
 }
 
-void Simulation::receiveParticle(Particle* particle, Direction direction)
+void Simulation::receiveParticle(Particle* particle, Direction direction, double overflow)
 {
     std::pair<double, double> xypair = generatePointInCircle(getBoundaryRadius());
     double zCoord = 0;
     if (direction == Direction::LEFT) {
-        zCoord = -getBoundaryHeight();
+        zCoord = -getBoundaryHeight() + overflow;
     } else if (direction == Direction::RIGHT) {
-        zCoord = getBoundaryHeight();
+        zCoord = getBoundaryHeight() - overflow;
     }
     Particle newParticle(xypair.first, xypair.second, zCoord);
     newParticle.setBoundary(boundary.get());

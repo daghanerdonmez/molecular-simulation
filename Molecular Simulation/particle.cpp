@@ -37,7 +37,8 @@ void Particle::move(double dx, double dy, double dz, bool* toBeKilled)
                 if (associatedSimulation->getRightConnection() == nullptr) {
                     newPosition = associatedBoundary->reflectParticle(position, newPosition);
                 } else {
-                    associatedSimulation->giveParticleToRight(this);
+                    double overflow = cylinderBoundary->getOverflow(newPosition);
+                    associatedSimulation->giveParticleToRight(this, overflow);
                     *toBeKilled = true;
                     return;
                 }
@@ -45,7 +46,8 @@ void Particle::move(double dx, double dy, double dz, bool* toBeKilled)
                 if (associatedSimulation->getLeftConnection() == nullptr) {
                     newPosition = associatedBoundary->reflectParticle(position, newPosition);
                 } else {
-                    associatedSimulation->giveParticleToLeft(this);
+                    double overflow = cylinderBoundary->getOverflow(newPosition);
+                    associatedSimulation->giveParticleToLeft(this, overflow);
                     *toBeKilled = true;
                     return;
                 }

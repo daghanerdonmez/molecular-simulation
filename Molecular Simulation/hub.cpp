@@ -50,7 +50,7 @@ std::ostream& operator<<(std::ostream& os, Direction direction) {
     return os;
 }
 
-void Hub::simulateParticleTransaction(Particle* particle)
+void Hub::simulateParticleTransaction(Particle* particle, double overflow)
 {
     std::uniform_real_distribution<> dis(0, totalSquaredRadius);
     double randomValue = dis(gen);
@@ -59,14 +59,14 @@ void Hub::simulateParticleTransaction(Particle* particle)
             if (randomValue < cumulativeProbabilities[i]) {
                 DirectedConnection dc = directedConnections[i];
                 Simulation* sim = dynamic_cast<Simulation*>(dc.connection);
-                sim->receiveParticle(particle, dc.direction);
+                sim->receiveParticle(particle, dc.direction, overflow);
                 return;
             }
         }
 }
 
 // I am not actually using the particle pointer in any of the operations in this functions but I don't know whether it is a good idea to delete them. It causes no problem for now so I'll just leave it.
-void Hub::receiveParticle(Particle* particle, Direction direction)
+void Hub::receiveParticle(Particle* particle, Direction direction, double overflow)
 {
-    simulateParticleTransaction(particle);
+    simulateParticleTransaction(particle, overflow);
 }

@@ -32,6 +32,7 @@ public:
     // By right and left I assume the cylinder is laid along z-axis where +z is right and -z is left.
     bool isOutsideRightZBoundary(const glm::dvec3& position) const;
     bool isOutsideLeftZBoundary(const glm::dvec3& position) const;
+    double getOverflow(const glm::dvec3& position) const;
 };
 
 #endif /* Cylinder_hpp */

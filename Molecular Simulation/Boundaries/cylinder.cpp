@@ -91,3 +91,13 @@ double Cylinder::getHeight() const {
     return zLimit;
 }
 
+double Cylinder::getOverflow(const glm::dvec3& position) const {
+    if (isOutsideRightZBoundary(position)) {
+        return position.z - zLimit;
+    } else if(isOutsideLeftZBoundary(position)) {
+        return zLimit - position.z;
+    } else {
+        throw std::runtime_error("ERROR: overflow requested while there was no overflow");
+    }
+}
+

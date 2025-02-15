@@ -52,9 +52,9 @@ public:
     double getBoundaryRadius() const; // should only be called when boundary type is cylinder
     double getBoundaryHeight() const; // should only be called when boundary type is cylinder
     
-    void giveParticleToLeft(Particle* particle);
-    void giveParticleToRight(Particle* particle);
-    void receiveParticle(Particle* particle, Direction direction) override;
+    void giveParticleToLeft(Particle* particle, double overflow);
+    void giveParticleToRight(Particle* particle, double overflow);
+    void receiveParticle(Particle* particle, Direction direction, double overflow) override;
     
     void setLeftConnection(Connection* connection);
     void setRightConnection(Connection* connection);

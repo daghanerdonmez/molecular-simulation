@@ -29,10 +29,10 @@ private:
 public:
     Hub();
     void addDirectedConnection(DirectedConnection directedConnection);
-    void simulateParticleTransaction(Particle* particle);
+    void simulateParticleTransaction(Particle* particle, double overflow);
     void initializeProbabilities();
     
-    void receiveParticle(Particle* particle, Direction direction) override;
+    void receiveParticle(Particle* particle, Direction direction, double overflow) override;
 };
 
 #endif /* hub_hpp */
