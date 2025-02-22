@@ -10,8 +10,9 @@
 
 Simulation::~Simulation() {}
 
-Simulation::Simulation(int particleCount, double radius, double length) {
+Simulation::Simulation(int particleCount, double radius, double length, glm::dvec3 flow) {
     if (MODE == 0) { // Single simulation
+        this->flow = flow;
         aliveParticleCount = particleCount;
         
         if (SINGLE_APPLIED_BOUNDARY == 0) {
@@ -39,6 +40,7 @@ Simulation::Simulation(int particleCount, double radius, double length) {
             receivers.emplace_back(glm::dvec3(SINGLE_RECEIVER_X, SINGLE_RECEIVER_Y, SINGLE_RECEIVER_Z), SINGLE_RECEIVER_RADIUS);
         }
     } else if (MODE == 1) {
+        this->flow = flow;
         aliveParticleCount = particleCount;
         boundary = std::make_unique<Cylinder>(radius, length);
         
@@ -64,9 +66,9 @@ void Simulation::iterateSimulation(int iterationCount, int currentFrame)
                     if (particles[j].isAlive()) {
                         // calculate their displacements
                         // in brownian motion displacements in each iteration are standard normal distributions
-                        double dx = generateGaussian(0.0, sqrt(2 * D * DT));
-                        double dy = generateGaussian(0.0, sqrt(2 * D * DT));
-                        double dz = generateGaussian(0.0, sqrt(2 * D * DT));
+                        double dx = generateGaussian(0.0, sqrt(2 * D * DT)) + flow.x * DT;
+                        double dy = generateGaussian(0.0, sqrt(2 * D * DT)) + flow.y * DT;
+                        double dz = generateGaussian(0.0, sqrt(2 * D * DT)) + flow.z * DT;
                         bool toBeKilled = false;
                         particles[j].move(dx, dy, dz, &toBeKilled);
                         
@@ -89,9 +91,9 @@ void Simulation::iterateSimulation(int iterationCount, int currentFrame)
                     if (particles[j].isAlive()) {
                         // calculate their displacements
                         // in brownian motion displacements in each iteration are standard normal distributions
-                        double dx = generateGaussian(0.0, sqrt(2 * D * DT));
-                        double dy = generateGaussian(0.0, sqrt(2 * D * DT));
-                        double dz = generateGaussian(0.0, sqrt(2 * D * DT));
+                        double dx = generateGaussian(0.0, sqrt(2 * D * DT)) + flow.x * DT;
+                        double dy = generateGaussian(0.0, sqrt(2 * D * DT)) + flow.y * DT;
+                        double dz = generateGaussian(0.0, sqrt(2 * D * DT)) + flow.z * DT;
                         bool toBeKilled = false;
                         particles[j].move(dx, dy, dz, &toBeKilled);
                     }
@@ -112,9 +114,9 @@ void Simulation::iterateSimulation(int iterationCount, int currentFrame)
                     }
                     // calculate their displacements
                     // in brownian motion displacements in each iteration are standard normal distributions
-                    double dx = generateGaussian(0.0, sqrt(2 * D * DT));
-                    double dy = generateGaussian(0.0, sqrt(2 * D * DT));
-                    double dz = generateGaussian(0.0, sqrt(2 * D * DT));
+                    double dx = generateGaussian(0.0, sqrt(2 * D * DT)) + flow.x * DT;
+                    double dy = generateGaussian(0.0, sqrt(2 * D * DT)) + flow.y * DT;
+                    double dz = generateGaussian(0.0, sqrt(2 * D * DT)) + flow.z * DT;
                     bool toBeKilled = false;
                     particles[j].move(dx, dy, dz, &toBeKilled);
                     if (toBeKilled) {

@@ -34,10 +34,11 @@ private:
     //gpt bu connectionları düz pointer olarak tutma weakptr sharedptr falan kullan diyo da bence gerek yok.
     Connection* leftConnection = nullptr;
     Connection* rightConnection = nullptr;
+    glm::dvec3 flow;
     
 public:
     ~Simulation();
-    Simulation(int particleCount = PARTICLE_COUNT, double radius = SINGLE_CYLINDER_R, double length = SINGLE_CYLINDER_Z);
+    Simulation(int particleCount = PARTICLE_COUNT, double radius = SINGLE_CYLINDER_R, double length = SINGLE_CYLINDER_Z, glm::dvec3 flow = glm::dvec3(SINGLE_FLOW_X, SINGLE_FLOW_Y, SINGLE_FLOW_Z));
     void iterateSimulation(int iterationCount, int currentFrame);
     
     void addParticle(const Particle& addParticle);
