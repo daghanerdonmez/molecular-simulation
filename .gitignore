@@ -3,3 +3,5 @@
 .DS_Store
 /Molecular Simulation/Output/Outputs
 /Molecular Simulation/Benchmarks
+Molecular Simulation/Config/network_config_old.yaml
+Molecular Simulation/Config/graph.graphml

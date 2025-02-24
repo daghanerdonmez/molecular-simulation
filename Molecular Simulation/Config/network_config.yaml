@@ -1,38 +1,23 @@
----
 pipes:
-  A:
-    particle_count: 1000
-    length: 5e-4
-    radius: 3e-4
+  n0:
     left_connections: []
-    right_connections: [B,C]
-  B:
-    particle_count: 0
-    length: 7e-4
-    radius: 2e-4
+    length: 0.0007
+    particle_count: 1000
+    radius: 3.0e-05
+    right_connections:
+      - n1
+      - n2
+  n1:
     left_connections:
-      - A
+      - n0
+    length: 0.0007
+    particle_count: 0
+    radius: 3.0e-05
     right_connections: []
-  C:
-    particle_count: 0
-    length: 4e-4
-    radius: 8e-4
+  n2:
     left_connections:
-      - A
-    right_connections: [D,E]
-  D:
+      - n0
+    length: 0.2
     particle_count: 0
-    length: 2e-4
-    radius: 3e-4
-    left_connections:
-      - C
+    radius: 0.001
     right_connections: []
-  E:
-    particle_count: 0
-    length: 3e-4
-    radius: 3e-4
-    left_connections:
-      - C
-    right_connections: []
-
-

@@ -9,12 +9,12 @@
 #define config_h
 
 #define OUTPUT_RESULTS false
-#define GRAPHICS_ON true
+#define GRAPHICS_ON false
 
 // 0 for single simulation
 // 1 for simulation network
 // If simulation network is chosen, applied boundary is automatically cylinder boundary,
-#define MODE 0
+#define MODE 1
 
 #define NUMBER_OF_ITERATIONS 500000
 #define DT 1e-2
@@ -36,7 +36,7 @@
 // 0 for no boundary
 // 1 for box boundary
 // 2 for cylinder boundary
-#define SINGLE_APPLIED_BOUNDARY 0
+#define SINGLE_APPLIED_BOUNDARY 2
 
 #define SINGLE_BOX_BOUNDARY_Z 2.5e-4
 #define SINGLE_BOX_BOUNDARY_Y 1e-4
