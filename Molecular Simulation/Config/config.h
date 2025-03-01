@@ -9,19 +9,19 @@
 #define config_h
 
 #define OUTPUT_RESULTS false
-#define GRAPHICS_ON false
+#define GRAPHICS_ON true
 
 // 0 for single simulation
 // 1 for simulation network
 // If simulation network is chosen, applied boundary is automatically cylinder boundary,
-#define MODE 1
+#define MODE 0
 
 #define NUMBER_OF_ITERATIONS 500000
 #define DT 1e-2
 #define ITERATIONS_PER_FRAME 10
 
 #define PARTICLE_COUNT 1000
-#define D 79.4e-12 // diffusion coefficient
+#define D 79.4e-13 // diffusion coefficient
 
 #define GRAPHICS_ZOOM_MULTIPLIER 1e3
 
@@ -42,13 +42,13 @@
 #define SINGLE_BOX_BOUNDARY_Y 1e-4
 #define SINGLE_BOX_BOUNDARY_X 2.5e-4
 
-#define SINGLE_CYLINDER_ORIENTATION 1 // Central axis of cylinder along: 0=X 1=Y 2=Z
-#define SINGLE_CYLINDER_R 1e-4
-#define SINGLE_CYLINDER_Z 3e-4 // 0 for infinite height cylinder
+#define SINGLE_CYLINDER_ORIENTATION 0 // Central axis of cylinder along: 0=X 1=Y 2=Z
+#define SINGLE_CYLINDER_R 3e-4
+#define SINGLE_CYLINDER_Z 0 // 0 for infinite height cylinder
 
 // FLOW
-#define SINGLE_FLOW_X 5e-7
-#define SINGLE_FLOW_Y 2e-6
+#define SINGLE_FLOW_X 5e-6
+#define SINGLE_FLOW_Y 0
 #define SINGLE_FLOW_Z 0
 
 

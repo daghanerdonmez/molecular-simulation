@@ -61,6 +61,8 @@ public:
     void setRightConnection(Connection* connection);
     Connection* getLeftConnection() const;
     Connection* getRightConnection() const;
+    
+    glm::dvec3 getFlow(glm::dvec3 position) const;
 };
 
 

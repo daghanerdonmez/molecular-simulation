@@ -66,9 +66,12 @@ void Simulation::iterateSimulation(int iterationCount, int currentFrame)
                     if (particles[j].isAlive()) {
                         // calculate their displacements
                         // in brownian motion displacements in each iteration are standard normal distributions
-                        double dx = generateGaussian(0.0, sqrt(2 * D * DT)) + flow.x * DT;
-                        double dy = generateGaussian(0.0, sqrt(2 * D * DT)) + flow.y * DT;
-                        double dz = generateGaussian(0.0, sqrt(2 * D * DT)) + flow.z * DT;
+                        glm::dvec3 particlePosition = particles[j].getPosition();
+                        glm::dvec3 flowVector = getFlow(particlePosition);
+                        
+                        double dx = generateGaussian(0.0, sqrt(2 * D * DT)) + flowVector.x * DT;
+                        double dy = generateGaussian(0.0, sqrt(2 * D * DT)) + flowVector.y * DT;
+                        double dz = generateGaussian(0.0, sqrt(2 * D * DT)) + flowVector.z * DT;
                         bool toBeKilled = false;
                         particles[j].move(dx, dy, dz, &toBeKilled);
                         
@@ -91,9 +94,12 @@ void Simulation::iterateSimulation(int iterationCount, int currentFrame)
                     if (particles[j].isAlive()) {
                         // calculate their displacements
                         // in brownian motion displacements in each iteration are standard normal distributions
-                        double dx = generateGaussian(0.0, sqrt(2 * D * DT)) + flow.x * DT;
-                        double dy = generateGaussian(0.0, sqrt(2 * D * DT)) + flow.y * DT;
-                        double dz = generateGaussian(0.0, sqrt(2 * D * DT)) + flow.z * DT;
+                        glm::dvec3 particlePosition = particles[j].getPosition();
+                        glm::dvec3 flowVector = getFlow(particlePosition);
+                        
+                        double dx = generateGaussian(0.0, sqrt(2 * D * DT)) + flowVector.x * DT;
+                        double dy = generateGaussian(0.0, sqrt(2 * D * DT)) + flowVector.y * DT;
+                        double dz = generateGaussian(0.0, sqrt(2 * D * DT)) + flowVector.z * DT;
                         bool toBeKilled = false;
                         particles[j].move(dx, dy, dz, &toBeKilled);
                     }
@@ -114,9 +120,12 @@ void Simulation::iterateSimulation(int iterationCount, int currentFrame)
                     }
                     // calculate their displacements
                     // in brownian motion displacements in each iteration are standard normal distributions
-                    double dx = generateGaussian(0.0, sqrt(2 * D * DT)) + flow.x * DT;
-                    double dy = generateGaussian(0.0, sqrt(2 * D * DT)) + flow.y * DT;
-                    double dz = generateGaussian(0.0, sqrt(2 * D * DT)) + flow.z * DT;
+                    glm::dvec3 particlePosition = particles[j].getPosition();
+                    glm::dvec3 flowVector = getFlow(particlePosition);
+                    
+                    double dx = generateGaussian(0.0, sqrt(2 * D * DT)) + flowVector.x * DT;
+                    double dy = generateGaussian(0.0, sqrt(2 * D * DT)) + flowVector.y * DT;
+                    double dz = generateGaussian(0.0, sqrt(2 * D * DT)) + flowVector.z * DT;
                     bool toBeKilled = false;
                     particles[j].move(dx, dy, dz, &toBeKilled);
                     if (toBeKilled) {
@@ -260,6 +269,35 @@ void Simulation::killParticle(int index) {
     inactiveIndices.push(index);
 
     aliveParticleCount--;
+}
+
+glm::dvec3 Simulation::getFlow(glm::dvec3 position) const{
+    
+    Cylinder* cylinderBoundary = dynamic_cast<Cylinder*>(boundary.get());
+    
+    // If boundary is of type Cylinder* the dynamic cast will return the pointer to the boundary
+    // Else it will return nullptr and we are checking that below
+    
+    if (cylinderBoundary) {
+        double x = position.x;
+        double y = position.y;
+        double z = position.z;
+        double R = cylinderBoundary->getRadius();
+        double rsquared;
+        int cylinderOrientation = cylinderBoundary->getOrientation();
+        if (cylinderOrientation == 0) {
+            rsquared = (y*y + z*z);
+        } else if(cylinderOrientation == 1){
+            rsquared = (x*x + z*z);
+        } else if(cylinderOrientation == 2){
+            rsquared = (x*x + y*y);
+        } else {
+            throw std::runtime_error("Saçma error");
+        }
+        return flow * (1-(rsquared)/(R*R));
+    } else {
+        throw std::runtime_error("Boundary is not of type Cylinder.");
+    }
 }
 
 

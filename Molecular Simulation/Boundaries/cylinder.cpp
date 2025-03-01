@@ -91,6 +91,10 @@ double Cylinder::getHeight() const {
     return zLimit;
 }
 
+int Cylinder::getOrientation()const {
+    return orientation;
+}
+
 double Cylinder::getOverflow(const glm::dvec3& position) const {
     if (isOutsideRightZBoundary(position)) {
         return position.z - zLimit;
