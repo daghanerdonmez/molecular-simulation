@@ -27,7 +27,7 @@
 
 // ---------------------------- SINGLE SIMULATION CONFIGURATION BEGIN-------------------------------
 
-#define SINGLE_RECEIVER_COUNT 0 // I only handle the 0 or 1 case right now
+#define SINGLE_RECEIVER_COUNT 1 // I only handle the 0 or 1 case right now
 #define SINGLE_RECEIVER_RADIUS 1e-4
 #define SINGLE_RECEIVER_X 3e-4
 #define SINGLE_RECEIVER_Y 0

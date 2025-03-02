@@ -10,16 +10,13 @@
 
 #include <stdio.h>
 #include <glm/vec3.hpp>
-#include <glm/glm.hpp>
-#include "Config/config.h"
 #include <string>
-#include "Output/writer.hpp"
+#include "../Config/config.h"
+#include "../Output/writer.hpp"
 
-class Receiver
-{
-private:
+class Receiver {
+protected:
     glm::dvec3 position;
-    double radius;
     int* particlesReceived;
     // Huge optimization: particles received used to be a static array like
     // int particlesReceived[NUMBER_OF_ITERATIONS]
@@ -27,34 +24,24 @@ private:
     // I think it was because a huge static array messed up with caching.
     // Now the complexity is theta(n) as expected
 public:
-    Receiver(glm::dvec3 position, double radius);
-    bool hit(glm::dvec3 particlePosition) const;
+    Receiver(glm::dvec3 position);
+    virtual ~Receiver();
+
     glm::dvec3 getPosition() const;
-    double getRadius() const;
     void increaseParticlesReceived(int iterationNumber);
     void writeOutput();
+    
+    // Pure virtual function for interaction detection
+    virtual bool hit(glm::dvec3 particlePosition) const = 0;
 };
 
-
-inline bool Receiver::hit(glm::dvec3 particlePosition) const
-{
-    double len = glm::length(particlePosition - position);
-    return (len < radius);
-};
-
-inline glm::dvec3 Receiver::getPosition() const
-{
+inline glm::dvec3 Receiver::getPosition() const {
     return position;
 }
 
-inline double Receiver::getRadius() const
-{
-    return radius;
-}
-
-inline void Receiver::increaseParticlesReceived(int iterationNumber)
-{
+inline void Receiver::increaseParticlesReceived(int iterationNumber) {
     particlesReceived[iterationNumber]++;
 }
+
 
 #endif /* receiver_hpp */

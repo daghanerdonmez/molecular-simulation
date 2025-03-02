@@ -36,8 +36,7 @@ Simulation::Simulation(int particleCount, double radius, double length, glm::dve
         
         //initialize the receiver
         if (SINGLE_RECEIVER_COUNT != 0) {
-            receivers.reserve(SINGLE_RECEIVER_COUNT);
-            receivers.emplace_back(glm::dvec3(SINGLE_RECEIVER_X, SINGLE_RECEIVER_Y, SINGLE_RECEIVER_Z), SINGLE_RECEIVER_RADIUS);
+            receivers.push_back(std::make_unique<SphericalReceiver>(glm::dvec3(SINGLE_RECEIVER_X, SINGLE_RECEIVER_Y, SINGLE_RECEIVER_Z),SINGLE_RECEIVER_RADIUS));
         }
     } else if (MODE == 1) {
         this->flow = flow;
@@ -57,6 +56,7 @@ Simulation::Simulation(int particleCount, double radius, double length, glm::dve
 
 void Simulation::iterateSimulation(int iterationCount, int currentFrame)
 {
+    std::cout << aliveParticleCount << std::endl;
     if (MODE == 0) {
         if (SINGLE_RECEIVER_COUNT != 0) {
             // for each iteration
@@ -77,10 +77,10 @@ void Simulation::iterateSimulation(int iterationCount, int currentFrame)
                         
                         for (int k = 0; k < SINGLE_RECEIVER_COUNT; ++k) {
                             //check if they are received by the receivers
-                            if (checkReceivedForParticle(particles[j], receivers[k])) {
+                            Receiver* receiver = receivers[k].get();
+                            if (checkReceivedForParticle(particles[j], *receiver)) {
                                 killParticle(j);
-                                aliveParticleCount--;
-                                receivers[k].increaseParticlesReceived(currentFrame * ITERATIONS_PER_FRAME + i);
+                                receiver->increaseParticlesReceived(currentFrame * ITERATIONS_PER_FRAME + i);
                             }
                         }
                     }
@@ -137,8 +137,7 @@ void Simulation::iterateSimulation(int iterationCount, int currentFrame)
     }
 }
 
-bool Simulation::checkReceivedForParticle(const Particle& particle, const Receiver& receiver) const
-{
+bool Simulation::checkReceivedForParticle(const Particle& particle, const Receiver& receiver) const {
     return receiver.hit(particle.getPosition());
 }
 

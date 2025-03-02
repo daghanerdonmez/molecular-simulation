@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include "particle.hpp"
 #include "receiver.hpp"
+#include "Receivers/sphericalReceiver.hpp"
 #include <vector>
 #include <stack>
 #include <glm/vec3.hpp>
@@ -28,7 +29,7 @@ class Simulation: public Connection
 private:
     std::vector<Particle> particles;
     std::stack<int> inactiveIndices; // Indices of inactive particles
-    std::vector<Receiver> receivers;
+    std::vector<std::unique_ptr<Receiver>> receivers;
     int aliveParticleCount;
     std::unique_ptr<Boundary> boundary;
     //gpt bu connectionları düz pointer olarak tutma weakptr sharedptr falan kullan diyo da bence gerek yok.
@@ -46,10 +47,10 @@ public:
     
     std::vector<glm::dvec3> getAliveParticlePositions() const;
     int getAliveParticleCount() const;
-    std::vector<Receiver> getReceivers() const;
+    const std::vector<std::unique_ptr<Receiver>>& getReceivers() const;
     
-    bool checkReceivedForParticle(const Particle& particle,const Receiver& receiver) const;
-    
+    bool checkReceivedForParticle(const Particle& particle, const Receiver& receiver) const;
+
     double getBoundaryRadius() const; // should only be called when boundary type is cylinder
     double getBoundaryHeight() const; // should only be called when boundary type is cylinder
     
@@ -66,7 +67,7 @@ public:
 };
 
 
-inline std::vector<Receiver> Simulation::getReceivers() const { return receivers; }
+inline const std::vector<std::unique_ptr<Receiver>>& Simulation::getReceivers() const { return receivers; }
 inline int Simulation::getAliveParticleCount() const { return aliveParticleCount; }
 
 inline void Simulation::setLeftConnection(Connection *connection){ leftConnection = connection; }
