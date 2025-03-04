@@ -1,0 +1,55 @@
+[
+    {
+        "id": "25c57642831b47e9",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "0e578ae22d049a96",
+        "type": "pipe",
+        "z": "25c57642831b47e9",
+        "name": "",
+        "length": "0.0007",
+        "radius": "3e-5",
+        "receivers": [],
+        "emitters": [],
+        "x": 230,
+        "y": 280,
+        "wires": [
+            [
+                "3863bd506eb2916f"
+            ]
+        ]
+    },
+    {
+        "id": "3863bd506eb2916f",
+        "type": "pipe",
+        "z": "25c57642831b47e9",
+        "name": "",
+        "length": "0.007",
+        "radius": "3e-5",
+        "receivers": [
+            {
+                "type": "Sphere type",
+                "radius": "1e-5",
+                "z": "0.00035",
+                "r": "0",
+                "theta": "0"
+            },
+            {
+                "type": "Trap (tangent)",
+                "length": "0.1",
+                "z": "0"
+            }
+        ],
+        "emitters": [],
+        "x": 370,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    }
+]

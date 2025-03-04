@@ -14,14 +14,14 @@
 // 0 for single simulation
 // 1 for simulation network
 // If simulation network is chosen, applied boundary is automatically cylinder boundary,
-#define MODE 0
+#define MODE 1
 
 #define NUMBER_OF_ITERATIONS 500000
 #define DT 1e-2
 #define ITERATIONS_PER_FRAME 10
 
 #define PARTICLE_COUNT 1000
-#define D 79.4e-13 // diffusion coefficient
+#define D 79.4e-12 // diffusion coefficient
 
 #define GRAPHICS_ZOOM_MULTIPLIER 1e3
 
@@ -47,7 +47,7 @@
 #define SINGLE_CYLINDER_Z 0 // 0 for infinite height cylinder
 
 // FLOW
-#define SINGLE_FLOW_X 5e-6
+#define SINGLE_FLOW_X 0
 #define SINGLE_FLOW_Y 0
 #define SINGLE_FLOW_Z 0
 

@@ -35,8 +35,10 @@ Simulation::Simulation(int particleCount, double radius, double length, glm::dve
         }
         
         //initialize the receiver
+        
+        // TODO: THIS SHOULD CHANGE IT ONLY ADDS 1
         if (SINGLE_RECEIVER_COUNT != 0) {
-            receivers.push_back(std::make_unique<SphericalReceiver>(glm::dvec3(SINGLE_RECEIVER_X, SINGLE_RECEIVER_Y, SINGLE_RECEIVER_Z),SINGLE_RECEIVER_RADIUS));
+            addReceiver(std::make_unique<SphericalReceiver>(glm::dvec3(SINGLE_RECEIVER_X, SINGLE_RECEIVER_Y, SINGLE_RECEIVER_Z),SINGLE_RECEIVER_RADIUS));
         }
     } else if (MODE == 1) {
         this->flow = flow;
@@ -56,7 +58,7 @@ Simulation::Simulation(int particleCount, double radius, double length, glm::dve
 
 void Simulation::iterateSimulation(int iterationCount, int currentFrame)
 {
-    std::cout << aliveParticleCount << std::endl;
+    //std::cout << aliveParticleCount << std::endl;
     if (MODE == 0) {
         if (SINGLE_RECEIVER_COUNT != 0) {
             // for each iteration
@@ -111,13 +113,7 @@ void Simulation::iterateSimulation(int iterationCount, int currentFrame)
         for(int i = 0; i < iterationCount; ++i) {
             // for each particle
             for(int j = 0; j < particles.size(); ++j) {
-                if (DEBUG_CHECKPOINT_PRINTS) {
-                    printf("b1\n");
-                }
                 if (particles[j].isAlive()) {
-                    if (DEBUG_CHECKPOINT_PRINTS) {
-                        printf("b2\n");
-                    }
                     // calculate their displacements
                     // in brownian motion displacements in each iteration are standard normal distributions
                     glm::dvec3 particlePosition = particles[j].getPosition();
@@ -128,8 +124,18 @@ void Simulation::iterateSimulation(int iterationCount, int currentFrame)
                     double dz = generateGaussian(0.0, sqrt(2 * D * DT)) + flowVector.z * DT;
                     bool toBeKilled = false;
                     particles[j].move(dx, dy, dz, &toBeKilled);
+                    
                     if (toBeKilled) {
                         killParticle(j);
+                    } else {
+                        for (int k = 0; k < receivers.size(); ++k) {
+                            //check if they are received by the receivers
+                            Receiver* receiver = receivers[k].get();
+                            if (checkReceivedForParticle(particles[j], *receiver)) {
+                                killParticle(j);
+                                receiver->increaseParticlesReceived(currentFrame * ITERATIONS_PER_FRAME + i);
+                            }
+                        }
                     }
                 }
             }

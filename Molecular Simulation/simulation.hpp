@@ -48,6 +48,7 @@ public:
     std::vector<glm::dvec3> getAliveParticlePositions() const;
     int getAliveParticleCount() const;
     const std::vector<std::unique_ptr<Receiver>>& getReceivers() const;
+    void addReceiver(std::unique_ptr<Receiver> receiver);
     
     bool checkReceivedForParticle(const Particle& particle, const Receiver& receiver) const;
 
@@ -68,6 +69,7 @@ public:
 
 
 inline const std::vector<std::unique_ptr<Receiver>>& Simulation::getReceivers() const { return receivers; }
+inline void Simulation::addReceiver(std::unique_ptr<Receiver> receiver) { receivers.push_back(std::move(receiver)); }
 inline int Simulation::getAliveParticleCount() const { return aliveParticleCount; }
 
 inline void Simulation::setLeftConnection(Connection *connection){ leftConnection = connection; }
