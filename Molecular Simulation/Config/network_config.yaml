@@ -1,21 +1,18 @@
 pipes:
   pipe0:
-    length: 0.0002
-    radius: 3.0e-05
+    length: 0.0003
+    radius: 0.0002
     particle_count: 1000
     left_connections: []
     right_connections:
       - pipe1
   pipe1:
-    length: 0.0002
-    radius: 3.0e-05
+    length: 0.0003
+    radius: 0.0002
     particle_count: 0
     left_connections:
       - pipe0
     right_connections: []
     receivers:
-      - type: Sphere type
-        radius: 5.0e-06
-        z: 0
-        r: 0.0
-        theta: 0.0
+      - type: Ring type
+        z: 0.0

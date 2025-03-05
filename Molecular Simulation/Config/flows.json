@@ -8,46 +8,63 @@
         "env": []
     },
     {
-        "id": "0e578ae22d049a96",
+        "id": "670f2658f68e106e",
         "type": "pipe",
         "z": "25c57642831b47e9",
         "name": "",
-        "length": "0.0007",
-        "radius": "3e-5",
+        "length": "0.1",
+        "radius": "0.01",
         "receivers": [],
         "emitters": [],
-        "x": 230,
-        "y": 280,
+        "x": 490,
+        "y": 380,
         "wires": [
             [
-                "3863bd506eb2916f"
+                "3613a8533aa50f80"
             ]
         ]
     },
     {
-        "id": "3863bd506eb2916f",
+        "id": "3613a8533aa50f80",
         "type": "pipe",
         "z": "25c57642831b47e9",
         "name": "",
-        "length": "0.007",
-        "radius": "3e-5",
+        "length": "0.1",
+        "radius": "0.01",
         "receivers": [
             {
-                "type": "Sphere type",
-                "radius": "1e-5",
-                "z": "0.00035",
-                "r": "0",
-                "theta": "0"
+                "type": "Trap (affecting flow)",
+                "length": "0",
+                "radius": "0",
+                "theta": "0",
+                "delta_theta": "0",
+                "thickness": "0"
             },
             {
                 "type": "Trap (tangent)",
                 "length": "0.1",
-                "z": "0"
+                "radius": "0",
+                "theta": "0",
+                "delta_theta": "0"
+            },
+            {
+                "type": "Sphere type",
+                "radius": "0.01",
+                "z": "0",
+                "r": "0",
+                "theta": "0"
             }
         ],
-        "emitters": [],
-        "x": 370,
-        "y": 280,
+        "emitters": [
+            {
+                "z": "0",
+                "r": "0",
+                "theta": "0",
+                "emitter_pattern": ""
+            }
+        ],
+        "x": 650,
+        "y": 380,
         "wires": [
             []
         ]

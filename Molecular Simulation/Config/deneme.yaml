@@ -1,23 +1,37 @@
 pipes:
   pipe0:
-    length: 0.0007
-    radius: 3.0e-05
+    length: 0.1
+    radius: 0.01
     particle_count: 0
     left_connections: []
     right_connections:
-      - pipe1
+    - pipe1
   pipe1:
-    length: 0.007
-    radius: 3.0e-05
+    length: 0.1
+    radius: 0.01
     particle_count: 0
     left_connections:
-      - pipe0
+    - pipe0
     right_connections: []
     receivers:
-      - type: Sphere type
-        radius: 1.0e-05
-        z: 0.00035
-        r: 0.0
-        theta: 0.0
-      - type: Ring type
-        z: 0.0
+    - type: Trap (affecting flow)
+      length: 0.0
+      radius: 0.0
+      theta: 0.0
+      delta_theta: 0.0
+      thickness: 0.0
+    - type: Trap (tangent)
+      length: 0.1
+      radius: 0.0
+      theta: 0.0
+      delta_theta: 0.0
+    - type: Sphere type
+      radius: 0.01
+      z: 0.0
+      r: 0.0
+      theta: 0.0
+    emitters:
+    - z: 0.0
+      r: 0.0
+      theta: 0.0
+      emitter_pattern: ''
