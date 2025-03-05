@@ -1,13 +1,13 @@
 pipes:
   pipe0:
-    length: 0.0003
+    length: 0.0002
     radius: 0.0002
-    particle_count: 1000
+    particle_count: 0
     left_connections: []
     right_connections:
       - pipe1
   pipe1:
-    length: 0.0003
+    length: 0.0002
     radius: 0.0002
     particle_count: 0
     left_connections:
@@ -15,4 +15,9 @@ pipes:
     right_connections: []
     receivers:
       - type: Ring type
-        z: 0.0
+        z: 0.0001
+    emitters:
+      - z: -0.0001
+        r: 0.0
+        theta: 0.0
+        emitter_pattern: 10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0

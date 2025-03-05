@@ -25,14 +25,14 @@ Simulation::Simulation(int particleCount, double radius, double length, glm::dve
 
         
         //initialize the particles vector with particleCount amount of free slots
-        particles.reserve(particleCount);
-        
-        for (int i = 0; i < particleCount; ++i) {
-            //this is an efficient method of constructing the particles in-place
-            particles.emplace_back(0.0, 0.0, 0.0);
-            particles[i].setBoundary(boundary.get());
-            particles[i].setSimulation(this);
-        }
+//        particles.reserve(particleCount);
+//        
+//        for (int i = 0; i < particleCount; ++i) {
+//            //this is an efficient method of constructing the particles in-place
+//            particles.emplace_back(0.0, 0.0, 0.0);
+//            particles[i].setBoundary(boundary.get());
+//            particles[i].setSimulation(this);
+//        }
         
         //initialize the receiver
         
@@ -47,12 +47,12 @@ Simulation::Simulation(int particleCount, double radius, double length, glm::dve
         
         particles.reserve(particleCount);
         
-        for (int i = 0; i < particleCount; ++i) {
-            //this is an efficient method of constructing the particles in-place
-            particles.emplace_back(0.0, 0.0, 0.0);
-            particles[i].setBoundary(boundary.get());
-            particles[i].setSimulation(this);
-        }
+//        for (int i = 0; i < particleCount; ++i) {
+//            //this is an efficient method of constructing the particles in-place
+//            particles.emplace_back(0.0, 0.0, 0.0);
+//            particles[i].setBoundary(boundary.get());
+//            particles[i].setSimulation(this);
+//        }
     }
 }
 
@@ -63,6 +63,11 @@ void Simulation::iterateSimulation(int iterationCount, int currentFrame)
         if (SINGLE_RECEIVER_COUNT != 0) {
             // for each iteration
             for(int i = 0; i < iterationCount; ++i) {
+                
+                for (auto& emitter : emitters) {
+                    emitter->emit(currentFrame);
+                }
+                
                 // for each particle
                 for(int j = 0; j < particles.size(); ++j) {
                     if (particles[j].isAlive()) {
@@ -91,6 +96,11 @@ void Simulation::iterateSimulation(int iterationCount, int currentFrame)
         } else {
             // for each iteration
             for(int i = 0; i < iterationCount; ++i) {
+                
+                for (auto& emitter : emitters) {
+                    emitter->emit(currentFrame);
+                }
+                
                 // for each particle
                 for(int j = 0; j < particles.size(); ++j) {
                     if (particles[j].isAlive()) {
@@ -111,6 +121,11 @@ void Simulation::iterateSimulation(int iterationCount, int currentFrame)
     } else if (MODE == 1) {
         // for each iteration
         for(int i = 0; i < iterationCount; ++i) {
+            
+            for (auto& emitter : emitters) {
+                emitter->emit(currentFrame);
+            }
+            
             // for each particle
             for(int j = 0; j < particles.size(); ++j) {
                 if (particles[j].isAlive()) {
@@ -229,7 +244,7 @@ void Simulation::receiveParticle(Particle* particle, Direction direction, double
     newParticle.setBoundary(boundary.get());
     newParticle.setSimulation(this);
     addParticle(newParticle);
-    aliveParticleCount++;
+    //aliveParticleCount++; //why the fuck is this not inside addParticle, im not going to change it because im afraid of breaking something. nvm changed it.
 }
 
 void Simulation::addParticle(const Particle& newParticle) {
@@ -254,6 +269,8 @@ void Simulation::addParticle(const Particle& newParticle) {
         }
         particles.push_back(newParticle);
     }
+    
+    aliveParticleCount++;
 }
 
 

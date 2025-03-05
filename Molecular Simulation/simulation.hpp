@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include "particle.hpp"
 #include "receiver.hpp"
+#include "emitter.hpp"
 #include "Receivers/sphericalReceiver.hpp"
 #include <vector>
 #include <stack>
@@ -30,6 +31,7 @@ private:
     std::vector<Particle> particles;
     std::stack<int> inactiveIndices; // Indices of inactive particles
     std::vector<std::unique_ptr<Receiver>> receivers;
+    std::vector<std::unique_ptr<Emitter>> emitters;
     int aliveParticleCount;
     std::unique_ptr<Boundary> boundary;
     //gpt bu connectionları düz pointer olarak tutma weakptr sharedptr falan kullan diyo da bence gerek yok.
@@ -65,6 +67,11 @@ public:
     Connection* getRightConnection() const;
     
     glm::dvec3 getFlow(glm::dvec3 position) const;
+    
+    void addEmitter(std::unique_ptr<Emitter> emitter);
+    const std::vector<std::unique_ptr<Emitter>>& getEmitters() const;
+    
+    Boundary* getBoundary() const;
 };
 
 
@@ -76,6 +83,16 @@ inline void Simulation::setLeftConnection(Connection *connection){ leftConnectio
 inline void Simulation::setRightConnection(Connection *connection){ rightConnection = connection; }
 inline Connection* Simulation::getLeftConnection() const{ return leftConnection; }
 inline Connection* Simulation::getRightConnection() const{ return rightConnection; }
+
+inline Boundary* Simulation::getBoundary() const { return boundary.get(); }
+
+inline void Simulation::addEmitter(std::unique_ptr<Emitter> emitter) {
+    emitters.push_back(std::move(emitter));
+}
+
+inline const std::vector<std::unique_ptr<Emitter>>& Simulation::getEmitters() const {
+    return emitters;
+}
 
 
 #endif /* simulation_hpp */

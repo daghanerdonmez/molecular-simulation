@@ -311,9 +311,70 @@ SimulationNetworkLoader::loadFromYAML(const std::string& filename)
             }
         }
     }
+    
+    // ------------------------------------------------------------------------
+    // 7) Parse "emitters" for each pipe, if present
+    // ------------------------------------------------------------------------
+    for (auto& kv : simulations) {
+        const std::string& pipeName = kv.first;
+        Simulation* simPtr = kv.second.get();
+
+        // Look up the original YAML node
+        const auto& pipeCfg = pipeNodes[pipeName];
+        
+        // MODIFICATION: Check if emitters are present in the pipe configuration
+        if (!pipeCfg["emitters"] || !pipeCfg["emitters"].IsSequence()) {
+            // no emitters for this pipe
+            continue;
+        }
+
+        // For each emitter definition
+        for (auto& emitterCfg : pipeCfg["emitters"]) {
+            // MODIFICATION: Parse emitter coordinates from cylindrical to cartesian
+            double z = emitterCfg["z"] ? emitterCfg["z"].as<double>() : 0.0;
+            double rCyl = emitterCfg["r"] ? emitterCfg["r"].as<double>() : 0.0;
+            double theta = emitterCfg["theta"] ? emitterCfg["theta"].as<double>() : 0.0;
+
+            // Convert from cylindrical -> cartesian
+            glm::dvec3 cylPos(rCyl, theta, z);
+            glm::dvec3 cartPos = cylindricalToCartesian(cylPos);
+
+            // MODIFICATION: Parse emitter pattern
+            std::vector<int> emissionPattern;
+            if (emitterCfg["emitter_pattern"]) {
+                std::string patternStr = emitterCfg["emitter_pattern"].as<std::string>();
+                std::stringstream ss(patternStr);
+                std::string item;
+                
+                // Parse comma-separated values into integer vector
+                while (std::getline(ss, item, ',')) {
+                    try {
+                        emissionPattern.push_back(std::stoi(item));
+                    } catch (const std::exception& e) {
+                        std::cerr << "[Warning] Invalid emitter pattern value: " << item
+                                  << " in pipe: " << pipeName << ". Skipping.\n";
+                    }
+                }
+            }
+
+            // MODIFICATION: Create and add emitter to simulation
+            if (!emissionPattern.empty()) {
+                auto emitter = std::make_unique<Emitter>(
+                    cartPos,           // position
+                    emissionPattern,   // emission pattern
+                    simPtr             // pointer to simulation
+                );
+
+                simPtr->addEmitter(std::move(emitter));
+            } else {
+                std::cerr << "[Warning] Emitter in pipe: " << pipeName
+                          << " has no valid emission pattern. Skipping.\n";
+            }
+        }
+    }
 
     // ------------------------------------------------------------------------
-    // 7) Move all Simulations into the SimulationNetwork
+    // 8) Move all Simulations into the SimulationNetwork
     // ------------------------------------------------------------------------
     for (auto& simKV : simulations) {
         network->addSimulation(std::move(simKV.second));

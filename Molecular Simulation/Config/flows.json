@@ -12,8 +12,8 @@
         "type": "pipe",
         "z": "25c57642831b47e9",
         "name": "",
-        "length": "0.1",
-        "radius": "0.01",
+        "length": "0.0002",
+        "radius": "0.0002",
         "receivers": [],
         "emitters": [],
         "x": 490,
@@ -29,38 +29,20 @@
         "type": "pipe",
         "z": "25c57642831b47e9",
         "name": "",
-        "length": "0.1",
-        "radius": "0.01",
+        "length": "0.0002",
+        "radius": "0.0002",
         "receivers": [
             {
-                "type": "Trap (affecting flow)",
-                "length": "0",
-                "radius": "0",
-                "theta": "0",
-                "delta_theta": "0",
-                "thickness": "0"
-            },
-            {
-                "type": "Trap (tangent)",
-                "length": "0.1",
-                "radius": "0",
-                "theta": "0",
-                "delta_theta": "0"
-            },
-            {
-                "type": "Sphere type",
-                "radius": "0.01",
-                "z": "0",
-                "r": "0",
-                "theta": "0"
+                "type": "Ring type",
+                "z": "0.0001"
             }
         ],
         "emitters": [
             {
-                "z": "0",
+                "z": "-0.0001",
                 "r": "0",
                 "theta": "0",
-                "emitter_pattern": ""
+                "emitter_pattern": "10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"
             }
         ],
         "x": 650,
