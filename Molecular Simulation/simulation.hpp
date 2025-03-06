@@ -51,6 +51,7 @@ public:
     int getAliveParticleCount() const;
     const std::vector<std::unique_ptr<Receiver>>& getReceivers() const;
     void addReceiver(std::unique_ptr<Receiver> receiver);
+    void receiversWrite(const std::string& path) const;
     
     bool checkReceivedForParticle(const Particle& particle, const Receiver& receiver) const;
 

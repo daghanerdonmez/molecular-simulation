@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-filename = "/Users/daghanerdonmez/Desktop/Molecular-Simulation/Molecular Simulation/Output/Outputs/r2output.txt"
+filename = "/Users/daghanerdonmez/Desktop/Molecular-Simulation/Molecular Simulation/Output/Outputs/r4output.txt"
 resultCompressionRate = 400;
 
 import os

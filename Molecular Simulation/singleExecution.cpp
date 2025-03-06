@@ -14,11 +14,11 @@ int singleRunWithoutGraphics()
 {
     Simulation simulation;
     simulation.iterateSimulation(NUMBER_OF_ITERATIONS, 0);
-    if (OUTPUT_RESULTS) {
-        const std::vector<std::unique_ptr<Receiver>>& receivers = simulation.getReceivers();
-        receivers[0].get()->writeOutput();
-        // TODO: THIS SHOULD CHANGE BECAUSE THIS ASSUMES THERE IS ONLY 1 RECEIVER AND TELLS IT TO WRITE IT'S OUTPUT. IT SHOULD BE AN EASY FIX BUT I IGNORE IT FOR NOW.
-    }
+//    if (OUTPUT_RESULTS) {
+//        const std::vector<std::unique_ptr<Receiver>>& receivers = simulation.getReceivers();
+//        receivers[0].get()->writeOutput();
+//        // TODO: THIS SHOULD CHANGE BECAUSE THIS ASSUMES THERE IS ONLY 1 RECEIVER AND TELLS IT TO WRITE IT'S OUTPUT. IT SHOULD BE AN EASY FIX BUT I IGNORE IT FOR NOW.
+//    }
     return 0;
 }
 
@@ -175,11 +175,11 @@ int singleRunWithGraphics()
         currentFrame++;
     }
     
-    if (OUTPUT_RESULTS) {
-        const std::vector<std::unique_ptr<Receiver>>& receivers = simulation.getReceivers();
-        receivers[0].get()->writeOutput();
-        // TODO: THIS SHOULD CHANGE BECAUSE THIS ASSUMES THERE IS ONLY 1 RECEIVER AND TELLS IT TO WRITE IT'S OUTPUT. IT SHOULD BE AN EASY FIX BUT I IGNORE IT FOR NOW.
-    }
+//    if (OUTPUT_RESULTS) {
+//        const std::vector<std::unique_ptr<Receiver>>& receivers = simulation.getReceivers();
+//        receivers[0].get()->writeOutput();
+//        // TODO: THIS SHOULD CHANGE BECAUSE THIS ASSUMES THERE IS ONLY 1 RECEIVER AND TELLS IT TO WRITE IT'S OUTPUT. IT SHOULD BE AN EASY FIX BUT I IGNORE IT FOR NOW.
+//    }
     
     // Clean up
     glDeleteVertexArrays(1, &VAO);

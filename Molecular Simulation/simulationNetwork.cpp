@@ -36,6 +36,12 @@ void SimulationNetwork::addHub(std::unique_ptr<Hub> hub) {
     hubs.push_back(std::move(hub));
 }
 
+void SimulationNetwork::simulationsWrite(const std::string &path) const {
+    for (const auto& simulation: simulations) {
+        simulation->receiversWrite(path);
+    }
+}
+
 Simulation* SimulationNetwork::getFirstSimulation()
 {
     return simulations[0].get();

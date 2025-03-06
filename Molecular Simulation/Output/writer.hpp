@@ -13,6 +13,6 @@
 #include <fstream>
 #include <string>
 
-void writeToFile(const std::string& filename, const std::string& data);
+void writeToFile(const std::string& filename, const std::string& data, bool append);
 
 #endif /* writer_hpp */

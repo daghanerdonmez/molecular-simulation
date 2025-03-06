@@ -29,7 +29,7 @@ public:
 
     glm::dvec3 getPosition() const;
     void increaseParticlesReceived(int iterationNumber);
-    void writeOutput();
+    void writeOutput(const std::string& path);
     
     // Pure virtual function for interaction detection
     virtual bool hit(glm::dvec3 particlePosition) const = 0;

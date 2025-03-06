@@ -322,5 +322,11 @@ glm::dvec3 Simulation::getFlow(glm::dvec3 position) const{
     }
 }
 
+void Simulation::receiversWrite(const std::string &path) const {
+    for (auto& receiver: receivers){
+        receiver->writeOutput(path);
+    }
+}
+
 
 

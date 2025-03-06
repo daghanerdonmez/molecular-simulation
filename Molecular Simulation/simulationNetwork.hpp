@@ -24,6 +24,9 @@ public:
     void iterateNetwork(int iterationCount, int currentFrame);
     void addSimulation(std::unique_ptr<Simulation> sim);
     void addHub(std::unique_ptr<Hub> hub);
+    
+    void simulationsWrite(const std::string& path) const;
+    
     Simulation* getFirstSimulation();
     Simulation* getSecondSimulation();
 };

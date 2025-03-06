@@ -15,13 +15,14 @@ Receiver::~Receiver() {
     delete[] particlesReceived;
 }
 
-void Receiver::writeOutput() {
-    std::string output = "";
+void Receiver::writeOutput(const std::string& path) {
+    std::string output = "-----------------------------\n";
     for (int i = 0; i < NUMBER_OF_ITERATIONS; ++i) {
         output += std::to_string(particlesReceived[i]);
         if (i != NUMBER_OF_ITERATIONS - 1) {
             output += ",";
         }
     }
-    writeToFile("/Users/daghanerdonmez/Desktop/Molecular-Simulation/Molecular Simulation/Output/Outputs/r3output.txt", output);
+    output += "\n\n";
+    writeToFile(path, output, true);
 }

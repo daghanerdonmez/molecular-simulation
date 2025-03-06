@@ -14,6 +14,7 @@ int networkRunWithoutGraphics()
 {
     auto network = SimulationNetworkLoader::loadFromYAML("/Users/daghanerdonmez/Desktop/Molecular-Simulation/Molecular Simulation/Config/network_config.yaml");
     network->iterateNetwork(NUMBER_OF_ITERATIONS,0);
+    network->simulationsWrite("/Users/daghanerdonmez/Desktop/Molecular-Simulation/Molecular Simulation/Output/Outputs/r4output.txt");
     return 0;
 }
 
@@ -172,6 +173,9 @@ int networkRunWithGraphics(){
     glDeleteBuffers(1, &EBO);
 
     glfwTerminate();
+    
+    network->simulationsWrite("/Users/daghanerdonmez/Desktop/Molecular-Simulation/Molecular Simulation/Output/Outputs/r4output.txt");
+    
     return 0;
 }
 
