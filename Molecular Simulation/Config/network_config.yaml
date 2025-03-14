@@ -1,23 +1,31 @@
 pipes:
   pipe0:
-    length: 0.0002
-    radius: 0.0002
+    length: 0.0001
+    radius: 3.0e-05
     particle_count: 0
     left_connections: []
     right_connections:
-      - pipe1
+    - pipe1
+    - pipe2
+    flow: 1.0e-05
+    emitters:
+    - z: 0.0
+      r: 0.0
+      theta: 0.0
+      emitter_pattern: 10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
   pipe1:
-    length: 0.0002
-    radius: 0.0002
+    length: 0.0001
+    radius: 2.0e-05
     particle_count: 0
     left_connections:
-      - pipe0
+    - pipe0
     right_connections: []
-    receivers:
-      - type: Ring type
-        z: 0.0001
-    emitters:
-      - z: -0.0001
-        r: 0.0
-        theta: 0.0
-        emitter_pattern: 10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+    flow: 9.411764705882356e-06
+  pipe2:
+    length: 0.0001
+    radius: 1.0e-05
+    particle_count: 0
+    left_connections:
+    - pipe0
+    right_connections: []
+    flow: 5.882352941176472e-07

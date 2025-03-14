@@ -91,9 +91,11 @@ SimulationNetworkLoader::loadFromYAML(const std::string& filename)
         double length = pipeCfg["length"].as<double>();
         double radius = pipeCfg["radius"].as<double>();
         int particleCount = pipeCfg["particle_count"] ? pipeCfg["particle_count"].as<int>() : 100;
+        double flow = pipeCfg["flow"] ? pipeCfg["flow"].as<double>() : 0.0;
 
         // Create the simulation
-        auto sim = std::make_unique<Simulation>(particleCount, radius, length);
+        glm::dvec3 flowVector(0.0, 0.0, flow);
+        auto sim = std::make_unique<Simulation>(particleCount, radius, length, flowVector);
 
         // Keep track of the simulation and its node
         simulations[pipeName] = std::move(sim);
@@ -388,5 +390,3 @@ SimulationNetworkLoader::loadFromYAML(const std::string& filename)
 
     return network;
 }
-
-

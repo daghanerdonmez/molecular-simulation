@@ -8,8 +8,9 @@ def convert_node_red_to_yaml(input_file, output_file):
     with open(input_file, 'r') as f:
         data = json.load(f)
     
-    # Extract nodes of type "pipe"
+    # Extract nodes of type "pipe" and "flow"
     pipes = [node for node in data if node.get('type') == 'pipe']
+    flows = [node for node in data if node.get('type') == 'flow']
     
     # Create a mapping of node IDs to node names
     node_names = {}
@@ -33,6 +34,63 @@ def convert_node_red_to_yaml(input_file, output_file):
                 # Also record it as a left connection for the target
                 left_connections[target_id].append(pipe_id)
     
+    # Create a mapping of all nodes by ID for easy lookup
+    all_nodes = {node['id']: node for node in data}
+    
+    # Track flow values for each pipe
+    flow_values = {}
+    
+    # Process flow nodes first
+    for flow_node in flows:
+        flow_value = float(flow_node.get('flowValue', 0))
+        wires = flow_node.get('wires', [[]])[0]
+        
+        # Assign flow value to the first pipe connected to this flow node
+        for target_id in wires:
+            if target_id in node_names:  # Only consider pipe type nodes
+                flow_values[target_id] = flow_value
+    
+    # Propagate flow values through the network
+    def calculate_flow_distribution(pipe_id, visited=None):
+        if visited is None:
+            visited = set()
+        
+        if pipe_id in visited:
+            return  # Avoid cycles
+        
+        visited.add(pipe_id)
+        
+        # If this pipe already has a flow value, propagate it to connected pipes
+        if pipe_id in flow_values:
+            pipe_node = all_nodes[pipe_id]
+            wires = pipe_node.get('wires', [[]])[0]
+            
+            # Get the right connections that are pipe nodes
+            right_connections = [target_id for target_id in wires if target_id in node_names]
+            
+            if right_connections:
+                # Calculate the sum of the fourth power of radiuses
+                radius_power_sum = sum(
+                    float(all_nodes[target_id].get('radius', 0.01)) ** 4 
+                    for target_id in right_connections
+                )
+                
+                if radius_power_sum > 0:
+                    # Distribute flow proportionally to the fourth power of radius
+                    for target_id in right_connections:
+                        target_radius = float(all_nodes[target_id].get('radius', 0.01))
+                        flow_fraction = (target_radius ** 4) / radius_power_sum
+                        flow_values[target_id] = flow_values[pipe_id] * flow_fraction
+                        
+                        # Recursively calculate flow for downstream pipes
+                        calculate_flow_distribution(target_id, visited)
+    
+    # Start flow calculation from pipes directly connected to flow nodes
+    for flow_node in flows:
+        for target_id in flow_node.get('wires', [[]])[0]:
+            if target_id in node_names:
+                calculate_flow_distribution(target_id)
+    
     # Populate the YAML data
     for pipe in pipes:
         pipe_id = pipe['id']
@@ -51,6 +109,10 @@ def convert_node_red_to_yaml(input_file, output_file):
             'left_connections': left_conns,
             'right_connections': right_connections
         }
+        
+        # Add flow value if available
+        if pipe_id in flow_values:
+            pipe_data['flow'] = flow_values[pipe_id]
         
         # Add receivers if present
         if pipe.get('receivers'):
