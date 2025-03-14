@@ -1,7 +1,62 @@
-
 /Molecular Simulation.xcodeproj
 .DS_Store
 /Molecular Simulation/Output/Outputs
 /Molecular Simulation/Benchmarks
 Molecular Simulation/Config/network_config_old.yaml
 Molecular Simulation/Config/graph.graphml
+
+# Build directories
+build/
+Debug/
+Release/
+*.o
+*.obj
+*.exe
+*.out
+*.app
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cmake
+
+# Xcode specific
+*.xcodeproj/
+!*.xcodeproj/project.pbxproj
+*.xcworkspace/
+xcuserdata/
+DerivedData/
+
+# IDE specific
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
