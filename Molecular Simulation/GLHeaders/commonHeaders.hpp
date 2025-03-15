@@ -8,12 +8,22 @@
 #ifndef commonHeaders_hpp
 #define commonHeaders_hpp
 
-#define GL_SILENCE_DEPRECATION
+// Platform-specific includes
+#ifdef __APPLE__
+    #define GL_SILENCE_DEPRECATION
+    #include <GLFW/glfw3.h>
+    #include <OpenGL/gl3.h>
+    #include <OpenGL/gl3ext.h>
+#elif defined(_WIN32) || defined(_WIN64)
+    #include <glad/glad.h>
+    #include <GLFW/glfw3.h>
+#else // Linux and other platforms
+    #include <glad/glad.h>
+    #include <GLFW/glfw3.h>
+#endif
 
-#include <GLFW/glfw3.h>
-#include <OpenGL/gl3.h>
-#include <OpenGL/gl3ext.h>
 #include <vector>
+#include <cmath>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);

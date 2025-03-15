@@ -44,8 +44,20 @@ int singleRunWithGraphics()
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     
+#if defined(_WIN32) || defined(_WIN64) || !(defined(__APPLE__))
+    // Initialize GLAD on Windows and Linux
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+    {
+        std::cerr << "Failed to initialize GLAD\n";
+        glfwTerminate();
+        return -1;
+    }
+#endif
+    
     // Compile shaders
-    Shader particleShader("/Users/daghanerdonmez/Desktop/Molecular-Simulation/Molecular Simulation/Shaders/vertexshader.txt", "/Users/daghanerdonmez/Desktop/Molecular-Simulation/Molecular Simulation/Shaders/fragmentshader.txt");
+    // Use relative paths for cross-platform compatibility
+    std::string shaderBasePath = "./Shaders/";
+    Shader particleShader((shaderBasePath + "vertexshader.txt").c_str(), (shaderBasePath + "fragmentshader.txt").c_str());
     
     // For transparency
     glEnable(GL_BLEND);
