@@ -8,6 +8,9 @@
 #ifndef SHADER_H
 #define SHADER_H
 
+// Include platform-independent OpenGL headers
+#include "../GLHeaders/commonHeaders.hpp"
+
 #include <glm/glm.hpp>
 
 #include <string>
@@ -169,4 +172,3 @@ private:
     }
 };
 #endif
-

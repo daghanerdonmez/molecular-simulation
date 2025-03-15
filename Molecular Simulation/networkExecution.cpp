@@ -12,9 +12,10 @@ const unsigned int SCR_HEIGHT = 400;
 
 int networkRunWithoutGraphics()
 {
-    auto network = SimulationNetworkLoader::loadFromYAML("/Users/daghanerdonmez/Desktop/Molecular-Simulation/Molecular Simulation/Config/network_config.yaml");
+    // Use relative paths for cross-platform compatibility
+    auto network = SimulationNetworkLoader::loadFromYAML("Config/network_config.yaml");
     network->iterateNetwork(NUMBER_OF_ITERATIONS,0);
-    network->simulationsWrite("/Users/daghanerdonmez/Desktop/Molecular-Simulation/Molecular Simulation/Output/Outputs/r4output.txt");
+    network->simulationsWrite("Output/Outputs/r4output.txt");
     return 0;
 }
 
@@ -37,10 +38,20 @@ int networkRunWithGraphics(){
         return -1;
     }
     glfwMakeContextCurrent(window);
+    
+#if defined(_WIN32) || defined(_WIN64) || (defined(__unix__) && !defined(__APPLE__))
+    // Initialize GLAD on Windows and Linux
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+        std::cerr << "Failed to initialize GLAD\n";
+        glfwTerminate();
+        return -1;
+    }
+#endif
+    
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     
-    // Compile shaders
-    Shader particleShader("/Users/daghanerdonmez/Desktop/Molecular-Simulation/Molecular Simulation/Shaders/vertexshader.txt", "/Users/daghanerdonmez/Desktop/Molecular-Simulation/Molecular Simulation/Shaders/fragmentshader.txt");
+    // Compile shaders using relative paths
+    Shader particleShader("Shaders/vertexshader.txt", "Shaders/fragmentshader.txt");
     
     // For transparency
     glEnable(GL_BLEND);
@@ -99,8 +110,8 @@ int networkRunWithGraphics(){
     
     double particleSize = 0.01;
     
-    //Initialize the simulation
-    auto network = SimulationNetworkLoader::loadFromYAML("/Users/daghanerdonmez/Desktop/Molecular-Simulation/Molecular Simulation/Config/network_config.yaml");
+    // Initialize the simulation with relative path
+    auto network = SimulationNetworkLoader::loadFromYAML("Config/network_config.yaml");
     Simulation* firstSimulation = network->getFirstSimulation();
 //    Simulation* secondSimulation = network->getSecondSimulation();
 
@@ -174,9 +185,7 @@ int networkRunWithGraphics(){
 
     glfwTerminate();
     
-    network->simulationsWrite("/Users/daghanerdonmez/Desktop/Molecular-Simulation/Molecular Simulation/Output/Outputs/r4output.txt");
+    network->simulationsWrite("Output/Outputs/r4output.txt");
     
     return 0;
 }
-
-

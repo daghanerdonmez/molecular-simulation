@@ -14,16 +14,13 @@
 #include <iostream>
 #include "particle.hpp"
 #include "simulation.hpp"
-#include <GLFW/glfw3.h>
-#include <OpenGL/gl3.h>
-#include <OpenGL/gl3ext.h>
+#include "GLHeaders/commonHeaders.hpp"
 #include "Shaders/shader.h"
 #include <glm/glm.hpp>
 #include <vector>
 #include "Config/config.h"
 #include <time.h>
 #include "simulationNetwork.hpp"
-#include "GLHeaders/commonHeaders.hpp"
 #include "simulationNetworkLoader.hpp"
 
 int networkRunWithoutGraphics();

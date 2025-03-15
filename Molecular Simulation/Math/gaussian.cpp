@@ -5,6 +5,7 @@
 //  Created by Dağhan Erdönmez on 30.01.2025.
 //
 
+#define _USE_MATH_DEFINES
 #include "gaussian.hpp"
 #include <stdlib.h>
 #include <stdio.h>

@@ -4,7 +4,7 @@
 //
 //  Created by Dağhan Erdönmez on 4.02.2025.
 //
-
+#define _USE_MATH_DEFINES
 #include "random.hpp"
 
 // Function to generate a random point in a circle of radius r

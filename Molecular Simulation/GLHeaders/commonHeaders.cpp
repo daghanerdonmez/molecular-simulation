@@ -5,6 +5,7 @@
 //  Created by Dağhan Erdönmez on 5.02.2025.
 //
 
+#define _USE_MATH_DEFINES
 #include "commonHeaders.hpp"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)

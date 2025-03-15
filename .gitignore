@@ -60,3 +60,6 @@ DerivedData/
 *.exe
 *.out
 *.app
+/.vs/Molecular-Simulation/FileContentIndex
+/.vs
+/Molecular Simulation/include/.vs
