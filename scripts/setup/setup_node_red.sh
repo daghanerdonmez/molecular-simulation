@@ -8,6 +8,9 @@ YELLOW='\033[0;33m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
+# Enable debug mode
+set -x
+
 # Print header
 echo -e "${BOLD}===============================================${NC}"
 echo -e "${BOLD}Molecular Simulation - Node-RED Setup${NC}"
@@ -69,6 +72,9 @@ if [ ! -d "$NODE_RED_DIR" ]; then
     mkdir -p "$NODE_RED_DIR"
 fi
 
+# Print current directory for debugging
+print_status "Current directory before clone: $(pwd)"
+
 # Install custom nodes
 print_status "Installing custom Node-RED nodes for Molecular Simulation..."
 
@@ -81,7 +87,7 @@ fi
 
 # Create a temporary directory for the custom nodes
 TEMP_DIR=$(mktemp -d)
-print_status "Cloning custom nodes repository to temporary directory..."
+print_status "Cloning custom nodes repository to temporary directory: $TEMP_DIR"
 
 # Clone the repository
 git clone https://github.com/daghanerdonmez/custom-node-red-nodes.git "$TEMP_DIR"
@@ -91,12 +97,30 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+# List contents of the cloned repository for debugging
+print_status "Contents of cloned repository:"
+ls -la "$TEMP_DIR"
+print_status "Contents of node-red-contrib-pipe directory:"
+ls -la "$TEMP_DIR/node-red-contrib-pipe"
+
 # Install the custom nodes to Node-RED
-print_status "Installing custom nodes to Node-RED..."
+print_status "Changing to Node-RED directory: $NODE_RED_DIR"
 cd "$NODE_RED_DIR" || exit 1
+print_status "Current directory after cd: $(pwd)"
+
+print_status "Installing custom nodes to Node-RED..."
 npm install "$TEMP_DIR/node-red-contrib-pipe"
-if [ $? -ne 0 ]; then
+INSTALL_RESULT=$?
+
+# Show npm list for debugging
+print_status "Checking if node was installed:"
+npm list | grep pipe
+
+if [ $INSTALL_RESULT -ne 0 ]; then
     print_error "Failed to install custom nodes. Please check the error messages above."
+    print_status "You can try installing manually with:"
+    echo "  cd ~/.node-red"
+    echo "  npm install /path/to/custom-node-red-nodes/node-red-contrib-pipe"
     rm -rf "$TEMP_DIR"
     exit 1
 fi
@@ -104,6 +128,9 @@ fi
 # Clean up
 rm -rf "$TEMP_DIR"
 print_success "Custom nodes installed successfully"
+
+# Disable debug mode
+set +x
 
 # Final instructions
 echo ""
