@@ -62,6 +62,13 @@ else
     print_success "Found Node-RED $NODE_RED_VERSION"
 fi
 
+# Ensure Node-RED user directory exists
+NODE_RED_DIR="$HOME/.node-red"
+if [ ! -d "$NODE_RED_DIR" ]; then
+    print_status "Creating Node-RED user directory at $NODE_RED_DIR..."
+    mkdir -p "$NODE_RED_DIR"
+fi
+
 # Install custom nodes
 print_status "Installing custom Node-RED nodes for Molecular Simulation..."
 
@@ -86,6 +93,7 @@ fi
 
 # Install the custom nodes to Node-RED
 print_status "Installing custom nodes to Node-RED..."
+cd "$NODE_RED_DIR" || exit 1
 npm install "$TEMP_DIR/node-red-contrib-pipe"
 if [ $? -ne 0 ]; then
     print_error "Failed to install custom nodes. Please check the error messages above."
