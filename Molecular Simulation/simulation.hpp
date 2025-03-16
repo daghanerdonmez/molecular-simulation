@@ -15,6 +15,7 @@
 #include "Receivers/sphericalReceiver.hpp"
 #include <vector>
 #include <stack>
+#include <memory>
 #include <glm/vec3.hpp>
 #include "Math/gaussian.hpp"
 #include "Config/config.h"
