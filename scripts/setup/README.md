@@ -4,7 +4,7 @@ This directory contains scripts to help set up the Molecular Simulation project 
 
 ## Available Scripts
 
-### `setup_node_red.sh`
+### `setup_node_red.sh` (Linux/macOS)
 
 This script sets up Node-RED and installs the custom nodes required for the Molecular Simulation project.
 
@@ -23,6 +23,45 @@ chmod +x setup_node_red.sh
 
 # Run the script
 ./setup_node_red.sh
+```
+
+### `setup_node_red.ps1` (Windows)
+
+This is the Windows PowerShell version of the setup script.
+
+#### Usage:
+
+```powershell
+# You might need to set execution policy first (run PowerShell as Administrator)
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+# Run the script
+.\setup_node_red.ps1
+```
+
+### `remove-node-red.sh` (Linux/macOS)
+
+This script removes Node-RED and its packages for debugging purposes.
+
+#### Usage:
+
+```bash
+# Make sure the script is executable
+chmod +x remove-node-red.sh
+
+# Run the script
+./remove-node-red.sh
+```
+
+### `remove-node-red.ps1` (Windows)
+
+This is the Windows PowerShell version of the removal script.
+
+#### Usage:
+
+```powershell
+# Run the script
+.\remove-node-red.ps1
 ```
 
 ## After Setup
