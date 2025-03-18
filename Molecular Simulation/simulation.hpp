@@ -19,6 +19,7 @@
 #include <glm/vec3.hpp>
 #include "Math/gaussian.hpp"
 #include "Config/config.h"
+#include "Config/oldconfig.h"
 #include "Boundaries/boundary.hpp"
 #include <stdexcept>
 #include "Math/random.hpp"

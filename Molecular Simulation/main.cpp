@@ -12,6 +12,7 @@
 #include "networkExecution.hpp"
 #include <vector>
 #include "Config/config.h"
+#include "Config/oldconfig.h"
 #include <time.h>
 
 int main() {

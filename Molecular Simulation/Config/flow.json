@@ -1,18 +1,49 @@
 [
     {
-        "id": "25c57642831b47e9",
+        "id": "84892262a1f0d1bb",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "Flow 2",
         "disabled": false,
         "info": "",
         "env": []
     },
     {
-        "id": "5e0037212384a506",
-        "type": "pipe",
-        "z": "25c57642831b47e9",
+        "id": "d2920f2f3ed588a4",
+        "type": "simulation-config",
+        "z": "84892262a1f0d1bb",
+        "name": "Simulation Configuration",
+        "outputResults": false,
+        "graphicsOn": true,
+        "mode": 1,
+        "timeToRun": 500,
+        "dt": "0.01",
+        "iterationsPerFrame": 10,
+        "diffusionCoefficient": 7.94e-11,
+        "graphicsZoomMultiplier": 1000,
+        "x": 210,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "e5ddd913f101a404",
+        "type": "flow",
+        "z": "84892262a1f0d1bb",
         "name": "",
-        "length": "1e-4",
+        "flowValue": "1",
+        "x": 170,
+        "y": 300,
+        "wires": [
+            [
+                "efeaca1e95fbfb06"
+            ]
+        ]
+    },
+    {
+        "id": "efeaca1e95fbfb06",
+        "type": "pipe",
+        "z": "84892262a1f0d1bb",
+        "name": "",
+        "length": "3e-4",
         "radius": "3e-5",
         "receivers": [],
         "emitters": [
@@ -20,59 +51,63 @@
                 "z": "0",
                 "r": "0",
                 "theta": "0",
-                "emitter_pattern": "10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"
+                "emitter_pattern": "10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"
             }
         ],
-        "x": 350,
-        "y": 200,
+        "x": 430,
+        "y": 300,
         "wires": [
             [
-                "5d08cfdc12082c09",
-                "585c1045b43ea110"
+                "89c71a24d09b629e",
+                "0fdae5640cb1922f"
             ]
         ]
     },
     {
-        "id": "5d08cfdc12082c09",
+        "id": "0fdae5640cb1922f",
         "type": "pipe",
-        "z": "25c57642831b47e9",
+        "z": "84892262a1f0d1bb",
         "name": "",
-        "length": "1e-4",
-        "radius": "2e-5",
-        "receivers": [],
+        "length": "3e-4",
+        "radius": "3e-5",
+        "receivers": [
+            {
+                "type": "Trap (tangent)",
+                "length": "0.1",
+                "radius": "0.01",
+                "theta": "0",
+                "delta_theta": "0"
+            }
+        ],
         "emitters": [],
-        "x": 510,
-        "y": 160,
+        "x": 710,
+        "y": 280,
         "wires": [
             []
         ]
     },
     {
-        "id": "585c1045b43ea110",
+        "id": "89c71a24d09b629e",
         "type": "pipe",
-        "z": "25c57642831b47e9",
+        "z": "84892262a1f0d1bb",
         "name": "",
-        "length": "1e-4",
-        "radius": "1e-5",
-        "receivers": [],
+        "length": "3e-4",
+        "radius": "5e-5",
+        "receivers": [
+            {
+                "type": "Trap (tangent)",
+                "length": "0.1",
+                "radius": "0.01",
+                "theta": "0",
+                "delta_theta": "0"
+            }
+        ],
         "emitters": [],
-        "x": 510,
-        "y": 240,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "b82847ab376b1840",
-        "type": "flow",
-        "z": "25c57642831b47e9",
-        "name": "",
-        "flowValue": "0.00001",
-        "x": 210,
-        "y": 200,
+        "x": 630,
+        "y": 360,
         "wires": [
             [
-                "5e0037212384a506"
+                "0fdae5640cb1922f"
             ]
         ]
     }

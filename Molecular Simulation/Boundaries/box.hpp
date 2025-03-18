@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include "../Config/config.h"
+#include "../Config/oldconfig.h"
 #include <glm/glm.hpp>
 #include "boundary.hpp"
 

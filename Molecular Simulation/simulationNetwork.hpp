@@ -12,6 +12,7 @@
 #include <vector>
 #include "simulation.hpp"
 #include "Config/config.h"
+#include "Config/oldconfig.h"
 #include "hub.hpp"
 
 class SimulationNetwork

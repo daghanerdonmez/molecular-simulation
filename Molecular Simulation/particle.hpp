@@ -12,6 +12,7 @@
 #include <iostream>
 #include <glm/glm.hpp>
 #include "Config/config.h"
+#include "Config/oldconfig.h"
 #include "Boundaries/box.hpp"
 #include "Boundaries/cylinder.hpp"
 #include "Boundaries/noBoundary.hpp"

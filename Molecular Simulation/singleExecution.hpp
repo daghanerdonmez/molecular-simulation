@@ -19,6 +19,7 @@
 #include <glm/glm.hpp>
 #include <vector>
 #include "Config/config.h"
+#include "Config/oldconfig.h"
 #include <time.h>
 
 int singleRunWithGraphics();

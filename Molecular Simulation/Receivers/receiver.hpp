@@ -12,6 +12,7 @@
 #include <glm/vec3.hpp>
 #include <string>
 #include "../Config/config.h"
+#include "../Config/oldconfig.h"
 #include "../Output/writer.hpp"
 
 class Receiver {
