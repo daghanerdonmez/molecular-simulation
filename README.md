@@ -7,7 +7,6 @@ A C++ application for molecular simulations.
 - CMake (version 3.12 or higher)
 - C++ compiler with C++17 support
 - OpenGL
-- Git (for automatic dependency downloading)
 
 ## Building the Project
 
