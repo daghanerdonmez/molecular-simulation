@@ -289,6 +289,11 @@ SimulationNetworkLoader::loadFromYAML(const std::string& filename)
 
                 // Create a spherical receiver
                 auto sphere = std::make_unique<SphericalReceiver>(cartPos, radius);
+                
+                // Set the name if it exists in the YAML
+                if (rcv["name"]) {
+                    sphere->setName(rcv["name"].as<std::string>());
+                }
 
                 // Add it to the simulation
                 simPtr->addReceiver(std::move(sphere));
@@ -307,6 +312,11 @@ SimulationNetworkLoader::loadFromYAML(const std::string& filename)
 
                 // Create your "Ring type" receiver – placeholder name:
                 auto trap = std::make_unique<RingReceiver>(cartPos, 2);
+                
+                // Set the name if it exists in the YAML
+                if (rcv["name"]) {
+                    trap->setName(rcv["name"].as<std::string>());
+                }
 
                 simPtr->addReceiver(std::move(trap));
             }

@@ -19,6 +19,7 @@ class Receiver {
 protected:
     glm::dvec3 position;
     int* particlesReceived;
+    std::string name;
     // Huge optimization: particles received used to be a static array like
     // int particlesReceived[NUMBER_OF_ITERATIONS]
     // That caused a huge problem, total complexity of the simulation was theta(n * log^4(n)) where n is NUMBER_OF_ITERATIONS
@@ -32,6 +33,10 @@ public:
     void increaseParticlesReceived(int iterationNumber);
     void writeOutput(const std::string& path);
     
+    // Name getter and setter
+    std::string getName() const;
+    void setName(const std::string& receiverName);
+    
     // Pure virtual function for interaction detection
     virtual bool hit(glm::dvec3 particlePosition) const = 0;
 };
@@ -44,5 +49,12 @@ inline void Receiver::increaseParticlesReceived(int iterationNumber) {
     particlesReceived[iterationNumber]++;
 }
 
+inline std::string Receiver::getName() const {
+    return name;
+}
+
+inline void Receiver::setName(const std::string& receiverName) {
+    name = receiverName;
+}
 
 #endif /* receiver_hpp */

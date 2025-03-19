@@ -45,7 +45,19 @@
         "name": "denemeisim",
         "length": "3e-4",
         "radius": "3e-5",
-        "receivers": [],
+        "receivers": [
+            {
+                "type": "Ring type",
+                "z": "0"
+            },
+            {
+                "type": "Sphere type",
+                "radius": "0.01",
+                "z": "0",
+                "r": "0",
+                "theta": "0"
+            }
+        ],
         "emitters": [
             {
                 "z": "0",
@@ -97,11 +109,8 @@
         "radius": "5e-5",
         "receivers": [
             {
-                "type": "Trap (tangent)",
-                "length": "0.1",
-                "radius": "0.01",
-                "theta": "0",
-                "delta_theta": "0"
+                "type": "Ring type",
+                "z": "0"
             }
         ],
         "emitters": [],

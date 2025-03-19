@@ -17,9 +17,9 @@ def convert_node_red_to_yaml(input_file, output_file):
     for idx, pipe in enumerate(pipes):
         # Check if pipe has a name and it's not empty
         if pipe.get('name') and pipe['name'].strip():
-            node_names[pipe['id']] = f"pipe{idx}-{pipe['name'].strip()}"
+            node_names[pipe['id']] = f"pipe{idx+1}-{pipe['name'].strip()}"
         else:
-            node_names[pipe['id']] = f"pipe{idx}"
+            node_names[pipe['id']] = f"pipe{idx+1}"
     
     # Initialize connection tracking
     left_connections = defaultdict(list)
@@ -121,6 +121,8 @@ def convert_node_red_to_yaml(input_file, output_file):
         # Add receivers if present
         if pipe.get('receivers'):
             pipe_data['receivers'] = []
+            # Track the order of receivers for naming
+            receiver_count = 1
             for receiver in pipe.get('receivers', []):
                 # Convert string values to appropriate types where possible
                 receiver_data = {}
@@ -129,6 +131,12 @@ def convert_node_red_to_yaml(input_file, output_file):
                         receiver_data[key] = float(value) if key != 'type' else value
                     except (ValueError, TypeError):
                         receiver_data[key] = value
+                
+                # Add a name property based on the order and type of the receiver
+                if 'type' in receiver_data:
+                    receiver_data['name'] = f"#{receiver_count}-{receiver_data['type']}"
+                    receiver_count += 1
+                
                 pipe_data['receivers'].append(receiver_data)
         
         # Add emitters if present
