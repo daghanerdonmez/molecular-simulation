@@ -15,7 +15,11 @@ def convert_node_red_to_yaml(input_file, output_file):
     # Create a mapping of node IDs to node names
     node_names = {}
     for idx, pipe in enumerate(pipes):
-        node_names[pipe['id']] = f"pipe{idx}"
+        # Check if pipe has a name and it's not empty
+        if pipe.get('name') and pipe['name'].strip():
+            node_names[pipe['id']] = f"pipe{idx}-{pipe['name'].strip()}"
+        else:
+            node_names[pipe['id']] = f"pipe{idx}"
     
     # Initialize connection tracking
     left_connections = defaultdict(list)

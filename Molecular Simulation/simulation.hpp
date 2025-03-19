@@ -40,6 +40,7 @@ private:
     Connection* leftConnection = nullptr;
     Connection* rightConnection = nullptr;
     glm::dvec3 flow;
+    std::string name; // Name of the simulation (e.g., pipe0, pipe1)
     
 public:
     ~Simulation();
@@ -75,8 +76,11 @@ public:
     const std::vector<std::unique_ptr<Emitter>>& getEmitters() const;
     
     Boundary* getBoundary() const;
+    
+    // Name getter and setter
+    void setName(const std::string& simulationName);
+    const std::string& getName() const;
 };
-
 
 inline const std::vector<std::unique_ptr<Receiver>>& Simulation::getReceivers() const { return receivers; }
 inline void Simulation::addReceiver(std::unique_ptr<Receiver> receiver) { receivers.push_back(std::move(receiver)); }
@@ -95,6 +99,14 @@ inline void Simulation::addEmitter(std::unique_ptr<Emitter> emitter) {
 
 inline const std::vector<std::unique_ptr<Emitter>>& Simulation::getEmitters() const {
     return emitters;
+}
+
+inline void Simulation::setName(const std::string& simulationName) {
+    name = simulationName;
+}
+
+inline const std::string& Simulation::getName() const {
+    return name;
 }
 
 

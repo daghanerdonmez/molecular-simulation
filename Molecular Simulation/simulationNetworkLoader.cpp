@@ -96,6 +96,9 @@ SimulationNetworkLoader::loadFromYAML(const std::string& filename)
         // Create the simulation
         glm::dvec3 flowVector(0.0, 0.0, flow);
         auto sim = std::make_unique<Simulation>(particleCount, radius, length, flowVector);
+        
+        // Set the name of the simulation to the pipe name from YAML
+        sim->setName(pipeName);
 
         // Keep track of the simulation and its node
         simulations[pipeName] = std::move(sim);

@@ -1,5 +1,5 @@
 pipes:
-  pipe0:
+  pipe0-denemeisim:
     length: 0.0003
     radius: 3.0e-05
     particle_count: 0
@@ -18,9 +18,10 @@ pipes:
     radius: 3.0e-05
     particle_count: 0
     left_connections:
-    - pipe0
+    - pipe0-denemeisim
     - pipe2
-    right_connections: []
+    right_connections:
+    - pipe3
     flow: 0.11473087818696884
     receivers:
     - type: Trap (tangent)
@@ -33,7 +34,7 @@ pipes:
     radius: 5.0e-05
     particle_count: 0
     left_connections:
-    - pipe0
+    - pipe0-denemeisim
     right_connections:
     - pipe1
     flow: 0.8852691218130312
@@ -43,3 +44,11 @@ pipes:
       radius: 0.01
       theta: 0.0
       delta_theta: 0.0
+  pipe3:
+    length: 1.0
+    radius: 0.01
+    particle_count: 0
+    left_connections:
+    - pipe1
+    right_connections: []
+    flow: 0.8852691218130312
