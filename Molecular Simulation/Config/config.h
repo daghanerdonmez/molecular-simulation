@@ -4,8 +4,8 @@
 #ifndef config_h
 #define config_h
 
-#define OUTPUT_RESULTS false
-#define GRAPHICS_ON true
+#define OUTPUT_RESULTS true
+#define GRAPHICS_ON false
 
 // 0 for single simulation
 // 1 for simulation network
@@ -17,7 +17,7 @@
 #define NUMBER_OF_ITERATIONS (int)(TIME_TO_RUN/DT)
 #define ITERATIONS_PER_FRAME 10
 
-#define D 7.94e-11 // diffusion coefficient
+#define D 7.94e-12 // diffusion coefficient
 
 #define GRAPHICS_ZOOM_MULTIPLIER 1e+03
 

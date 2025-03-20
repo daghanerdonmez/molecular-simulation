@@ -45,10 +45,16 @@ def convert_node_red_to_config(input_file, output_file):
         config_content += f"#define ITERATIONS_PER_FRAME {config_node.get('iterationsPerFrame', 10)}\n\n"
         
         # Diffusion coefficient
-        config_content += f"#define D {config_node.get('diffusionCoefficient', 7.94e-11):.2e} // diffusion coefficient\n\n"
+        diffusion_value = config_node.get('diffusionCoefficient', 7.94e-11)
+        if isinstance(diffusion_value, str):
+            diffusion_value = float(diffusion_value)
+        config_content += f"#define D {diffusion_value:.2e} // diffusion coefficient\n\n"
         
         # Graphics zoom multiplier
-        config_content += f"#define GRAPHICS_ZOOM_MULTIPLIER {config_node.get('graphicsZoomMultiplier', 1000):.0e}\n"
+        zoom_value = config_node.get('graphicsZoomMultiplier', 1000)
+        if isinstance(zoom_value, str):
+            zoom_value = float(zoom_value)
+        config_content += f"#define GRAPHICS_ZOOM_MULTIPLIER {zoom_value:.0e}\n"
     
     # Close the header guard
     config_content += "\n#endif /* config_h */\n"

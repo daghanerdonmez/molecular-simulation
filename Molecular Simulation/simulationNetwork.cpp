@@ -6,6 +6,7 @@
 //
 
 #include "simulationNetwork.hpp"
+#include <cstdlib> // For system()
 
 SimulationNetwork::SimulationNetwork()
 {}
@@ -16,7 +17,7 @@ void SimulationNetwork::iterateNetwork(int iterationCount, int currentFrame)
     
     for (int i = 0; i < iterationCount; ++i) {
         for(int j = 0; j < simulations.size(); ++j) {
-            simulations[j]->iterateSimulation(1, currentFrame);
+            simulations[j]->iterateSimulation(1, localCurrentFrame);
             if (localCurrentFrame % 1000 == 0) {
                 std::cout << simulations[j]->getAliveParticleCount() << std::endl;
             }
@@ -36,9 +37,14 @@ void SimulationNetwork::addHub(std::unique_ptr<Hub> hub) {
     hubs.push_back(std::move(hub));
 }
 
-void SimulationNetwork::simulationsWrite(const std::string &path) const {
+void SimulationNetwork::simulationsWrite(const std::string &outputDir) const {
+    // Create the output directory if it doesn't exist
+    std::string mkdirCmd = "mkdir -p \"" + outputDir + "\"";
+    system(mkdirCmd.c_str());
+    
+    // Have each simulation write its receivers' outputs to subdirectories
     for (const auto& simulation: simulations) {
-        simulation->receiversWrite(path);
+        simulation->receiversWrite(outputDir);
     }
 }
 
@@ -51,6 +57,3 @@ Simulation* SimulationNetwork::getSecondSimulation()
 {
     return simulations[1].get();
 }
-
-
-

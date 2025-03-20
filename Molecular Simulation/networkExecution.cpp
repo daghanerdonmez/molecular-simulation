@@ -15,7 +15,7 @@ int networkRunWithoutGraphics()
     // Use relative paths for cross-platform compatibility
     auto network = SimulationNetworkLoader::loadFromYAML("Config/network_config.yaml");
     network->iterateNetwork(NUMBER_OF_ITERATIONS,0);
-    network->simulationsWrite("Output/Outputs/r4output.txt");
+    network->simulationsWrite("Output/Outputs");
     return 0;
 }
 
@@ -185,7 +185,7 @@ int networkRunWithGraphics(){
 
     glfwTerminate();
     
-    network->simulationsWrite("Output/Outputs/r4output.txt");
+    network->simulationsWrite("Output/Outputs");
     
     return 0;
 }

@@ -1,57 +1,42 @@
 pipes:
   pipe1-denemeisim:
-    length: 0.0003
-    radius: 3.0e-05
+    length: 0.003
+    radius: 0.0003
     particle_count: 0
     left_connections: []
     right_connections:
     - pipe3
     - pipe2
-    flow: 1.0
-    receivers:
-    - type: Ring type
-      z: 0.0
-      name: '#1-Ring type'
-    - type: Sphere type
-      radius: 0.01
-      z: 0.0
-      r: 0.0
-      theta: 0.0
-      name: '#2-Sphere type'
+    flow: 0.001
     emitters:
     - z: 0.0
       r: 0.0
       theta: 0.0
-      emitter_pattern: 10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+      emitter_pattern: 10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
   pipe2:
-    length: 0.0003
-    radius: 3.0e-05
+    length: 0.003
+    radius: 0.0003
     particle_count: 0
     left_connections:
     - pipe1-denemeisim
-    - pipe3
-    right_connections:
-    - pipe4
-    flow: 0.11473087818696884
+    right_connections: []
+    flow: 0.00011473087818696879
     receivers:
+    - type: Sphere type
+      radius: 1.0e-05
+      z: 0.0
+      r: 0.0
+      theta: 0.0
+      name: '#1-Sphere type'
   pipe3:
-    length: 0.0003
-    radius: 5.0e-05
+    length: 0.003
+    radius: 0.0005
     particle_count: 0
     left_connections:
     - pipe1-denemeisim
-    right_connections:
-    - pipe2
-    flow: 0.8852691218130312
+    right_connections: []
+    flow: 0.0008852691218130312
     receivers:
     - type: Ring type
       z: 0.0
       name: '#1-Ring type'
-  pipe4:
-    length: 1.0
-    radius: 0.01
-    particle_count: 0
-    left_connections:
-    - pipe2
-    right_connections: []
-    flow: 0.8852691218130312

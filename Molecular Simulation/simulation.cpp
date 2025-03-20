@@ -7,6 +7,7 @@
 
 #include "simulation.hpp"
 #include "hub.hpp"
+#include <cstdlib> // For system()
 
 Simulation::~Simulation() {}
 
@@ -322,11 +323,17 @@ glm::dvec3 Simulation::getFlow(glm::dvec3 position) const{
     }
 }
 
-void Simulation::receiversWrite(const std::string &path) const {
+void Simulation::receiversWrite(const std::string &baseDir) const {
+    // Create a subdirectory for this simulation
+    std::string simName = name.empty() ? "unnamed_simulation" : name;
+    std::string simDir = baseDir + "/" + simName;
+    
+    // Create the directory if it doesn't exist
+    std::string mkdirCmd = "mkdir -p \"" + simDir + "\"";
+    system(mkdirCmd.c_str());
+    
+    // Write each receiver's output to a file in the simulation directory
     for (auto& receiver: receivers){
-        receiver->writeOutput(path);
+        receiver->writeOutput(simDir);
     }
 }
-
-
-
