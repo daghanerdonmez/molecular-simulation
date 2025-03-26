@@ -45,7 +45,7 @@ private:
 public:
     ~Simulation();
     Simulation(int particleCount = PARTICLE_COUNT, double radius = SINGLE_CYLINDER_R, double length = SINGLE_CYLINDER_Z, glm::dvec3 flow = glm::dvec3(SINGLE_FLOW_X, SINGLE_FLOW_Y, SINGLE_FLOW_Z));
-    void iterateSimulation(int iterationCount, int currentFrame);
+    void iterateSimulation(int iterationCount, int currentFrame, int iterationInCurrentFrame = 0);
     
     void addParticle(const Particle& addParticle);
     void killParticle(int index);

@@ -154,22 +154,22 @@ int networkRunWithGraphics(){
         
         //Draw the receiver
 
-//        std::vector<Receiver> receivers = firstSimulation->getReceivers();
-//        
-//        for (int i = 0; i < SINGLE_RECEIVER_COUNT; ++i) {
-//            Receiver receiver = receivers[i];
-//            glm::dvec3 receiverPosition = receiver.getPosition();
-//            float receiverRadius = receiver.getRadius();
-//            receiverPosition *= GRAPHICS_ZOOM_MULTIPLIER;
-//            receiverRadius *= GRAPHICS_ZOOM_MULTIPLIER;
-//            
-//            particleShader.setVec2("objectPos", glm::dvec2(receiverPosition.x, receiverPosition.y));
-//            particleShader.setFloat("objectSize", receiverRadius);
-//            particleShader.setVec3("objectColor", glm::dvec3(0.0, 0.7, 0.7)); // Blue for receiver
-//
-//            glBindVertexArray(circleVAO);
-//            glDrawArrays(GL_TRIANGLE_FAN, 0, circleSegments + 2);
-//        }
+    //    std::vector<Receiver> receivers = firstSimulation->getReceivers();
+       
+    //    for (int i = 0; i < SINGLE_RECEIVER_COUNT; ++i) {
+    //        Receiver receiver = receivers[i];
+    //        glm::dvec3 receiverPosition = receiver.getPosition();
+    //        float receiverRadius = receiver.getRadius();
+    //        receiverPosition *= GRAPHICS_ZOOM_MULTIPLIER;
+    //        receiverRadius *= GRAPHICS_ZOOM_MULTIPLIER;
+           
+    //        particleShader.setVec2("objectPos", glm::dvec2(receiverPosition.x, receiverPosition.y));
+    //        particleShader.setFloat("objectSize", receiverRadius);
+    //        particleShader.setVec3("objectColor", glm::dvec3(0.0, 0.7, 0.7)); // Blue for receiver
+
+    //        glBindVertexArray(circleVAO);
+    //        glDrawArrays(GL_TRIANGLE_FAN, 0, circleSegments + 2);
+    //    }
         
         // Draw the particles
         particleShader.use();

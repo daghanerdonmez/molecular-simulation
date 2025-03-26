@@ -17,7 +17,7 @@ void SimulationNetwork::iterateNetwork(int iterationCount, int currentFrame)
     
     for (int i = 0; i < iterationCount; ++i) {
         for(int j = 0; j < simulations.size(); ++j) {
-            simulations[j]->iterateSimulation(1, localCurrentFrame);
+            simulations[j]->iterateSimulation(1, currentFrame, i);
             if (localCurrentFrame % 1000 == 0) {
                 std::cout << simulations[j]->getAliveParticleCount() << std::endl;
             }

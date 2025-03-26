@@ -57,7 +57,7 @@ Simulation::Simulation(int particleCount, double radius, double length, glm::dve
     }
 }
 
-void Simulation::iterateSimulation(int iterationCount, int currentFrame)
+void Simulation::iterateSimulation(int iterationCount, int currentFrame, int iterationInCurrentFrame)
 {
     //std::cout << aliveParticleCount << std::endl;
     if (MODE == 0) {
@@ -88,7 +88,8 @@ void Simulation::iterateSimulation(int iterationCount, int currentFrame)
                             Receiver* receiver = receivers[k].get();
                             if (checkReceivedForParticle(particles[j], *receiver)) {
                                 killParticle(j);
-                                receiver->increaseParticlesReceived(currentFrame * ITERATIONS_PER_FRAME + i);
+                                receiver->increaseParticlesReceived(currentFrame * ITERATIONS_PER_FRAME + i + iterationInCurrentFrame);
+                                // I added iterationInCurrentFrame for the network simulation case but also added it here since its default value is 0
                             }
                         }
                     }
@@ -149,7 +150,7 @@ void Simulation::iterateSimulation(int iterationCount, int currentFrame)
                             Receiver* receiver = receivers[k].get();
                             if (checkReceivedForParticle(particles[j], *receiver)) {
                                 killParticle(j);
-                                receiver->increaseParticlesReceived(currentFrame * ITERATIONS_PER_FRAME + i);
+                                receiver->increaseParticlesReceived(currentFrame * ITERATIONS_PER_FRAME + i + iterationInCurrentFrame);
                             }
                         }
                     }

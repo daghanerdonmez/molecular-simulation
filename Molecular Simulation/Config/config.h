@@ -12,7 +12,7 @@
 // If simulation network is chosen, applied boundary is automatically cylinder boundary
 #define MODE 1
 
-#define TIME_TO_RUN 500
+#define TIME_TO_RUN 200
 #define DT 0.01
 #define NUMBER_OF_ITERATIONS (int)(TIME_TO_RUN/DT)
 #define ITERATIONS_PER_FRAME 10

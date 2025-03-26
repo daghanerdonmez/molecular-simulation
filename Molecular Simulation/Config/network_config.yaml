@@ -7,12 +7,12 @@ pipes:
     right_connections:
     - pipe2-b
     - pipe3-c
-    flow: 0.0001
+    flow: 0.00001
     emitters:
     - z: 0.0
       r: 0.0
       theta: 0.0
-      emitter_pattern: '1000'
+      emitter_pattern: '10000'
       emitter_pattern_type: complete
   pipe2-b:
     length: 0.0008

@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
-filename = "/Users/daghanerdonmez/Desktop/Molecular-Simulation/Molecular Simulation/Output/Outputs/r4output.txt"
-resultCompressionRate = 400;
+filename = "/Users/daghanerdonmez/Desktop/Molecular-Simulation/Molecular Simulation/Output/Outputs/pipe3-c/#1-Sphere type.txt"
+resultCompressionRate = 10;
 
 import os
 print(os.getcwd())
