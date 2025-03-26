@@ -120,8 +120,27 @@ int networkRunWithGraphics(){
     int totalFrames = NUMBER_OF_ITERATIONS / ITERATIONS_PER_FRAME;
     int currentFrame = 0;
     
+    // FPS calculation variables
+    double lastTime = glfwGetTime();
+    int frameCount = 0;
+    
     while (!glfwWindowShouldClose(window) && currentFrame < totalFrames)
     {
+        // Calculate FPS
+        double currentTime = glfwGetTime();
+        frameCount++;
+        
+        // If a second has passed, calculate and display FPS
+        if (currentTime - lastTime >= 1.0) {
+            double fps = frameCount / (currentTime - lastTime);
+            
+            // Update window title with FPS information
+            std::string title = "Particle Simulation - FPS: " + std::to_string(fps);
+            glfwSetWindowTitle(window, title.c_str());
+            
+            frameCount = 0;
+            lastTime = currentTime;
+        }
         
         // Input
         processInput(window);
