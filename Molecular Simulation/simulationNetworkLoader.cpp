@@ -372,12 +372,25 @@ SimulationNetworkLoader::loadFromYAML(const std::string& filename)
                 }
             }
 
+            // Get the pattern type (defaults to "repeat" if not specified)
+            std::string patternType = "repeat";
+            if (emitterCfg["emitter_pattern_type"]) {
+                patternType = emitterCfg["emitter_pattern_type"].as<std::string>();
+                // Validate pattern type
+                if (patternType != "repeat" && patternType != "complete") {
+                    std::cerr << "[Warning] Invalid emitter pattern type: " << patternType
+                              << " in pipe: " << pipeName << ". Defaulting to 'repeat'.\n";
+                    patternType = "repeat";
+                }
+            }
+
             // MODIFICATION: Create and add emitter to simulation
             if (!emissionPattern.empty()) {
                 auto emitter = std::make_unique<Emitter>(
                     cartPos,           // position
                     emissionPattern,   // emission pattern
-                    simPtr             // pointer to simulation
+                    simPtr,            // pointer to simulation
+                    patternType        // pattern type
                 );
 
                 simPtr->addEmitter(std::move(emitter));

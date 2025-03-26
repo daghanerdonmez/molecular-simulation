@@ -5,7 +5,7 @@
 #define config_h
 
 #define OUTPUT_RESULTS true
-#define GRAPHICS_ON false
+#define GRAPHICS_ON true
 
 // 0 for single simulation
 // 1 for simulation network
@@ -19,6 +19,6 @@
 
 #define D 7.94e-12 // diffusion coefficient
 
-#define GRAPHICS_ZOOM_MULTIPLIER 1e+03
+#define GRAPHICS_ZOOM_MULTIPLIER 9e+02
 
 #endif /* config_h */

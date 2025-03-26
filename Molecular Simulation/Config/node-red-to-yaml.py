@@ -147,9 +147,18 @@ def convert_node_red_to_yaml(input_file, output_file):
                 emitter_data = {}
                 for key, value in emitter.items():
                     try:
-                        emitter_data[key] = float(value)
+                        # Only convert numeric values to float, keep strings as is
+                        if key not in ['emitter_pattern', 'emitter_pattern_type']:
+                            emitter_data[key] = float(value)
+                        else:
+                            emitter_data[key] = value
                     except (ValueError, TypeError):
                         emitter_data[key] = value
+                
+                # Set default pattern type if not specified
+                if 'emitter_pattern_type' not in emitter_data:
+                    emitter_data['emitter_pattern_type'] = 'repeat'
+                    
                 pipe_data['emitters'].append(emitter_data)
         
         # Add to YAML structure
