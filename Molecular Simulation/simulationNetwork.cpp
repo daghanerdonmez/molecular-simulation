@@ -22,10 +22,10 @@ void SimulationNetwork::iterateNetwork(int iterationCount, int currentFrame)
                 std::cout << simulations[j]->getAliveParticleCount() << std::endl;
             }
         }
-        localCurrentFrame++;
         if (localCurrentFrame % 1000 == 0) {
             std::cout << "--" << std::endl;
         }
+        localCurrentFrame++;
     }
 }
 
@@ -35,6 +35,10 @@ void SimulationNetwork::addSimulation(std::unique_ptr<Simulation> sim) {
 
 void SimulationNetwork::addHub(std::unique_ptr<Hub> hub) {
     hubs.push_back(std::move(hub));
+}
+
+void SimulationNetwork::addSink(std::unique_ptr<Sink> sink) {
+    sinks.push_back(std::move(sink));
 }
 
 void SimulationNetwork::simulationsWrite(const std::string &outputDir) const {

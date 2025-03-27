@@ -8,9 +8,10 @@ def convert_node_red_to_yaml(input_file, output_file):
     with open(input_file, 'r') as f:
         data = json.load(f)
     
-    # Extract nodes of type "pipe" and "flow"
+    # Extract nodes of type "pipe", "flow", and "sink"
     pipes = [node for node in data if node.get('type') == 'pipe']
     flows = [node for node in data if node.get('type') == 'flow']
+    sinks = [node for node in data if node.get('type') == 'sink']
     
     # Create a mapping of node IDs to node names
     node_names = {}
@@ -21,11 +22,18 @@ def convert_node_red_to_yaml(input_file, output_file):
         else:
             node_names[pipe['id']] = f"pipe{idx+1}"
     
+    # Add sink nodes to the mapping
+    for idx, sink in enumerate(sinks):
+        if sink.get('name') and sink['name'].strip():
+            node_names[sink['id']] = f"sink{idx+1}-{sink['name'].strip()}"
+        else:
+            node_names[sink['id']] = f"sink{idx+1}"
+    
     # Initialize connection tracking
     left_connections = defaultdict(list)
     
     # Build the YAML structure
-    yaml_data = {'pipes': {}}
+    yaml_data = {'pipes': {}, 'sinks': {}}
     
     # Track connections
     for pipe in pipes:
@@ -33,7 +41,7 @@ def convert_node_red_to_yaml(input_file, output_file):
         wires = pipe.get('wires', [[]])[0]
         
         for target_id in wires:
-            if target_id in node_names:  # Only consider pipe type nodes
+            if target_id in node_names:  # Consider both pipe and sink type nodes
                 # This is a right connection for the current pipe
                 # Also record it as a left connection for the target
                 left_connections[target_id].append(pipe_id)
@@ -77,17 +85,19 @@ def convert_node_red_to_yaml(input_file, output_file):
                 radius_power_sum = sum(
                     float(all_nodes[target_id].get('radius', 0.01)) ** 4 
                     for target_id in right_connections
+                    if all_nodes[target_id].get('type') == 'pipe'  # Only consider pipes for flow calculation
                 )
                 
                 if radius_power_sum > 0:
                     # Distribute flow proportionally to the fourth power of radius
                     for target_id in right_connections:
-                        target_radius = float(all_nodes[target_id].get('radius', 0.01))
-                        flow_fraction = (target_radius ** 4) / radius_power_sum
-                        flow_values[target_id] = flow_values[pipe_id] * flow_fraction
-                        
-                        # Recursively calculate flow for downstream pipes
-                        calculate_flow_distribution(target_id, visited)
+                        if all_nodes[target_id].get('type') == 'pipe':  # Only propagate flow to pipes
+                            target_radius = float(all_nodes[target_id].get('radius', 0.01))
+                            flow_fraction = (target_radius ** 4) / radius_power_sum
+                            flow_values[target_id] = flow_values[pipe_id] * flow_fraction
+                            
+                            # Recursively calculate flow for downstream pipes
+                            calculate_flow_distribution(target_id, visited)
     
     # Start flow calculation from pipes directly connected to flow nodes
     for flow_node in flows:
@@ -95,14 +105,21 @@ def convert_node_red_to_yaml(input_file, output_file):
             if target_id in node_names:
                 calculate_flow_distribution(target_id)
     
-    # Populate the YAML data
+    # Populate the YAML data for pipes
     for pipe in pipes:
         pipe_id = pipe['id']
         name = node_names[pipe_id]
         
         # Get connections
-        right_connections = [node_names[target_id] for target_id in pipe.get('wires', [[]])[0] 
-                           if target_id in node_names]
+        right_connections = []
+        for target_id in pipe.get('wires', [[]])[0]:
+            if target_id in node_names:
+                # Check if it's a sink or a pipe
+                if all_nodes[target_id].get('type') == 'sink':
+                    right_connections.append(node_names[target_id])
+                else:
+                    right_connections.append(node_names[target_id])
+        
         left_conns = [node_names[source_id] for source_id in left_connections[pipe_id]]
         
         # Create pipe entry
@@ -163,6 +180,22 @@ def convert_node_red_to_yaml(input_file, output_file):
         
         # Add to YAML structure
         yaml_data['pipes'][name] = pipe_data
+    
+    # Populate the YAML data for sinks
+    for sink in sinks:
+        sink_id = sink['id']
+        name = node_names[sink_id]
+        
+        # Get left connections (pipes that connect to this sink)
+        left_conns = [node_names[source_id] for source_id in left_connections[sink_id]]
+        
+        # Create sink entry
+        sink_data = {
+            'left_connections': left_conns
+        }
+        
+        # Add to YAML structure
+        yaml_data['sinks'][name] = sink_data
     
     # Write YAML to file
     with open(output_file, 'w') as f:

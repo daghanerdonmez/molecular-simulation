@@ -20,6 +20,7 @@
 // Your own headers
 #include "simulation.hpp"
 #include "hub.hpp"
+#include "sink.hpp"
 #include "simulationNetwork.hpp"
 
 // Include your coordinate transform functions
@@ -106,6 +107,32 @@ SimulationNetworkLoader::loadFromYAML(const std::string& filename)
     }
 
     // ------------------------------------------------------------------------
+    // 1.5) Read all "sinks" and build Sink objects.
+    // ------------------------------------------------------------------------
+    std::unordered_map<std::string, std::unique_ptr<Sink>> sinks;
+    std::unordered_map<std::string, YAML::Node> sinkNodes;
+    
+    if (config["sinks"]) {
+        sinks.reserve(config["sinks"].size());
+        sinkNodes.reserve(config["sinks"].size());
+        
+        for (auto it = config["sinks"].begin(); it != config["sinks"].end(); ++it) {
+            std::string sinkName = it->first.as<std::string>();
+            const auto& sinkCfg = it->second;
+            
+            // Create the sink
+            auto sink = std::make_unique<Sink>();
+            
+            // Set the name of the sink
+            sink->setName(sinkName);
+            
+            // Keep track of the sink and its node
+            sinks[sinkName] = std::move(sink);
+            sinkNodes[sinkName] = sinkCfg;
+        }
+    }
+
+    // ------------------------------------------------------------------------
     // 2) Create a graph of "pipe sides": each pipe has a left side & right side.
     // ------------------------------------------------------------------------
     std::vector<PipeSide> sideMapping;   // index => PipeSide
@@ -156,6 +183,13 @@ SimulationNetworkLoader::loadFromYAML(const std::string& filename)
         if (node["left_connections"] && node["left_connections"].IsSequence()) {
             for (auto& c : node["left_connections"]) {
                 std::string otherPipe = c.as<std::string>();
+                
+                // Check if it's a sink connection
+                if (sinks.find(otherPipe) != sinks.end()) {
+                    // Skip sink connections for left side as they are handled separately
+                    continue;
+                }
+                
                 auto sideOpt = findSideReferencing(pipeNodes[otherPipe], pipeName);
                 if (!sideOpt.has_value()) {
                     std::cerr << "[Warning] " << pipeName << ":left -> " << otherPipe
@@ -174,6 +208,13 @@ SimulationNetworkLoader::loadFromYAML(const std::string& filename)
         if (node["right_connections"] && node["right_connections"].IsSequence()) {
             for (auto& c : node["right_connections"]) {
                 std::string otherPipe = c.as<std::string>();
+                
+                // Check if it's a sink connection
+                if (sinks.find(otherPipe) != sinks.end()) {
+                    // Skip sink connections for now as they are handled separately
+                    continue;
+                }
+                
                 auto sideOpt = findSideReferencing(pipeNodes[otherPipe], pipeName);
                 if (!sideOpt.has_value()) {
                     std::cerr << "[Warning] " << pipeName << ":right -> " << otherPipe
@@ -236,6 +277,28 @@ SimulationNetworkLoader::loadFromYAML(const std::string& filename)
         }
 
         allHubs.push_back(std::move(hubPtr));
+    }
+
+    // ------------------------------------------------------------------------
+    // 4.5) Connect sink nodes to pipes
+    // ------------------------------------------------------------------------
+    for (auto& kv : pipeNodes) {
+        const std::string& pipeName = kv.first;
+        const auto& node = kv.second;
+        Simulation* simPtr = simulations[pipeName].get();
+
+        // Check right connections for sink nodes
+        if (node["right_connections"] && node["right_connections"].IsSequence()) {
+            for (auto& c : node["right_connections"]) {
+                std::string otherName = c.as<std::string>();
+                
+                // Check if it's a sink connection
+                if (sinks.find(otherName) != sinks.end()) {
+                    // Connect the sink to the right side of the pipe
+                    simPtr->setRightConnection(sinks[otherName].get());
+                }
+            }
+        }
     }
 
     // ------------------------------------------------------------------------
@@ -379,7 +442,7 @@ SimulationNetworkLoader::loadFromYAML(const std::string& filename)
                 // Validate pattern type
                 if (patternType != "repeat" && patternType != "complete") {
                     std::cerr << "[Warning] Invalid emitter pattern type: " << patternType
-                              << " in pipe: " << pipeName << ". Defaulting to 'repeat'.\n";
+                               << " in pipe: " << pipeName << ". Defaulting to 'repeat'.\n";
                     patternType = "repeat";
                 }
             }
@@ -412,6 +475,11 @@ SimulationNetworkLoader::loadFromYAML(const std::string& filename)
     // e.g.
     for (auto& hub : allHubs) {
      network->addHub(std::move(hub));
+    }
+    
+    // Add all sinks to the SimulationNetwork
+    for (auto& sinkKV : sinks) {
+        network->addSink(std::move(sinkKV.second));
     }
 
     return network;

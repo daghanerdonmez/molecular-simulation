@@ -215,22 +215,22 @@ double Simulation::getBoundaryHeight() const
 
 void Simulation::giveParticleToLeft(Particle* particle, double overflow)
 {
-    Hub* hubConnection = dynamic_cast<Hub*>(leftConnection);
-    if (hubConnection) {
-        hubConnection->receiveParticle(particle, Direction::LEFT, overflow);
-    } else {
-        std::cerr << "Error: leftConnection is not a Hub or is nullptr." << std::endl;
+    if (!leftConnection) {
+        std::cerr << "Error: leftConnection is nullptr." << std::endl;
+        return;
     }
+    
+    leftConnection->receiveParticle(particle, Direction::LEFT, overflow);
 }
 
 void Simulation::giveParticleToRight(Particle* particle, double overflow)
 {
-    Hub* hubConnection = dynamic_cast<Hub*>(rightConnection);
-    if (hubConnection) {
-        hubConnection->receiveParticle(particle, Direction::RIGHT, overflow);
-    } else {
-        std::cerr << "Error: rightConnection is not a Hub or is nullptr." << std::endl;
+    if (!rightConnection) {
+        std::cerr << "Error: rightConnection is nullptr." << std::endl;
+        return;
     }
+    
+    rightConnection->receiveParticle(particle, Direction::RIGHT, overflow);
 }
 
 void Simulation::receiveParticle(Particle* particle, Direction direction, double overflow)
