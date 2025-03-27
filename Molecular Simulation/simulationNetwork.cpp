@@ -7,6 +7,9 @@
 
 #include "simulationNetwork.hpp"
 #include <cstdlib> // For system()
+#include <chrono>
+#include <iomanip>
+#include <sstream>
 
 SimulationNetwork::SimulationNetwork()
 {}
@@ -46,9 +49,23 @@ void SimulationNetwork::simulationsWrite(const std::string &outputDir) const {
     std::string mkdirCmd = "mkdir -p \"" + outputDir + "\"";
     system(mkdirCmd.c_str());
     
-    // Have each simulation write its receivers' outputs to subdirectories
+    // Create a timestamped directory for this run
+    auto now = std::chrono::system_clock::now();
+    auto now_time_t = std::chrono::system_clock::to_time_t(now);
+    auto now_ms = std::chrono::duration_cast<std::chrono::milliseconds>(
+        now.time_since_epoch()) % 1000;
+    
+    std::stringstream timestamp;
+    timestamp << std::put_time(std::localtime(&now_time_t), "%Y.%m.%d-%H.%M.%S");
+    timestamp << "." << std::setfill('0') << std::setw(3) << now_ms.count();
+    
+    std::string runDir = outputDir + "/" + timestamp.str();
+    std::string runDirCmd = "mkdir -p \"" + runDir + "\"";
+    system(runDirCmd.c_str());
+    
+    // Have each simulation write its receivers' outputs to the timestamped subdirectory
     for (const auto& simulation: simulations) {
-        simulation->receiversWrite(outputDir);
+        simulation->receiversWrite(runDir);
     }
 }
 
