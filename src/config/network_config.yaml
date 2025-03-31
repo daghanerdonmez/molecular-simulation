@@ -23,6 +23,14 @@ pipes:
     right_connections:
     - sink1
     flow: 5.0e-05
+    receivers:
+    - type: Trap type
+      length: 0.1
+      theta: 0.0
+      delta_theta: 0.0
+      thickness: 0.01
+      z: 0.0
+      name: '#1-Trap type'
   pipe3-c:
     length: 0.0008
     radius: 0.0003
@@ -39,9 +47,13 @@ pipes:
       r: 0.0
       theta: 0.0
       name: '#1-Sphere type'
-    - type: Ring type
-      z: 0.0003
-      name: '#2-Ring type'
+    - type: Trap type
+      length: 0.0003
+      theta: 0.0
+      delta_theta: 360.0
+      thickness: 0.0001
+      z: 0.0
+      name: '#2-Trap type'
 sinks:
   sink1:
     left_connections:

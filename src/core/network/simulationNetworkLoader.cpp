@@ -29,6 +29,7 @@
 // Include your receiver headers
 #include <src/core/receivers/sphericalReceiver.hpp>   // e.g. if you have "SphericalReceiver" there
 #include <src/core/receivers/ringReceiver.hpp> // e.g. if you have "ringReceiver" there
+#include <src/core/receivers/trapReceiver.hpp>
 // Adjust the above includes as needed for your actual file structure
 
 namespace {
@@ -375,6 +376,30 @@ SimulationNetworkLoader::loadFromYAML(const std::string& filename)
 
                 // Create your "Ring type" receiver – placeholder name:
                 auto trap = std::make_unique<RingReceiver>(cartPos, 2);
+                
+                // Set the name if it exists in the YAML
+                if (rcv["name"]) {
+                    trap->setName(rcv["name"].as<std::string>());
+                }
+
+                simPtr->addReceiver(std::move(trap));
+            }
+            else if(receiverType == "Trap type") {
+                double length = rcv["length"] ? rcv["length"].as<double>() : 0.0;
+                double theta = rcv["theta"] ? rcv["theta"].as<double>() : 0.0;
+                double delta_theta = rcv["delta_theta"] ? rcv["delta_theta"].as<double>() : 0.0;
+                double thickness = rcv["thickness"] ? rcv["thickness"].as<double>() : 0.0;
+                double z = rcv["z"] ? rcv["z"].as<double>() : 0.0;
+
+                //here i want to give the radius of the simulation to the trap receiver
+                double radius = simPtr->getBoundaryRadius();
+                
+
+                glm::dvec3 cylPos(0, theta, z);
+                glm::dvec3 cartPos = cylindricalToCartesian(cylPos);
+
+                // Create a trap receiver
+                auto trap = std::make_unique<TrapReceiver>(cartPos, radius, length, theta, delta_theta, thickness);
                 
                 // Set the name if it exists in the YAML
                 if (rcv["name"]) {

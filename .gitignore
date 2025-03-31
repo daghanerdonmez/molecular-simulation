@@ -63,3 +63,4 @@ DerivedData/
 /.vs/Molecular-Simulation/FileContentIndex
 /.vs
 /Molecular Simulation/include/.vs
+/src/output/Outputs
