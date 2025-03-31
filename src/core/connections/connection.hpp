@@ -8,7 +8,7 @@
 #ifndef connection_hpp
 #define connection_hpp
 
-#include "particle.hpp"
+#include <src/core/particle.hpp>
 
 enum class Direction {
     LEFT,

@@ -5,7 +5,7 @@
 //  Created by Dağhan Erdönmez on 8.02.2025.
 //
 
-#include "simulationNetworkLoader.hpp"
+#include <src/core/network/simulationNetworkLoader.hpp>
 
 #include <yaml-cpp/yaml.h>
 #include <unordered_map>
@@ -18,17 +18,17 @@
 #include <optional>
 
 // Your own headers
-#include "simulation.hpp"
-#include "hub.hpp"
-#include "sink.hpp"
-#include "simulationNetwork.hpp"
+#include <src/core/connections/simulation.hpp>
+#include <src/core/connections/hub.hpp>
+#include <src/core/connections/sink.hpp>
+#include <src/core/network/simulationNetwork.hpp>
 
 // Include your coordinate transform functions
-#include "Math/coordinateSystemTransformations.hpp"
+#include <src/math/coordinateSystemTransformations.hpp>
 
 // Include your receiver headers
-#include "Receivers/sphericalReceiver.hpp"   // e.g. if you have "SphericalReceiver" there
-#include "Receivers/ringReceiver.hpp" // e.g. if you have "ringReceiver" there
+#include <src/core/receivers/sphericalReceiver.hpp>   // e.g. if you have "SphericalReceiver" there
+#include <src/core/receivers/ringReceiver.hpp> // e.g. if you have "ringReceiver" there
 // Adjust the above includes as needed for your actual file structure
 
 namespace {

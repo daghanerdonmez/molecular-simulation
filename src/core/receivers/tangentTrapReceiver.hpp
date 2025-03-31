@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include "glm/glm.hpp"
 #include "receiver.hpp"
-#include "../Math/coordinateSystemTransformations.hpp"
+#include <src/math/coordinateSystemTransformations.hpp>
 
 class tangentTrapReceiver : public Receiver {
 private:

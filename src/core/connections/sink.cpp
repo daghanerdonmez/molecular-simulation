@@ -6,7 +6,7 @@
 //
 
 #include "sink.hpp"
-#include "particle.hpp"
+#include <src/core/particle.hpp>
 
 Sink::Sink() {}
 

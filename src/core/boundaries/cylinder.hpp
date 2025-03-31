@@ -9,9 +9,9 @@
 #define Cylinder_hpp
 
 #include <glm/glm.hpp>
-#include "../Config/config.h"
-#include "../Config/oldconfig.h"
-#include "../Math/geometry2d.hpp"
+#include <src/config/config.h>
+#include <src/config/oldconfig.h>
+#include <src/math/geometry2d.hpp>
 #include "boundary.hpp"
 
 class Cylinder: public Boundary {
@@ -38,4 +38,3 @@ public:
 };
 
 #endif /* Cylinder_hpp */
-

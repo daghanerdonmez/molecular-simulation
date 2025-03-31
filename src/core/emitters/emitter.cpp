@@ -6,8 +6,9 @@
 //
 
 #include "emitter.hpp"
-#include "simulation.hpp"
-#include "particle.hpp"
+#include <src/core/connections/simulation.hpp>
+#include <src/core/particle.hpp>
+
 
 Emitter::Emitter(glm::dvec3 pos, const std::vector<int>& pattern, Simulation* sim, const std::string& patternType)
     : position(pos), emissionPattern(pattern), currentPatternIndex(0), simulation(sim), 

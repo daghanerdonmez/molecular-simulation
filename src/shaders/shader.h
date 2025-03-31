@@ -9,7 +9,7 @@
 #define SHADER_H
 
 // Include platform-independent OpenGL headers
-#include "../GLHeaders/commonHeaders.hpp"
+#include <src/gl-headers/commonHeaders.hpp>
 
 #include <glm/glm.hpp>
 

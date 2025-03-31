@@ -9,21 +9,21 @@
 #define simulation_hpp
 
 #include <stdio.h>
-#include "particle.hpp"
-#include "receiver.hpp"
-#include "emitter.hpp"
-#include "Receivers/sphericalReceiver.hpp"
+#include <src/core/particle.hpp>
+#include <src/core/receivers/receiver.hpp>
+#include <src/core/emitters/emitter.hpp>
+#include <src/core/receivers/sphericalReceiver.hpp>
 #include <vector>
 #include <stack>
 #include <memory>
 #include <glm/vec3.hpp>
-#include "Math/gaussian.hpp"
-#include "Config/config.h"
-#include "Config/oldconfig.h"
-#include "Boundaries/boundary.hpp"
+#include <src/math/gaussian.hpp>
+#include <src/config/config.h>
+#include <src/config/oldconfig.h>
+#include <src/core/boundaries/boundary.hpp>
 #include <stdexcept>
-#include "Math/random.hpp"
-#include "connection.hpp"
+#include <src/math/random.hpp>
+#include <src/core/connections/connection.hpp>
 
 class Particle;
 

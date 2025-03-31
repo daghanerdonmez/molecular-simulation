@@ -12,17 +12,17 @@
 
 #include <stdio.h>
 #include <iostream>
-#include "particle.hpp"
-#include "simulation.hpp"
-#include "GLHeaders/commonHeaders.hpp"
-#include "Shaders/shader.h"
+#include <src/core/particle.hpp>
+#include <src/core/connections/simulation.hpp>
+#include <src/gl-headers/commonHeaders.hpp>
+#include <src/shaders/shader.h>
 #include <glm/glm.hpp>
 #include <vector>
-#include "Config/config.h"
-#include "Config/oldconfig.h"
+#include <src/config/config.h>
+#include <src/config/oldconfig.h>
 #include <time.h>
-#include "simulationNetwork.hpp"
-#include "simulationNetworkLoader.hpp"
+#include <src/core/network/simulationNetwork.hpp>
+#include <src/core/network/simulationNetworkLoader.hpp>
 
 int networkRunWithoutGraphics();
 int networkRunWithGraphics();

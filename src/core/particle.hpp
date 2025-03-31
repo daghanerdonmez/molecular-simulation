@@ -11,12 +11,12 @@
 #include <stdio.h>
 #include <iostream>
 #include <glm/glm.hpp>
-#include "Config/config.h"
-#include "Config/oldconfig.h"
-#include "Boundaries/box.hpp"
-#include "Boundaries/cylinder.hpp"
-#include "Boundaries/noBoundary.hpp"
-#include "Boundaries/boundary.hpp"
+#include <src/config/config.h>
+#include <src/config/oldconfig.h>
+#include <src/core/boundaries/box.hpp>
+#include <src/core/boundaries/cylinder.hpp>
+#include <src/core/boundaries/noBoundary.hpp>
+#include <src/core/boundaries/boundary.hpp>
 
 class Simulation;
 

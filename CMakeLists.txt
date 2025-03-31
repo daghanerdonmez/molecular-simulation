@@ -39,15 +39,15 @@ FetchContent_MakeAvailable(glfw)
 
 # Set source files
 file(GLOB_RECURSE SOURCES 
-    "Molecular Simulation/*.cpp"
-    "Molecular Simulation/*.hpp"
-    "Molecular Simulation/*.h"
+    "src/*.cpp"
+    "src/*.hpp"
+    "src/*.h"
 )
 
 # Platform-specific configurations
 if(WIN32 OR UNIX AND NOT APPLE)
     # Add GLAD source file explicitly for Windows and Linux
-    list(APPEND SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/Molecular Simulation/GLHeaders/glad/glad.c")
+    list(APPEND SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/glheaders/glad/glad.c")
 endif()
 
 # Create executable
@@ -55,13 +55,8 @@ add_executable(${PROJECT_NAME} ${SOURCES})
 
 # Include directories
 target_include_directories(${PROJECT_NAME} PRIVATE 
-    "${CMAKE_CURRENT_SOURCE_DIR}/Molecular Simulation"
-    "${CMAKE_CURRENT_SOURCE_DIR}/Molecular Simulation/GLHeaders"
-    "${CMAKE_CURRENT_SOURCE_DIR}/Molecular Simulation/Math"
-    "${CMAKE_CURRENT_SOURCE_DIR}/Molecular Simulation/Boundaries"
-    "${CMAKE_CURRENT_SOURCE_DIR}/Molecular Simulation/Receivers"
-    "${CMAKE_CURRENT_SOURCE_DIR}/Molecular Simulation/Shaders"
-    "${CMAKE_CURRENT_SOURCE_DIR}/Molecular Simulation/Config"
+    "${CMAKE_CURRENT_SOURCE_DIR}"  # Add project root for <molecular-simulation/...> style includes
+    "${CMAKE_CURRENT_SOURCE_DIR}/src"
 )
 
 # Link libraries
@@ -70,6 +65,13 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     yaml-cpp
     OpenGL::GL
     glfw
+)
+
+# Set the working directory for the executable to be the project root directory
+set_target_properties(${PROJECT_NAME} PROPERTIES
+    VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+    XCODE_GENERATE_SCHEME TRUE
+    XCODE_SCHEME_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
 )
 
 # Platform-specific libraries
@@ -89,43 +91,43 @@ elseif(UNIX AND NOT APPLE)
 endif()
 
 # Copy shader and configuration files to build directory
-file(GLOB SHADER_FILES "Molecular Simulation/Shaders/*.glsl" "Molecular Simulation/Shaders/*.vert" "Molecular Simulation/Shaders/*.frag" "Molecular Simulation/Shaders/*.txt")
-file(GLOB CONFIG_FILES "Molecular Simulation/Config/*.yaml" "Molecular Simulation/Config/*.json")
+file(GLOB SHADER_FILES "src/shaders/*.glsl" "src/shaders/*.vert" "src/shaders/*.frag" "src/shaders/*.txt")
+file(GLOB CONFIG_FILES "src/config/*.yaml" "src/config/*.json")
 
 # Create directories in build folder
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/Shaders)
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/Config)
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/Output)
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/Output/Outputs)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/shaders)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/config)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/output)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/output/outputs)
 
 # For multi-config generators (like Visual Studio)
 if(CMAKE_CONFIGURATION_TYPES)
     # Copy to each configuration directory
     foreach(CONFIG_TYPE ${CMAKE_CONFIGURATION_TYPES})
-        file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${CONFIG_TYPE}/Shaders)
-        file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${CONFIG_TYPE}/Config)
-        file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${CONFIG_TYPE}/Output)
-        file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${CONFIG_TYPE}/Output/Outputs)
+        file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${CONFIG_TYPE}/shaders)
+        file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${CONFIG_TYPE}/config)
+        file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${CONFIG_TYPE}/output)
+        file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${CONFIG_TYPE}/output/outputs)
         
         foreach(SHADER_FILE ${SHADER_FILES})
             get_filename_component(FILENAME ${SHADER_FILE} NAME)
-            configure_file(${SHADER_FILE} ${CMAKE_CURRENT_BINARY_DIR}/${CONFIG_TYPE}/Shaders/${FILENAME} COPYONLY)
+            configure_file(${SHADER_FILE} ${CMAKE_CURRENT_BINARY_DIR}/${CONFIG_TYPE}/shaders/${FILENAME} COPYONLY)
         endforeach()
         
         foreach(CONFIG_FILE ${CONFIG_FILES})
             get_filename_component(FILENAME ${CONFIG_FILE} NAME)
-            configure_file(${CONFIG_FILE} ${CMAKE_CURRENT_BINARY_DIR}/${CONFIG_TYPE}/Config/${FILENAME} COPYONLY)
+            configure_file(${CONFIG_FILE} ${CMAKE_CURRENT_BINARY_DIR}/${CONFIG_TYPE}/config/${FILENAME} COPYONLY)
         endforeach()
     endforeach()
 else()
     # For single-config generators
     foreach(SHADER_FILE ${SHADER_FILES})
         get_filename_component(FILENAME ${SHADER_FILE} NAME)
-        configure_file(${SHADER_FILE} ${CMAKE_CURRENT_BINARY_DIR}/Shaders/${FILENAME} COPYONLY)
+        configure_file(${SHADER_FILE} ${CMAKE_CURRENT_BINARY_DIR}/shaders/${FILENAME} COPYONLY)
     endforeach()
     
     foreach(CONFIG_FILE ${CONFIG_FILES})
         get_filename_component(FILENAME ${CONFIG_FILE} NAME)
-        configure_file(${CONFIG_FILE} ${CMAKE_CURRENT_BINARY_DIR}/Config/${FILENAME} COPYONLY)
+        configure_file(${CONFIG_FILE} ${CMAKE_CURRENT_BINARY_DIR}/config/${FILENAME} COPYONLY)
     endforeach()
 endif()

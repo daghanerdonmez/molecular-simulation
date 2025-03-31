@@ -51,7 +51,7 @@ int networkRunWithGraphics(){
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     
     // Compile shaders using relative paths
-    Shader particleShader("Shaders/vertexshader.txt", "Shaders/fragmentshader.txt");
+    Shader particleShader("shaders/vertexshader.txt", "shaders/fragmentshader.txt");
     
     // For transparency
     glEnable(GL_BLEND);
@@ -110,8 +110,9 @@ int networkRunWithGraphics(){
     
     double particleSize = 0.01;
     
+    
     // Initialize the simulation with relative path
-    auto network = SimulationNetworkLoader::loadFromYAML("Config/network_config.yaml");
+    auto network = SimulationNetworkLoader::loadFromYAML("config/network_config.yaml");
     Simulation* firstSimulation = network->getFirstSimulation();
 //    Simulation* secondSimulation = network->getSecondSimulation();
 

@@ -10,11 +10,11 @@
 
 #include <stdio.h>
 #include <vector>
-#include "simulation.hpp"
-#include "Config/config.h"
-#include "Config/oldconfig.h"
-#include "hub.hpp"
-#include "sink.hpp"
+#include <src/core/connections/simulation.hpp>
+#include <src/config/config.h>
+#include <src/config/oldconfig.h>
+#include <src/core/connections/hub.hpp>
+#include <src/core/connections/sink.hpp>
 
 class SimulationNetwork
 {

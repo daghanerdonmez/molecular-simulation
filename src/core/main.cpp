@@ -8,11 +8,11 @@
 #define GL_SILENCE_DEPRECATION
 
 #include <iostream>
-#include "singleExecution.hpp"
-#include "networkExecution.hpp"
+#include <src/core/singleExecution.hpp>
+#include <src/core/network/networkExecution.hpp>
 #include <vector>
-#include "Config/config.h"
-#include "Config/oldconfig.h"
+#include <src/config/config.h>
+#include <src/config/oldconfig.h>
 #include <time.h>
 
 int main() {
@@ -37,7 +37,3 @@ int main() {
         return 0;
     }
 }
-
-
-
-

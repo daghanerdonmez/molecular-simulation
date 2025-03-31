@@ -6,7 +6,8 @@
 //
 
 #include "particle.hpp"
-#include "simulation.hpp"
+#include <src/core/connections/simulation.hpp>
+
 
 Particle::Particle(double x, double y, double z)
     : position(x, y, z), alive(true), associatedBoundary(nullptr), associatedSimulation(nullptr) {}

@@ -9,8 +9,8 @@
 #define Box_hpp
 
 #include <stdio.h>
-#include "../Config/config.h"
-#include "../Config/oldconfig.h"
+#include <src/config/config.h>
+#include <src/config/oldconfig.h>
 #include <glm/glm.hpp>
 #include "boundary.hpp"
 
@@ -32,4 +32,3 @@ public:
 };
 
 #endif /* Box_hpp */
-

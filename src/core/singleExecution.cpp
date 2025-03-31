@@ -56,7 +56,7 @@ int singleRunWithGraphics()
     
     // Compile shaders
     // Use relative paths for cross-platform compatibility
-    std::string shaderBasePath = "./Shaders/";
+    std::string shaderBasePath = "shaders/";
     Shader particleShader((shaderBasePath + "vertexshader.txt").c_str(), (shaderBasePath + "fragmentshader.txt").c_str());
     
     // For transparency
