@@ -67,6 +67,21 @@ void SimulationNetwork::simulationsWrite(const std::string &outputDir) const {
     for (const auto& simulation: simulations) {
         simulation->receiversWrite(runDir);
     }
+    
+    // Write simulation data for each simulation
+    for (const auto& simulation: simulations) {
+        simulation->simulationDataWrite(runDir);
+    }
+
+    // Write general data of the network (flow velocity, diffusion coefficient)
+    std::string output;
+    std::ostringstream oss;
+    oss << std::setprecision(17) << D << " " << std::setprecision(17) << FLOW_VALUE << "\n";
+    output += oss.str();
+    
+    // Write the output to a file
+    std::string filename = runDir + "/network_data.txt";
+    writeToFile(filename, output, false);
 }
 
 Simulation* SimulationNetwork::getFirstSimulation()

@@ -335,6 +335,27 @@ void Simulation::receiversWrite(const std::string &baseDir) const {
     
     // Write each receiver's output to a file in the simulation directory
     for (auto& receiver: receivers){
-        receiver->writeOutput(simDir);
+        if (dynamic_cast<SphericalReceiver*>(receiver.get())) {
+            receiver->writeOutput(simDir, name, dynamic_cast<SphericalReceiver*>(receiver.get()), dynamic_cast<SphericalReceiver*>(receiver.get())->getRadius());
+        } else {
+            receiver->writeOutput(simDir, name, false, 0.0);
+        }
     }
+}
+
+void Simulation::simulationDataWrite(const std::string &baseDir) const {
+    // Create a subdirectory for this simulation
+    std::string simName = name.empty() ? "unnamed_simulation" : name;
+    std::string simDir = baseDir + "/" + simName;
+    
+    // Create the directory if it doesn't exist
+    std::string mkdirCmd = "mkdir -p \"" + simDir + "\"";
+    system(mkdirCmd.c_str());
+    
+    std::string output;
+    output = name + " " + parentName + " " + std::to_string(getBoundaryHeight()) + " " + std::to_string(getBoundaryRadius()) + " " + std::to_string(emitters.size());
+    
+    // Write the output to a file
+    std::string filename = simDir + "/simulation_data.txt";
+    writeToFile(filename, output, false);
 }

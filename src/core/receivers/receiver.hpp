@@ -14,6 +14,7 @@
 #include <src/config/config.h>
 #include <src/config/oldconfig.h>
 #include <src/output/writer.hpp>
+#include <src/math/coordinateSystemTransformations.hpp>
 
 class Receiver {
 protected:
@@ -32,7 +33,7 @@ public:
 
     glm::dvec3 getPosition() const;
     void increaseParticlesReceived(int iterationNumber);
-    void writeOutput(const std::string& path);
+    void writeOutput(const std::string& path, const std::string& pipeName, bool isSphericalReceiver, double radius);
     
     // Name getter and setter
     std::string getName() const;

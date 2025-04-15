@@ -101,6 +101,9 @@ SimulationNetworkLoader::loadFromYAML(const std::string& filename)
         
         // Set the name of the simulation to the pipe name from YAML
         sim->setName(pipeName);
+        
+        // Set default parentName to "none"
+        sim->setParentName("none");
 
         // Keep track of the simulation and its node
         simulations[pipeName] = std::move(sim);
@@ -202,6 +205,9 @@ SimulationNetworkLoader::loadFromYAML(const std::string& filename)
                     : rightIndexOf.at(otherPipe);
 
                 addConnection(leftNodeIndex, otherIndex);
+                
+                // Set the parentName to the name of the simulation connected to the left side
+                simulations[pipeName]->setParentName(otherPipe);
             }
         }
 

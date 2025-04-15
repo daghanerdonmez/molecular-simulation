@@ -9,6 +9,12 @@ def convert_node_red_to_config(input_file, output_file):
     # Extract nodes of type "simulation-config"
     config_nodes = [node for node in data if node.get('type') == 'simulation-config']
     
+    # Extract nodes of type "flow" to get flowValue
+    flow_nodes = [node for node in data if node.get('type') == 'flow']
+    flow_value = None
+    if flow_nodes:
+        flow_value = flow_nodes[0].get('flowValue', '0')
+    
     # Initialize the config file content
     config_content = """//
 //  config.h
@@ -56,6 +62,10 @@ def convert_node_red_to_config(input_file, output_file):
             zoom_value = float(zoom_value)
         config_content += f"#define GRAPHICS_ZOOM_MULTIPLIER {zoom_value:.0e}\n"
     
+    # Add flow value if available
+    if flow_value is not None:
+        config_content += f"\n#define FLOW_VALUE {flow_value}\n"
+    
     # Close the header guard
     config_content += "\n#endif /* config_h */\n"
     
@@ -64,6 +74,8 @@ def convert_node_red_to_config(input_file, output_file):
         f.write(config_content)
     
     print(f"Conversion complete. Config file saved to {output_file}")
+    if flow_value is not None:
+        print(f"Added FLOW_VALUE = {flow_value} from flow node")
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:

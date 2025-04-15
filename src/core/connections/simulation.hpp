@@ -41,6 +41,7 @@ private:
     Connection* rightConnection = nullptr;
     glm::dvec3 flow;
     std::string name; // Name of the simulation (e.g., pipe0, pipe1)
+    std::string parentName; // Name of the parent simulation (e.g., pipe0, pipe1)
     
 public:
     ~Simulation();
@@ -55,6 +56,7 @@ public:
     const std::vector<std::unique_ptr<Receiver>>& getReceivers() const;
     void addReceiver(std::unique_ptr<Receiver> receiver);
     void receiversWrite(const std::string& path) const;
+    void simulationDataWrite(const std::string& path) const;
     
     bool checkReceivedForParticle(const Particle& particle, const Receiver& receiver) const;
 
@@ -80,6 +82,8 @@ public:
     // Name getter and setter
     void setName(const std::string& simulationName);
     const std::string& getName() const;
+    void setParentName(const std::string& parentName);
+    const std::string& getParentName() const;
 };
 
 inline const std::vector<std::unique_ptr<Receiver>>& Simulation::getReceivers() const { return receivers; }
@@ -109,5 +113,11 @@ inline const std::string& Simulation::getName() const {
     return name;
 }
 
+inline void Simulation::setParentName(const std::string& parentName) {
+    this->parentName = parentName;
+}
 
+inline const std::string& Simulation::getParentName() const {
+    return parentName;
+}
 #endif /* simulation_hpp */
