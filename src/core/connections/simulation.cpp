@@ -353,7 +353,7 @@ void Simulation::simulationDataWrite(const std::string &baseDir) const {
     system(mkdirCmd.c_str());
     
     std::string output;
-    output = name + " " + parentName + " " + std::to_string(getBoundaryHeight()) + " " + std::to_string(getBoundaryRadius()) + " " + std::to_string(emitters.size());
+    output = name + " " + parentName + " " + std::to_string(getBoundaryHeight()) + " " + std::to_string(getBoundaryRadius()) + " " + std::to_string(receivers.size());
     
     // Write the output to a file
     std::string filename = simDir + "/simulation_data.txt";

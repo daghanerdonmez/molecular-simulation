@@ -28,8 +28,10 @@ void Receiver::writeOutput(const std::string& dirPath, const std::string& pipeNa
     // Checking if the receiver is of type sphericalReceiver, if so add radius
     // this is a very shitty implementation. i am only doing this for now because i will only work with spherical receivers but in the future i might need to make every receiver type have its own write function.
     if (isSphericalReceiver) {
-        output += " " + std::to_string(radius) + "\n";
+        output += " " + std::to_string(radius);
     }
+    
+    output += "\n";
 
     for (int i = 0; i < NUMBER_OF_ITERATIONS; ++i) {
         output += std::to_string(particlesReceived[i]);

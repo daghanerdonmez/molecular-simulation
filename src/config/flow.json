@@ -13,7 +13,7 @@
         "z": "84892262a1f0d1bb",
         "name": "Simulation Configuration",
         "outputResults": true,
-        "graphicsOn": true,
+        "graphicsOn": false,
         "mode": 1,
         "timeToRun": 500,
         "dt": "0.01",
@@ -71,16 +71,7 @@
         "name": "b",
         "length": "8e-4",
         "radius": "3e-4",
-        "receivers": [
-            {
-                "type": "Trap type",
-                "length": "0.1",
-                "theta": "0",
-                "delta_theta": "0",
-                "thickness": "0.01",
-                "z": "0"
-            }
-        ],
+        "receivers": [],
         "emitters": [],
         "x": 610,
         "y": 240,
@@ -104,19 +95,11 @@
                 "z": "0",
                 "r": "0",
                 "theta": "0"
-            },
-            {
-                "type": "Trap type",
-                "length": "3e-4",
-                "theta": "0",
-                "delta_theta": "360",
-                "thickness": "1e-4",
-                "z": "0"
             }
         ],
         "emitters": [],
         "x": 610,
-        "y": 360,
+        "y": 320,
         "wires": [
             [
                 "44eafddeff7c7b44"
@@ -138,7 +121,7 @@
         "z": "84892262a1f0d1bb",
         "name": "",
         "x": 750,
-        "y": 360,
+        "y": 320,
         "wires": []
     }
 ]

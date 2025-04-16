@@ -1,0 +1,48 @@
+pipes:
+  pipe1-a:
+    length: 0.0008
+    radius: 0.0003
+    particle_count: 0
+    left_connections: []
+    right_connections:
+    - pipe2-b
+    - pipe3-c
+    flow: 0.0001
+    emitters:
+    - z: 0.0
+      r: 0.0
+      theta: 0.0
+      emitter_pattern: '1000'
+      emitter_pattern_type: complete
+  pipe2-b:
+    length: 0.0008
+    radius: 0.0003
+    particle_count: 0
+    left_connections:
+    - pipe1-a
+    right_connections:
+    - sink1
+    flow: 5.0e-05
+  pipe3-c:
+    length: 0.0008
+    radius: 0.0003
+    particle_count: 0
+    left_connections:
+    - pipe1-a
+    right_connections:
+    - sink2
+    flow: 5.0e-05
+    receivers:
+    - type: Sphere type
+      radius: 0.0001
+      z: 0.0
+      r: 0.0
+      theta: 0.0
+      name: '#1-Sphere type'
+sinks:
+  sink1:
+    left_connections:
+    - pipe2-b
+  sink2:
+    left_connections:
+    - pipe3-c

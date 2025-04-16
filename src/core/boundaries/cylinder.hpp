@@ -10,7 +10,7 @@
 
 #include <glm/glm.hpp>
 #include <src/config/config.h>
-#include <src/config/oldconfig.h>
+#include <src/config/unused/oldconfig.h>
 #include <src/math/geometry2d.hpp>
 #include "boundary.hpp"
 

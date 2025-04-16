@@ -12,7 +12,7 @@
 #include <glm/vec3.hpp>
 #include <string>
 #include <src/config/config.h>
-#include <src/config/oldconfig.h>
+#include <src/config/unused/oldconfig.h>
 #include <src/output/writer.hpp>
 #include <src/math/coordinateSystemTransformations.hpp>
 

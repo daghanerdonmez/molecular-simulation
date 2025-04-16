@@ -19,7 +19,7 @@
 #include <glm/glm.hpp>
 #include <vector>
 #include <src/config/config.h>
-#include <src/config/oldconfig.h>
+#include <src/config/unused/oldconfig.h>
 #include <time.h>
 #include <src/core/network/simulationNetwork.hpp>
 #include <src/core/network/simulationNetworkLoader.hpp>

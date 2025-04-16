@@ -110,6 +110,10 @@ SimulationNetworkLoader::loadFromYAML(const std::string& filename)
         pipeNodes[pipeName]   = pipeCfg;
     }
 
+    // Read the flow value from the config file
+    double flow = config["flow"] ? config["flow"].as<double>() : 0.0;
+    network->setFlowValue(flow);
+
     // ------------------------------------------------------------------------
     // 1.5) Read all "sinks" and build Sink objects.
     // ------------------------------------------------------------------------

@@ -12,7 +12,7 @@
 #include <src/core/network/networkExecution.hpp>
 #include <vector>
 #include <src/config/config.h>
-#include <src/config/oldconfig.h>
+#include <src/config/unused/oldconfig.h>
 #include <time.h>
 
 int main() {

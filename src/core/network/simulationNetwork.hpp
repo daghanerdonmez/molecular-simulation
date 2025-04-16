@@ -12,7 +12,7 @@
 #include <vector>
 #include <src/core/connections/simulation.hpp>
 #include <src/config/config.h>
-#include <src/config/oldconfig.h>
+#include <src/config/unused/oldconfig.h>
 #include <src/core/connections/hub.hpp>
 #include <src/core/connections/sink.hpp>
 
@@ -22,6 +22,7 @@ private:
     std::vector<std::unique_ptr<Simulation>> simulations;
     std::vector<std::unique_ptr<Hub>> hubs;
     std::vector<std::unique_ptr<Sink>> sinks;
+    double flow_value;
 public:
     SimulationNetwork();
     void iterateNetwork(int iterationCount, int currentFrame);
@@ -33,6 +34,9 @@ public:
     
     Simulation* getFirstSimulation();
     Simulation* getSecondSimulation();
+    
+    void setFlowValue(double value) { flow_value = value; }
+    double getFlowValue() const { return flow_value; }
 };
 
 #endif /* simulationNetwork_hpp */

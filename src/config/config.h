@@ -21,6 +21,4 @@
 
 #define GRAPHICS_ZOOM_MULTIPLIER 9e+02
 
-#define FLOW_VALUE 0.0001
-
 #endif /* config_h */

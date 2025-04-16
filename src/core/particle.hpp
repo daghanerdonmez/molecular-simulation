@@ -12,7 +12,7 @@
 #include <iostream>
 #include <glm/glm.hpp>
 #include <src/config/config.h>
-#include <src/config/oldconfig.h>
+#include <src/config/unused/oldconfig.h>
 #include <src/core/boundaries/box.hpp>
 #include <src/core/boundaries/cylinder.hpp>
 #include <src/core/boundaries/noBoundary.hpp>

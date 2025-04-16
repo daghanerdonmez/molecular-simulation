@@ -76,7 +76,7 @@ void SimulationNetwork::simulationsWrite(const std::string &outputDir) const {
     // Write general data of the network (flow velocity, diffusion coefficient)
     std::string output;
     std::ostringstream oss;
-    oss << std::setprecision(17) << D << " " << std::setprecision(17) << FLOW_VALUE << "\n";
+    oss << std::setprecision(17) << D << " " << std::setprecision(17) << flow_value << "\n";
     output += oss.str();
     
     // Write the output to a file

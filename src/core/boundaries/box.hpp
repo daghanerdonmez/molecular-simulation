@@ -10,7 +10,7 @@
 
 #include <stdio.h>
 #include <src/config/config.h>
-#include <src/config/oldconfig.h>
+#include <src/config/unused/oldconfig.h>
 #include <glm/glm.hpp>
 #include "boundary.hpp"
 
