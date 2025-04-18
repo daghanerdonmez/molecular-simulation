@@ -24,7 +24,7 @@
 #include <src/core/network/simulationNetwork.hpp>
 #include <src/core/network/simulationNetworkLoader.hpp>
 
-int networkRunWithoutGraphics();
-int networkRunWithGraphics();
+int networkRunWithoutGraphics(const std::string& networkConfigPath);
+int networkRunWithGraphics(const std::string& networkConfigPath);
 
 #endif /* networkExecution_hpp */

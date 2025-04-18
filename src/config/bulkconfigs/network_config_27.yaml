@@ -1,0 +1,1719 @@
+pipes:
+  pipe22:
+    length: 0.0038902337058903946
+    radius: 0.00038201026246860524
+    particle_count: 0
+    left_connections: []
+    right_connections:
+    - pipe1
+    - pipe8
+    - pipe47
+    - pipe43
+    flow: 0.05
+  pipe1:
+    length: 0.0022349197412622236
+    radius: 0.00033304281564484607
+    particle_count: 0
+    left_connections:
+    - pipe22
+    right_connections:
+    - pipe40
+    - pipe83
+    - pipe67
+    flow: 0.011036374567332051
+  pipe40:
+    length: 0.0041663819389845605
+    radius: 0.0004025984457422449
+    particle_count: 0
+    left_connections:
+    - pipe1
+    right_connections:
+    - pipe37
+    flow: 0.0034029390683998294
+    receivers:
+    - type: Sphere type
+      name: '#7-Sphere type'
+      radius: 0.00010256894637114298
+      z: -0.0034611047575242885
+      r: 5.465824697843955e-05
+      theta: 0.6390968773553218
+  pipe83:
+    length: 0.004351959827946512
+    radius: 0.0004474988334792113
+    particle_count: 0
+    left_connections:
+    - pipe1
+    right_connections:
+    - pipe28
+    - pipe29
+    - pipe71
+    - pipe39
+    flow: 0.003782456886295843
+  pipe37:
+    length: 0.0029732185111906407
+    radius: 0.00046787532572468667
+    particle_count: 0
+    left_connections:
+    - pipe40
+    right_connections:
+    - pipe26
+    flow: 0.0034029390683998294
+  pipe28:
+    length: 0.0020622735841648605
+    radius: 0.0001690046627693375
+    particle_count: 0
+    left_connections:
+    - pipe83
+    right_connections:
+    - pipe51
+    - pipe32
+    - pipe48
+    - pipe20
+    - pipe23
+    - pipe65
+    - pipe68
+    flow: 0.0005248283798071208
+    receivers:
+    - type: Sphere type
+      name: '#23-Sphere type'
+      radius: 2.717804312220354e-05
+      z: 0.0010502952070185053
+      r: 3.2076268646821534e-05
+      theta: 6.024025371923819
+    - type: Sphere type
+      name: '#64-Sphere type'
+      radius: 4.973170612855926e-05
+      z: 0.0001439049955188924
+      r: 1.8302487735899122e-05
+      theta: 3.5614701705144376
+  pipe51:
+    length: 0.0024395289669804604
+    radius: 0.000122573795289142
+    particle_count: 0
+    left_connections:
+    - pipe28
+    right_connections:
+    - pipe64
+    - pipe41
+    - pipe42
+    flow: 3.0592500320562914e-05
+  pipe8:
+    length: 0.004158753672241355
+    radius: 0.0002528463136973994
+    particle_count: 0
+    left_connections:
+    - pipe22
+    right_connections:
+    - pipe33
+    - pipe52
+    flow: 0.008378822466206304
+    receivers:
+    - type: Sphere type
+      name: '#48-Sphere type'
+      radius: 5.063791471287311e-05
+      z: -0.0012921569018425555
+      r: 4.105444204356982e-05
+      theta: 5.973647781925965
+    - type: Sphere type
+      name: '#76-Sphere type'
+      radius: 6.938350166955263e-05
+      z: -0.0036602060093028845
+      r: 4.987552568116295e-05
+      theta: 0.20292901292675375
+  pipe29:
+    length: 0.0026309965190471035
+    radius: 0.00040150700292328916
+    particle_count: 0
+    left_connections:
+    - pipe83
+    right_connections:
+    - pipe16
+    - pipe19
+    flow: 0.001246842935410857
+    receivers:
+    - type: Sphere type
+      name: '#22-Sphere type'
+      radius: 5.486125417218714e-05
+      z: -0.0010222631881519906
+      r: 5.5286967370833603e-05
+      theta: 0.2155543717650961
+    - type: Sphere type
+      name: '#53-Sphere type'
+      radius: 9.81372650933518e-05
+      z: 0.001119445758434995
+      r: 4.300622459085459e-05
+      theta: 3.4447085387425234
+    - type: Sphere type
+      name: '#57-Sphere type'
+      radius: 5.2817615997118425e-05
+      z: 0.0022368087770682247
+      r: 5.4734442612655364e-05
+      theta: 1.434363025932032
+  pipe47:
+    length: 0.002265581272488992
+    radius: 0.0004331248381624611
+    particle_count: 0
+    left_connections:
+    - pipe22
+    right_connections:
+    - pipe59
+    flow: 0.014352893153153865
+  pipe32:
+    length: 0.0022993380580102122
+    radius: 0.0003920183553858093
+    particle_count: 0
+    left_connections:
+    - pipe28
+    right_connections:
+    - pipe56
+    - pipe50
+    - pipe2
+    flow: 9.784164416641249e-05
+    receivers:
+    - type: Sphere type
+      name: '#28-Sphere type'
+      radius: 5.6993941879621946e-05
+      z: -0.0005960061814687834
+      r: 7.728914913830259e-05
+      theta: 2.785533977251536
+    - type: Sphere type
+      name: '#39-Sphere type'
+      radius: 9.075934582579621e-05
+      z: -0.0017290592780332204
+      r: 7.398305669418929e-05
+      theta: 2.3501741580182673
+    - type: Sphere type
+      name: '#46-Sphere type'
+      radius: 0.00011379575754598217
+      z: -0.001695350122923067
+      r: 5.1918653412736664e-05
+      theta: 2.351758630555613
+    - type: Sphere type
+      name: '#77-Sphere type'
+      radius: 6.392063505458913e-05
+      z: -0.00034629582204977086
+      r: 7.532807647533198e-05
+      theta: 4.730099658135499
+  pipe59:
+    length: 0.004279805691787821
+    radius: 0.00017755007904435277
+    particle_count: 0
+    left_connections:
+    - pipe47
+    right_connections:
+    - pipe38
+    flow: 0.014352893153153865
+    receivers:
+    - type: Sphere type
+      name: '#80-Sphere type'
+      radius: 3.8360839479155446e-05
+      z: 0.0030427415390376885
+      r: 3.5033440730437715e-05
+      theta: 1.9158449434405336
+  pipe33:
+    length: 0.004567595639011678
+    radius: 0.0002470312013823658
+    particle_count: 0
+    left_connections:
+    - pipe8
+    right_connections:
+    - pipe75
+    - pipe70
+    flow: 0.0030487353502816257
+    receivers:
+    - type: Sphere type
+      name: '#17-Sphere type'
+      radius: 7.209011579311462e-05
+      z: -0.0037311331815560295
+      r: 4.4079248495038046e-05
+      theta: 5.8665734491621855
+    - type: Sphere type
+      name: '#71-Sphere type'
+      radius: 3.479072634694453e-05
+      z: -0.0030591136527123456
+      r: 4.3794977536583406e-05
+      theta: 2.4757190111691947
+  pipe48:
+    length: 0.0028618524372287487
+    radius: 0.00044577137381657977
+    particle_count: 0
+    left_connections:
+    - pipe28
+    right_connections:
+    - sink1
+    flow: 0.0001112575560233919
+    receivers:
+    - type: Sphere type
+      name: '#88-Sphere type'
+      radius: 0.00044577137381657977
+      z: 0.0028618524372287487
+      r: 0
+      theta: 0
+  pipe64:
+    length: 0.0030457682913497364
+    radius: 0.00028533285148416883
+    particle_count: 0
+    left_connections:
+    - pipe51
+    right_connections:
+    - pipe60
+    - pipe12
+    flow: 8.591334144694872e-06
+    receivers:
+    - type: Sphere type
+      name: '#34-Sphere type'
+      radius: 4.160590806646767e-05
+      z: -0.0026429320155142164
+      r: 4.965617056429139e-05
+      theta: 4.5155733749600255
+  pipe71:
+    length: 0.004367275540637749
+    radius: 0.000400081142342138
+    particle_count: 0
+    left_connections:
+    - pipe83
+    right_connections:
+    - pipe14
+    - pipe18
+    flow: 0.00124241505699393
+  pipe43:
+    length: 0.004548413493789745
+    radius: 0.0004898276072940559
+    particle_count: 0
+    left_connections:
+    - pipe22
+    right_connections:
+    - pipe7
+    - pipe10
+    - pipe0
+    flow: 0.01623190981330778
+    receivers:
+    - type: Sphere type
+      name: '#6-Sphere type'
+      radius: 9.973752606562685e-05
+      z: 0.002281394329016079
+      r: 5.4160285570757474e-05
+      theta: 0.5603700884231996
+  pipe41:
+    length: 0.0020718112332118403
+    radius: 0.00048186439001147107
+    particle_count: 0
+    left_connections:
+    - pipe51
+    right_connections:
+    - pipe4
+    flow: 1.4508872586820978e-05
+    receivers:
+    - type: Sphere type
+      name: '#26-Sphere type'
+      radius: 6.859100056328491e-05
+      z: -0.0010820046914745778
+      r: 9.389171235162362e-05
+      theta: 5.922292018212541
+  pipe39:
+    length: 0.0035566129122906066
+    radius: 0.00024742983537281673
+    particle_count: 0
+    left_connections:
+    - pipe83
+    right_connections:
+    - pipe55
+    flow: 0.0007683705140839356
+  pipe38:
+    length: 0.0033582199380502308
+    radius: 0.0003988312425010783
+    particle_count: 0
+    left_connections:
+    - pipe59
+    right_connections:
+    - sink2
+    flow: 0.014352893153153865
+    receivers:
+    - type: Sphere type
+      name: '#21-Sphere type'
+      radius: 0.0001018851337769206
+      z: -0.002082671271779343
+      r: 7.70771240481912e-05
+      theta: 5.1517948983389275
+    - type: Sphere type
+      name: '#43-Sphere type'
+      radius: 4.280754662003523e-05
+      z: -0.0010551395115377597
+      r: 5.592173428853412e-05
+      theta: 4.6531393642584336
+    - type: Sphere type
+      name: '#83-Sphere type'
+      radius: 6.160884151090555e-05
+      z: -0.0006456894638672116
+      r: 6.716924470422946e-05
+      theta: 5.215023900779726
+    - type: Sphere type
+      name: '#89-Sphere type'
+      radius: 0.0003988312425010783
+      z: 0.0033582199380502308
+      r: 0
+      theta: 0
+  pipe20:
+    length: 0.0029424405212509614
+    radius: 0.0001420624569011261
+    particle_count: 0
+    left_connections:
+    - pipe28
+    right_connections:
+    - pipe27
+    flow: 3.545656514947321e-05
+  pipe16:
+    length: 0.002653955047619333
+    radius: 0.00029216600507441876
+    particle_count: 0
+    left_connections:
+    - pipe29
+    right_connections:
+    - pipe66
+    flow: 0.0008288412906130979
+  pipe7:
+    length: 0.002283596735549222
+    radius: 0.0003952538515802569
+    particle_count: 0
+    left_connections:
+    - pipe43
+    right_connections:
+    - pipe79
+    - pipe15
+    - pipe54
+    flow: 0.006702641946815217
+    receivers:
+    - type: Sphere type
+      name: '#13-Sphere type'
+      radius: 7.54175157149947e-05
+      z: -0.0008772565106901216
+      r: 6.516942433703252e-05
+      theta: 5.0417167546374495
+    - type: Sphere type
+      name: '#14-Sphere type'
+      radius: 5.6510109049758094e-05
+      z: 0.0019860362834064754
+      r: 4.8550403943105664e-05
+      theta: 1.4005307414125983
+  pipe79:
+    length: 0.004956525991775864
+    radius: 0.0004746613217678002
+    particle_count: 0
+    left_connections:
+    - pipe7
+    right_connections:
+    - pipe36
+    - pipe57
+    flow: 0.002536306018281375
+    receivers:
+    - type: Sphere type
+      name: '#58-Sphere type'
+      radius: 9.004728956264235e-05
+      z: 0.004037908348915368
+      r: 6.071220595228993e-05
+      theta: 4.733122146472648
+  pipe56:
+    length: 0.0025258473138277406
+    radius: 0.00045525512795215414
+    particle_count: 0
+    left_connections:
+    - pipe32
+    right_connections:
+    - pipe76
+    flow: 5.9837248954234814e-05
+    receivers:
+    - type: Sphere type
+      name: '#60-Sphere type'
+      radius: 9.883716158165817e-05
+      z: -0.001056811407673451
+      r: 8.549269453985662e-05
+      theta: 2.722639215492569
+  pipe36:
+    length: 0.003598125993685963
+    radius: 0.00034512867953281423
+    particle_count: 0
+    left_connections:
+    - pipe79
+    right_connections:
+    - pipe25
+    - pipe5
+    flow: 0.0012401718617319302
+  pipe15:
+    length: 0.0026652448319796104
+    radius: 0.0004615528364889074
+    particle_count: 0
+    left_connections:
+    - pipe7
+    right_connections:
+    - pipe58
+    - pipe24
+    - pipe44
+    flow: 0.0024662621183916913
+  pipe23:
+    length: 0.0020690259044731153
+    radius: 0.00027841022505368975
+    particle_count: 0
+    left_connections:
+    - pipe28
+    right_connections:
+    - pipe74
+    flow: 6.948683345499284e-05
+    receivers:
+    - type: Sphere type
+      name: '#1-Sphere type'
+      radius: 8.246640258154177e-05
+      z: 0.0008296683254255151
+      r: 4.464665236746563e-05
+      theta: 5.405982734242958
+    - type: Sphere type
+      name: '#15-Sphere type'
+      radius: 4.726656532657653e-05
+      z: 0.0012593011334755826
+      r: 3.0314446742816956e-05
+      theta: 1.3055022280578046
+  pipe66:
+    length: 0.0034822059717509336
+    radius: 0.00044139296736162974
+    particle_count: 0
+    left_connections:
+    - pipe16
+    right_connections:
+    - pipe3
+    - pipe61
+    flow: 0.0008288412906130979
+    receivers:
+    - type: Sphere type
+      name: '#4-Sphere type'
+      radius: 8.745436298297475e-05
+      z: -0.0012528479818441328
+      r: 5.284631446986115e-05
+      theta: 1.6926387420395035
+    - type: Sphere type
+      name: '#35-Sphere type'
+      radius: 6.313402775279024e-05
+      z: 0.002618663603957193
+      r: 5.7778836875931226e-05
+      theta: 0.040735545968842
+    - type: Sphere type
+      name: '#41-Sphere type'
+      radius: 6.677973375775698e-05
+      z: 0.0016406554255582804
+      r: 6.543931704384129e-05
+      theta: 5.04572771158876
+    - type: Sphere type
+      name: '#47-Sphere type'
+      radius: 4.427238191887804e-05
+      z: 0.0025097961664741985
+      r: 6.359634397026019e-05
+      theta: 6.175416155429485
+    - type: Sphere type
+      name: '#50-Sphere type'
+      radius: 5.805085075496089e-05
+      z: -0.0029561556177291476
+      r: 5.298233192904232e-05
+      theta: 1.3786837414293682
+  pipe14:
+    length: 0.004674231967414539
+    radius: 0.0003184744548121852
+    particle_count: 0
+    left_connections:
+    - pipe71
+    right_connections:
+    - pipe9
+    flow: 0.0005153268914290947
+  pipe65:
+    length: 0.0036462098916307797
+    radius: 0.00022479486199056313
+    particle_count: 0
+    left_connections:
+    - pipe28
+    right_connections:
+    - pipe46
+    flow: 5.6105278222680516e-05
+  pipe19:
+    length: 0.002771623963957931
+    radius: 0.0001473453024821681
+    particle_count: 0
+    left_connections:
+    - pipe29
+    right_connections:
+    - sink3
+    flow: 0.00041800164479775917
+    receivers:
+    - type: Sphere type
+      name: '#19-Sphere type'
+      radius: 1.7692843963409777e-05
+      z: -0.0008481509559288018
+      r: 2.189495915369113e-05
+      theta: 3.2535760796289313
+    - type: Sphere type
+      name: '#55-Sphere type'
+      radius: 2.3014925103505207e-05
+      z: 0.002147065883061465
+      r: 1.5848366608910938e-05
+      theta: 1.5594506033997826
+    - type: Sphere type
+      name: '#66-Sphere type'
+      radius: 3.3504196939840666e-05
+      z: 0.0020282295620128515
+      r: 1.5415876648595537e-05
+      theta: 3.7560818029664436
+    - type: Sphere type
+      name: '#90-Sphere type'
+      radius: 0.0001473453024821681
+      z: 0.002771623963957931
+      r: 0
+      theta: 0
+  pipe74:
+    length: 0.003948232193898112
+    radius: 0.0003876924675606959
+    particle_count: 0
+    left_connections:
+    - pipe23
+    right_connections:
+    - pipe17
+    flow: 6.948683345499284e-05
+  pipe18:
+    length: 0.0041597491663485755
+    radius: 0.00044934392320668097
+    particle_count: 0
+    left_connections:
+    - pipe71
+    right_connections:
+    - sink4
+    flow: 0.0007270881655648353
+    receivers:
+    - type: Sphere type
+      name: '#65-Sphere type'
+      radius: 8.165683294450638e-05
+      z: -0.0010953407375941544
+      r: 8.329098030325545e-05
+      theta: 6.189268942885318
+    - type: Sphere type
+      name: '#91-Sphere type'
+      radius: 0.00044934392320668097
+      z: 0.0041597491663485755
+      r: 0
+      theta: 0
+  pipe17:
+    length: 0.0029404609822131357
+    radius: 0.0003613487760904474
+    particle_count: 0
+    left_connections:
+    - pipe74
+    right_connections:
+    - pipe49
+    - pipe80
+    flow: 6.948683345499284e-05
+  pipe58:
+    length: 0.0022061865357697005
+    radius: 0.00035034515413046534
+    particle_count: 0
+    left_connections:
+    - pipe15
+    right_connections:
+    - pipe78
+    flow: 0.0008494764516507378
+    receivers:
+    - type: Sphere type
+      name: '#42-Sphere type'
+      radius: 4.487968646706213e-05
+      z: 0.0018810493182519362
+      r: 6.887652311443347e-05
+      theta: 0.8529236021272546
+    - type: Sphere type
+      name: '#49-Sphere type'
+      radius: 5.706722144258454e-05
+      z: -0.0012113175479912487
+      r: 3.709819619085831e-05
+      theta: 2.476882294425432
+  pipe10:
+    length: 0.003764189876517159
+    radius: 0.0002855626652951315
+    particle_count: 0
+    left_connections:
+    - pipe43
+    right_connections:
+    - sink5
+    flow: 0.004842519032260099
+    receivers:
+    - type: Sphere type
+      name: '#24-Sphere type'
+      radius: 7.265053723008212e-05
+      z: -0.0028693220880186845
+      r: 3.1144604114385454e-05
+      theta: 5.74589989763774
+    - type: Sphere type
+      name: '#29-Sphere type'
+      radius: 3.61144813309819e-05
+      z: -0.00213404036110094
+      r: 3.484111357305081e-05
+      theta: 1.158032522287325
+    - type: Sphere type
+      name: '#85-Sphere type'
+      radius: 7.928872575037698e-05
+      z: -0.0025638198602028614
+      r: 3.604384877170504e-05
+      theta: 1.6509535971010165
+    - type: Sphere type
+      name: '#92-Sphere type'
+      radius: 0.0002855626652951315
+      z: 0.003764189876517159
+      r: 0
+      theta: 0
+  pipe78:
+    length: 0.002889272086138574
+    radius: 0.00017279369151754133
+    particle_count: 0
+    left_connections:
+    - pipe58
+    right_connections:
+    - sink6
+    flow: 0.0008494764516507378
+    receivers:
+    - type: Sphere type
+      name: '#69-Sphere type'
+      radius: 3.263799047868197e-05
+      z: 0.0022305208956268706
+      r: 2.8074427472298508e-05
+      theta: 0.987619953115299
+    - type: Sphere type
+      name: '#93-Sphere type'
+      radius: 0.00017279369151754133
+      z: 0.002889272086138574
+      r: 0
+      theta: 0
+  pipe60:
+    length: 0.004362194225369853
+    radius: 0.00042738540519460667
+    particle_count: 0
+    left_connections:
+    - pipe64
+    right_connections:
+    - sink7
+    flow: 3.9602752582825345e-06
+    receivers:
+    - type: Sphere type
+      name: '#94-Sphere type'
+      radius: 0.00042738540519460667
+      z: 0.004362194225369853
+      r: 0
+      theta: 0
+  pipe24:
+    length: 0.0026172265614766454
+    radius: 0.0003324076854689482
+    particle_count: 0
+    left_connections:
+    - pipe15
+    right_connections:
+    - sink8
+    flow: 0.0008059837500947527
+    receivers:
+    - type: Sphere type
+      name: '#67-Sphere type'
+      radius: 5.942922387964385e-05
+      z: -0.001220318205471571
+      r: 5.2070772129848124e-05
+      theta: 1.0520076047471167
+    - type: Sphere type
+      name: '#95-Sphere type'
+      radius: 0.0003324076854689482
+      z: 0.0026172265614766454
+      r: 0
+      theta: 0
+  pipe49:
+    length: 0.0026345656227466734
+    radius: 0.0001696708025130437
+    particle_count: 0
+    left_connections:
+    - pipe17
+    right_connections:
+    - pipe11
+    flow: 2.154983097540453e-05
+    receivers:
+    - type: Sphere type
+      name: '#82-Sphere type'
+      radius: 2.2006113252544213e-05
+      z: -0.0007747763230114735
+      r: 3.137311416930201e-05
+      theta: 6.226773769502649
+  pipe42:
+    length: 0.002559555365828559
+    radius: 0.0002488318412384693
+    particle_count: 0
+    left_connections:
+    - pipe51
+    right_connections:
+    - sink9
+    flow: 7.49229358904706e-06
+    receivers:
+    - type: Sphere type
+      name: '#81-Sphere type'
+      radius: 6.946358269604815e-05
+      z: 0.00023154898532356865
+      r: 3.0395717849775922e-05
+      theta: 0.43293778027439883
+    - type: Sphere type
+      name: '#96-Sphere type'
+      radius: 0.0002488318412384693
+      z: 0.002559555365828559
+      r: 0
+      theta: 0
+  pipe12:
+    length: 0.004438829769837657
+    radius: 0.0004997751038920884
+    particle_count: 0
+    left_connections:
+    - pipe64
+    right_connections:
+    - pipe31
+    flow: 4.631058886412338e-06
+    receivers:
+    - type: Sphere type
+      name: '#63-Sphere type'
+      radius: 7.623247105627515e-05
+      z: -0.0009681177945077986
+      r: 8.184654087350839e-05
+      theta: 2.205482333190878
+    - type: Sphere type
+      name: '#74-Sphere type'
+      radius: 8.911325701589298e-05
+      z: -0.00288786942233454
+      r: 5.196450001171834e-05
+      theta: 1.1956529371701512
+  pipe75:
+    length: 0.002598278182153687
+    radius: 0.00040467526981899707
+    particle_count: 0
+    left_connections:
+    - pipe33
+    right_connections:
+    - pipe69
+    - pipe63
+    flow: 0.001613779414637128
+    receivers:
+    - type: Sphere type
+      name: '#5-Sphere type'
+      radius: 0.00011611169883749776
+      z: -0.0010671453066561176
+      r: 4.7306545071673836e-05
+      theta: 5.309249555706496
+  pipe55:
+    length: 0.00329558125074082
+    radius: 0.00033307529136847287
+    particle_count: 0
+    left_connections:
+    - pipe39
+    right_connections:
+    - sink10
+    flow: 0.0007683705140839356
+    receivers:
+    - type: Sphere type
+      name: '#68-Sphere type'
+      radius: 8.416040665121226e-05
+      z: 0.0022608065999854335
+      r: 5.1412097317013994e-05
+      theta: 4.2321018163086475
+    - type: Sphere type
+      name: '#97-Sphere type'
+      radius: 0.00033307529136847287
+      z: 0.00329558125074082
+      r: 0
+      theta: 0
+  pipe52:
+    length: 0.0032880027288105166
+    radius: 0.0004318832802584564
+    particle_count: 0
+    left_connections:
+    - pipe8
+    right_connections:
+    - pipe13
+    - pipe81
+    flow: 0.0053300871159246786
+    receivers:
+    - type: Sphere type
+      name: '#10-Sphere type'
+      radius: 0.00011259946246259944
+      z: -0.0014853836296470288
+      r: 8.6070530889238e-05
+      theta: 3.035776772864707
+    - type: Sphere type
+      name: '#36-Sphere type'
+      radius: 8.328529191102656e-05
+      z: -0.0024175080468729895
+      r: 8.477986952704665e-05
+      theta: 5.916574392692928
+  pipe54:
+    length: 0.003229817411863963
+    radius: 0.0003181632169022322
+    particle_count: 0
+    left_connections:
+    - pipe7
+    right_connections:
+    - sink11
+    flow: 0.0017000738101421516
+    receivers:
+    - type: Sphere type
+      name: '#18-Sphere type'
+      radius: 3.574662314016936e-05
+      z: -0.001650410789695243
+      r: 4.781434835453677e-05
+      theta: 6.089694607720015
+    - type: Sphere type
+      name: '#27-Sphere type'
+      radius: 8.16307157146105e-05
+      z: -0.00156685449781101
+      r: 5.2967807436205844e-05
+      theta: 4.182243195078195
+    - type: Sphere type
+      name: '#30-Sphere type'
+      radius: 9.082210274429401e-05
+      z: -0.0010169197596812413
+      r: 5.915811953322473e-05
+      theta: 4.930783708846138
+    - type: Sphere type
+      name: '#98-Sphere type'
+      radius: 0.0003181632169022322
+      z: 0.003229817411863963
+      r: 0
+      theta: 0
+  pipe25:
+    length: 0.004991568174018666
+    radius: 0.00046442922658217537
+    particle_count: 0
+    left_connections:
+    - pipe36
+    right_connections:
+    - sink12
+    flow: 0.0006910680096760738
+    receivers:
+    - type: Sphere type
+      name: '#99-Sphere type'
+      radius: 0.00046442922658217537
+      z: 0.004991568174018666
+      r: 0
+      theta: 0
+  pipe46:
+    length: 0.0022527140563990064
+    radius: 0.00039324358915983327
+    particle_count: 0
+    left_connections:
+    - pipe65
+    right_connections:
+    - pipe53
+    flow: 5.6105278222680516e-05
+  pipe68:
+    length: 0.004971304946648573
+    radius: 0.000497178630486921
+    particle_count: 0
+    left_connections:
+    - pipe28
+    right_connections:
+    - pipe30
+    - pipe62
+    flow: 0.00012408800246960702
+  pipe30:
+    length: 0.0046294016636046
+    radius: 0.0003648307903816707
+    particle_count: 0
+    left_connections:
+    - pipe68
+    right_connections:
+    - pipe35
+    flow: 7.984238520202979e-05
+    receivers:
+    - type: Sphere type
+      name: '#52-Sphere type'
+      radius: 7.504376022755678e-05
+      z: 0.0007573751006034121
+      r: 3.9764399461674656e-05
+      theta: 4.384958097705138
+  pipe69:
+    length: 0.003703031566918126
+    radius: 0.0004870719514634937
+    particle_count: 0
+    left_connections:
+    - pipe75
+    right_connections:
+    - pipe45
+    flow: 0.0008096372466361668
+  pipe80:
+    length: 0.0049479938056662415
+    radius: 0.00037742800349870644
+    particle_count: 0
+    left_connections:
+    - pipe17
+    right_connections:
+    - pipe82
+    flow: 4.7937002479588304e-05
+    receivers:
+    - type: Sphere type
+      name: '#9-Sphere type'
+      radius: 8.749235803804735e-05
+      z: 0.003493732126513124
+      r: 6.863342466092766e-05
+      theta: 2.1472460124959687
+  pipe67:
+    length: 0.002377016032539349
+    radius: 0.0004556055729681574
+    particle_count: 0
+    left_connections:
+    - pipe1
+    right_connections:
+    - sink13
+    flow: 0.003850978612636377
+    receivers:
+    - type: Sphere type
+      name: '#25-Sphere type'
+      radius: 5.6607539056106524e-05
+      z: -9.652534927467697e-05
+      r: 6.42142760217797e-05
+      theta: 5.256103796523729
+    - type: Sphere type
+      name: '#73-Sphere type'
+      radius: 0.00010195820924498541
+      z: -0.0019258245597893809
+      r: 4.723007453240165e-05
+      theta: 3.658163047078116
+    - type: Sphere type
+      name: '#75-Sphere type'
+      radius: 0.0001309384996008772
+      z: -0.0003072605810372367
+      r: 7.460670821232667e-05
+      theta: 4.465961341775852
+    - type: Sphere type
+      name: '#100-Sphere type'
+      radius: 0.0004556055729681574
+      z: 0.002377016032539349
+      r: 0
+      theta: 0
+  pipe26:
+    length: 0.0025720959960497166
+    radius: 0.000226215429822968
+    particle_count: 0
+    left_connections:
+    - pipe37
+    right_connections:
+    - pipe72
+    flow: 0.0034029390683998294
+    receivers:
+    - type: Sphere type
+      name: '#11-Sphere type'
+      radius: 6.121424224477283e-05
+      z: 0.0015334810900055505
+      r: 4.466451508875852e-05
+      theta: 4.711416072012014
+  pipe44:
+    length: 0.004160172243882314
+    radius: 0.0003343948168365253
+    particle_count: 0
+    left_connections:
+    - pipe15
+    right_connections:
+    - pipe34
+    flow: 0.0008108019166462007
+  pipe45:
+    length: 0.004931523931744445
+    radius: 0.00019734519311793996
+    particle_count: 0
+    left_connections:
+    - pipe69
+    right_connections:
+    - sink14
+    flow: 0.0008096372466361668
+    receivers:
+    - type: Sphere type
+      name: '#56-Sphere type'
+      radius: 5.613555233318587e-05
+      z: 0.0005720501714130488
+      r: 3.288199342183657e-05
+      theta: 2.4143746981124155
+    - type: Sphere type
+      name: '#87-Sphere type'
+      radius: 5.241882181114238e-05
+      z: -0.0015950950542174295
+      r: 3.291548468733611e-05
+      theta: 1.4157474147486129
+    - type: Sphere type
+      name: '#101-Sphere type'
+      radius: 0.00019734519311793996
+      z: 0.004931523931744445
+      r: 0
+      theta: 0
+  pipe82:
+    length: 0.0020286341960707587
+    radius: 0.00022608085717377703
+    particle_count: 0
+    left_connections:
+    - pipe80
+    right_connections:
+    - sink15
+    flow: 4.7937002479588304e-05
+    receivers:
+    - type: Sphere type
+      name: '#38-Sphere type'
+      radius: 3.8986499196319646e-05
+      z: -0.0005689601351146669
+      r: 4.3945571858861216e-05
+      theta: 4.0863479822435975
+    - type: Sphere type
+      name: '#102-Sphere type'
+      radius: 0.00022608085717377703
+      z: 0.0020286341960707587
+      r: 0
+      theta: 0
+  pipe70:
+    length: 0.003272911954600866
+    radius: 0.0003598330572123958
+    particle_count: 0
+    left_connections:
+    - pipe33
+    right_connections:
+    - pipe6
+    flow: 0.0014349559356444973
+    receivers:
+    - type: Sphere type
+      name: '#32-Sphere type'
+      radius: 7.299394130184262e-05
+      z: -0.0020991837959892946
+      r: 7.133334755101176e-05
+      theta: 4.715848603412829
+    - type: Sphere type
+      name: '#40-Sphere type'
+      radius: 9.852614127095754e-05
+      z: -0.002532126671917354
+      r: 6.043035367893227e-05
+      theta: 3.7312337996922413
+    - type: Sphere type
+      name: '#84-Sphere type'
+      radius: 4.8834234928481325e-05
+      z: -0.002457190007424705
+      r: 4.076805807946024e-05
+      theta: 0.9669381785178581
+  pipe6:
+    length: 0.002269194734901568
+    radius: 0.00026647516811980384
+    particle_count: 0
+    left_connections:
+    - pipe70
+    right_connections:
+    - sink16
+    flow: 0.0014349559356444973
+    receivers:
+    - type: Sphere type
+      name: '#72-Sphere type'
+      radius: 3.519378969947492e-05
+      z: -0.0008772492759859408
+      r: 4.144527543468789e-05
+      theta: 1.3459987473366533
+    - type: Sphere type
+      name: '#103-Sphere type'
+      radius: 0.00026647516811980384
+      z: 0.002269194734901568
+      r: 0
+      theta: 0
+  pipe62:
+    length: 0.003133298842583851
+    radius: 0.00020217536685320268
+    particle_count: 0
+    left_connections:
+    - pipe68
+    right_connections:
+    - pipe21
+    flow: 4.4245617267577215e-05
+    receivers:
+    - type: Sphere type
+      name: '#51-Sphere type'
+      radius: 6.009607261006394e-05
+      z: 0.0025951432734552986
+      r: 2.1878198089002374e-05
+      theta: 5.2823555296047
+  pipe13:
+    length: 0.004339899962509708
+    radius: 0.00040366341838229876
+    particle_count: 0
+    left_connections:
+    - pipe52
+    right_connections:
+    - sink17
+    flow: 0.004065488786260067
+    receivers:
+    - type: Sphere type
+      name: '#70-Sphere type'
+      radius: 5.933149440029558e-05
+      z: -0.002359500207761009
+      r: 6.0286582731263415e-05
+      theta: 5.422561225149448
+    - type: Sphere type
+      name: '#104-Sphere type'
+      radius: 0.00040366341838229876
+      z: 0.004339899962509708
+      r: 0
+      theta: 0
+  pipe34:
+    length: 0.002009037081869063
+    radius: 0.00024206216866704574
+    particle_count: 0
+    left_connections:
+    - pipe44
+    right_connections:
+    - sink18
+    flow: 0.0008108019166462007
+    receivers:
+    - type: Sphere type
+      name: '#105-Sphere type'
+      radius: 0.00024206216866704574
+      z: 0.002009037081869063
+      r: 0
+      theta: 0
+  pipe72:
+    length: 0.0048007726724338135
+    radius: 0.0003735452513136295
+    particle_count: 0
+    left_connections:
+    - pipe26
+    right_connections:
+    - sink19
+    flow: 0.0034029390683998294
+    receivers:
+    - type: Sphere type
+      name: '#106-Sphere type'
+      radius: 0.0003735452513136295
+      z: 0.0048007726724338135
+      r: 0
+      theta: 0
+  pipe27:
+    length: 0.00350458856458023
+    radius: 0.0003476259329961319
+    particle_count: 0
+    left_connections:
+    - pipe20
+    right_connections:
+    - sink20
+    flow: 3.545656514947321e-05
+    receivers:
+    - type: Sphere type
+      name: '#8-Sphere type'
+      radius: 4.5172002123743287e-05
+      z: 0.0026669945772503775
+      r: 5.2413929400884826e-05
+      theta: 3.294193876723891
+    - type: Sphere type
+      name: '#61-Sphere type'
+      radius: 6.525895012296525e-05
+      z: 0.0017788513694606215
+      r: 4.461717426078773e-05
+      theta: 6.040256659724388
+    - type: Sphere type
+      name: '#107-Sphere type'
+      radius: 0.0003476259329961319
+      z: 0.00350458856458023
+      r: 0
+      theta: 0
+  pipe3:
+    length: 0.004804999841351809
+    radius: 0.00036576131386261606
+    particle_count: 0
+    left_connections:
+    - pipe66
+    right_connections:
+    - sink21
+    flow: 0.00038811585637770835
+    receivers:
+    - type: Sphere type
+      name: '#12-Sphere type'
+      radius: 3.9759145213457446e-05
+      z: 0.004270941050384032
+      r: 4.132278957686161e-05
+      theta: 0.932367058954876
+    - type: Sphere type
+      name: '#16-Sphere type'
+      radius: 0.00010253131144709778
+      z: -0.0016498296388581099
+      r: 5.161479493902418e-05
+      theta: 0.0874495775628109
+    - type: Sphere type
+      name: '#108-Sphere type'
+      radius: 0.00036576131386261606
+      z: 0.004804999841351809
+      r: 0
+      theta: 0
+  pipe35:
+    length: 0.0026644117083794916
+    radius: 0.00013251443641261367
+    particle_count: 0
+    left_connections:
+    - pipe30
+    right_connections:
+    - sink22
+    flow: 7.984238520202979e-05
+    receivers:
+    - type: Sphere type
+      name: '#45-Sphere type'
+      radius: 3.2616435664177213e-05
+      z: -0.0020915661681757004
+      r: 2.5894210069147054e-05
+      theta: 5.298269288276968
+    - type: Sphere type
+      name: '#78-Sphere type'
+      radius: 2.5704119035488975e-05
+      z: 0.0022832352524782057
+      r: 1.7066244661010532e-05
+      theta: 4.260344728470655
+    - type: Sphere type
+      name: '#109-Sphere type'
+      radius: 0.00013251443641261367
+      z: 0.0026644117083794916
+      r: 0
+      theta: 0
+  pipe50:
+    length: 0.0037252400953062498
+    radius: 0.00017349481067850333
+    particle_count: 0
+    left_connections:
+    - pipe32
+    right_connections:
+    - sink23
+    flow: 2.2803591967290255e-05
+    receivers:
+    - type: Sphere type
+      name: '#110-Sphere type'
+      radius: 0.00017349481067850333
+      z: 0.0037252400953062498
+      r: 0
+      theta: 0
+  pipe21:
+    length: 0.003977490777721091
+    radius: 0.0004774104696367302
+    particle_count: 0
+    left_connections:
+    - pipe62
+    right_connections:
+    - sink24
+    flow: 4.4245617267577215e-05
+    emitters:
+    - z: -0.0006064595421508118
+      r: 0.00020363363107202747
+      theta: 2.925266612439106
+      emitter_pattern: '7956'
+      emitter_pattern_type: complete
+    receivers:
+    - type: Sphere type
+      name: '#111-Sphere type'
+      radius: 0.0004774104696367302
+      z: 0.003977490777721091
+      r: 0
+      theta: 0
+  pipe57:
+    length: 0.004695867776453533
+    radius: 0.00036070248305954654
+    particle_count: 0
+    left_connections:
+    - pipe79
+    right_connections:
+    - sink25
+    flow: 0.0012961341565494448
+    receivers:
+    - type: Sphere type
+      name: '#112-Sphere type'
+      radius: 0.00036070248305954654
+      z: 0.004695867776453533
+      r: 0
+      theta: 0
+  pipe2:
+    length: 0.004628505992111016
+    radius: 0.0001156510993932816
+    particle_count: 0
+    left_connections:
+    - pipe32
+    right_connections:
+    - sink26
+    flow: 1.5200803244887427e-05
+    receivers:
+    - type: Sphere type
+      name: '#33-Sphere type'
+      radius: 2.769612011324747e-05
+      z: 0.0021009591246760545
+      r: 1.1593297628369028e-05
+      theta: 5.642194799400828
+    - type: Sphere type
+      name: '#113-Sphere type'
+      radius: 0.0001156510993932816
+      z: 0.004628505992111016
+      r: 0
+      theta: 0
+  pipe81:
+    length: 0.004514722598416926
+    radius: 0.00012556229065449146
+    particle_count: 0
+    left_connections:
+    - pipe52
+    right_connections:
+    - sink27
+    flow: 0.0012645983296646114
+    receivers:
+    - type: Sphere type
+      name: '#62-Sphere type'
+      radius: 2.227106704801043e-05
+      z: 0.000986144496132776
+      r: 1.8213680384723188e-05
+      theta: 3.792961918811869
+    - type: Sphere type
+      name: '#114-Sphere type'
+      radius: 0.00012556229065449146
+      z: 0.004514722598416926
+      r: 0
+      theta: 0
+  pipe0:
+    length: 0.0030594528151215447
+    radius: 0.0002763769186566591
+    particle_count: 0
+    left_connections:
+    - pipe43
+    right_connections:
+    - sink28
+    flow: 0.0046867488342324645
+    receivers:
+    - type: Sphere type
+      name: '#115-Sphere type'
+      radius: 0.0002763769186566591
+      z: 0.0030594528151215447
+      r: 0
+      theta: 0
+  pipe4:
+    length: 0.004030185555677728
+    radius: 0.0002932500766063378
+    particle_count: 0
+    left_connections:
+    - pipe41
+    right_connections:
+    - sink29
+    flow: 1.4508872586820978e-05
+    receivers:
+    - type: Sphere type
+      name: '#20-Sphere type'
+      radius: 6.702920861347548e-05
+      z: -0.001767885369731665
+      r: 3.8369608146715744e-05
+      theta: 4.085767638737206
+    - type: Sphere type
+      name: '#31-Sphere type'
+      radius: 5.174516244140682e-05
+      z: -0.0022884475134641426
+      r: 4.921911915795852e-05
+      theta: 2.896676706550424
+    - type: Sphere type
+      name: '#79-Sphere type'
+      radius: 8.513802735971726e-05
+      z: -0.0008808313764878681
+      r: 3.915499681627472e-05
+      theta: 0.8483205306716599
+    - type: Sphere type
+      name: '#86-Sphere type'
+      radius: 5.7373648427120376e-05
+      z: 0.0005128606419234978
+      r: 3.3436403369785534e-05
+      theta: 1.684002797501005
+    - type: Sphere type
+      name: '#116-Sphere type'
+      radius: 0.0002932500766063378
+      z: 0.004030185555677728
+      r: 0
+      theta: 0
+  pipe53:
+    length: 0.004399791906654232
+    radius: 0.00010385852609169374
+    particle_count: 0
+    left_connections:
+    - pipe46
+    right_connections:
+    - sink30
+    flow: 5.6105278222680516e-05
+    receivers:
+    - type: Sphere type
+      name: '#117-Sphere type'
+      radius: 0.00010385852609169374
+      z: 0.004399791906654232
+      r: 0
+      theta: 0
+  pipe31:
+    length: 0.003137906897236009
+    radius: 0.00048169731063977796
+    particle_count: 0
+    left_connections:
+    - pipe12
+    right_connections:
+    - pipe73
+    flow: 4.631058886412338e-06
+    receivers:
+    - type: Sphere type
+      name: '#54-Sphere type'
+      radius: 0.00011039786835677161
+      z: -0.002533439402088832
+      r: 7.275626252405514e-05
+      theta: 1.4259803711950623
+  pipe73:
+    length: 0.004086896285508681
+    radius: 0.0004644130128886233
+    particle_count: 0
+    left_connections:
+    - pipe31
+    right_connections:
+    - sink31
+    flow: 4.631058886412338e-06
+    receivers:
+    - type: Sphere type
+      name: '#2-Sphere type'
+      radius: 0.00012299718372263152
+      z: -0.001543432769688928
+      r: 7.694141932130251e-05
+      theta: 2.5897624601029627
+    - type: Sphere type
+      name: '#118-Sphere type'
+      radius: 0.0004644130128886233
+      z: 0.004086896285508681
+      r: 0
+      theta: 0
+  pipe61:
+    length: 0.0036849321288284142
+    radius: 0.00041534070620843287
+    particle_count: 0
+    left_connections:
+    - pipe66
+    right_connections:
+    - sink32
+    flow: 0.00044072543423538966
+    receivers:
+    - type: Sphere type
+      name: '#119-Sphere type'
+      radius: 0.00041534070620843287
+      z: 0.0036849321288284142
+      r: 0
+      theta: 0
+  pipe76:
+    length: 0.002849117552144474
+    radius: 0.0002884833954987318
+    particle_count: 0
+    left_connections:
+    - pipe56
+    right_connections:
+    - pipe77
+    flow: 5.9837248954234814e-05
+    receivers:
+    - type: Sphere type
+      name: '#3-Sphere type'
+      radius: 4.024600116686831e-05
+      z: 0.0005465727817988747
+      r: 3.246129201608067e-05
+      theta: 5.04945016319016
+    - type: Sphere type
+      name: '#37-Sphere type'
+      radius: 8.443805126656023e-05
+      z: 0.0023589788830067813
+      r: 3.020036022166396e-05
+      theta: 4.48337065532454
+  pipe9:
+    length: 0.004590764226363437
+    radius: 0.0001352839374471018
+    particle_count: 0
+    left_connections:
+    - pipe14
+    right_connections:
+    - sink33
+    flow: 0.0005153268914290947
+    receivers:
+    - type: Sphere type
+      name: '#120-Sphere type'
+      radius: 0.0001352839374471018
+      z: 0.004590764226363437
+      r: 0
+      theta: 0
+  pipe77:
+    length: 0.004469732379604588
+    radius: 0.00019122497203332803
+    particle_count: 0
+    left_connections:
+    - pipe76
+    right_connections:
+    - sink34
+    flow: 5.9837248954234814e-05
+    receivers:
+    - type: Sphere type
+      name: '#121-Sphere type'
+      radius: 0.00019122497203332803
+      z: 0.004469732379604588
+      r: 0
+      theta: 0
+  pipe11:
+    length: 0.004199982495839279
+    radius: 0.00018710827944278346
+    particle_count: 0
+    left_connections:
+    - pipe49
+    right_connections:
+    - sink35
+    flow: 2.154983097540453e-05
+    receivers:
+    - type: Sphere type
+      name: '#59-Sphere type'
+      radius: 4.909470359678104e-05
+      z: -0.0034969770939925686
+      r: 2.8291938392630264e-05
+      theta: 1.2857301706819602
+    - type: Sphere type
+      name: '#122-Sphere type'
+      radius: 0.00018710827944278346
+      z: 0.004199982495839279
+      r: 0
+      theta: 0
+  pipe5:
+    length: 0.003852227516199315
+    radius: 0.0003690228367583254
+    particle_count: 0
+    left_connections:
+    - pipe36
+    right_connections:
+    - sink36
+    flow: 0.0005491038520558563
+    receivers:
+    - type: Sphere type
+      name: '#123-Sphere type'
+      radius: 0.0003690228367583254
+      z: 0.003852227516199315
+      r: 0
+      theta: 0
+  pipe63:
+    length: 0.002481633771616282
+    radius: 0.00048376615163101927
+    particle_count: 0
+    left_connections:
+    - pipe75
+    right_connections:
+    - sink37
+    flow: 0.0008041421680009612
+    receivers:
+    - type: Sphere type
+      name: '#44-Sphere type'
+      radius: 0.00010656420551240864
+      z: 0.0021851426193375723
+      r: 8.879667974431607e-05
+      theta: 1.616763816984623
+    - type: Sphere type
+      name: '#124-Sphere type'
+      radius: 0.00048376615163101927
+      z: 0.002481633771616282
+      r: 0
+      theta: 0
+sinks:
+  sink1:
+    left_connections:
+    - pipe48
+  sink2:
+    left_connections:
+    - pipe38
+  sink3:
+    left_connections:
+    - pipe19
+  sink4:
+    left_connections:
+    - pipe18
+  sink5:
+    left_connections:
+    - pipe10
+  sink6:
+    left_connections:
+    - pipe78
+  sink7:
+    left_connections:
+    - pipe60
+  sink8:
+    left_connections:
+    - pipe24
+  sink9:
+    left_connections:
+    - pipe42
+  sink10:
+    left_connections:
+    - pipe55
+  sink11:
+    left_connections:
+    - pipe54
+  sink12:
+    left_connections:
+    - pipe25
+  sink13:
+    left_connections:
+    - pipe67
+  sink14:
+    left_connections:
+    - pipe45
+  sink15:
+    left_connections:
+    - pipe82
+  sink16:
+    left_connections:
+    - pipe6
+  sink17:
+    left_connections:
+    - pipe13
+  sink18:
+    left_connections:
+    - pipe34
+  sink19:
+    left_connections:
+    - pipe72
+  sink20:
+    left_connections:
+    - pipe27
+  sink21:
+    left_connections:
+    - pipe3
+  sink22:
+    left_connections:
+    - pipe35
+  sink23:
+    left_connections:
+    - pipe50
+  sink24:
+    left_connections:
+    - pipe21
+  sink25:
+    left_connections:
+    - pipe57
+  sink26:
+    left_connections:
+    - pipe2
+  sink27:
+    left_connections:
+    - pipe81
+  sink28:
+    left_connections:
+    - pipe0
+  sink29:
+    left_connections:
+    - pipe4
+  sink30:
+    left_connections:
+    - pipe53
+  sink31:
+    left_connections:
+    - pipe73
+  sink32:
+    left_connections:
+    - pipe61
+  sink33:
+    left_connections:
+    - pipe9
+  sink34:
+    left_connections:
+    - pipe77
+  sink35:
+    left_connections:
+    - pipe11
+  sink36:
+    left_connections:
+    - pipe5
+  sink37:
+    left_connections:
+    - pipe63
+flow: 0.05

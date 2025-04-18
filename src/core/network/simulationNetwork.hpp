@@ -37,6 +37,9 @@ public:
     
     void setFlowValue(double value) { flow_value = value; }
     double getFlowValue() const { return flow_value; }
+    
+    int getAliveParticleCountInNetwork();
+    int getParticlesInSinks();
 };
 
 #endif /* simulationNetwork_hpp */

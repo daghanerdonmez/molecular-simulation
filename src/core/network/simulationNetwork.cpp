@@ -22,11 +22,11 @@ void SimulationNetwork::iterateNetwork(int iterationCount, int currentFrame)
         for(int j = 0; j < simulations.size(); ++j) {
             simulations[j]->iterateSimulation(1, currentFrame, i);
             if (localCurrentFrame % 1000 == 0) {
-                std::cout << simulations[j]->getAliveParticleCount() << std::endl;
+                //std::cout << simulations[j]->getAliveParticleCount() << std::endl;
             }
         }
         if (localCurrentFrame % 1000 == 0) {
-            std::cout << "--" << std::endl;
+            //std::cout << "--" << std::endl;
         }
         localCurrentFrame++;
     }
@@ -82,6 +82,19 @@ void SimulationNetwork::simulationsWrite(const std::string &outputDir) const {
     // Write the output to a file
     std::string filename = runDir + "/network_data.txt";
     writeToFile(filename, output, false);
+    
+    // Write the target output of the ML model
+    filename = runDir + "/targetOutput.txt";
+    output = "";
+    for (const auto& simulation: simulations) {
+        if (simulation->getEmitters().size() != 0) {
+            output += simulation->getName();
+            Emitter* emitter = simulation->getEmitters()[0].get();
+            glm::dvec3 cylpos = cartesianToCylindrical(emitter->getPosition());
+            output += " " + std::to_string(cylpos.x) + " " + std::to_string(cylpos.z) + "\n";
+        }
+    }
+    writeToFile(filename, output, false);
 }
 
 Simulation* SimulationNetwork::getFirstSimulation()
@@ -92,4 +105,26 @@ Simulation* SimulationNetwork::getFirstSimulation()
 Simulation* SimulationNetwork::getSecondSimulation()
 {
     return simulations[1].get();
+}
+
+int SimulationNetwork::getAliveParticleCountInNetwork()
+{
+    int count = 0;
+    
+    for (const auto& simulation: simulations) {
+        count += simulation->getAliveParticleCount();
+    }
+    
+    return count;
+}
+
+int SimulationNetwork::getParticlesInSinks()
+{
+    int count = 0;
+    
+    for (const auto& sink: sinks) {
+        count += sink->getParticleCount();
+    }
+    
+    return count;
 }

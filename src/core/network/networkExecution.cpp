@@ -10,16 +10,25 @@
 const unsigned int SCR_WIDTH = 400;
 const unsigned int SCR_HEIGHT = 400;
 
-int networkRunWithoutGraphics()
+int networkRunWithoutGraphics(const std::string& networkConfigPath)
 {
     // Use relative paths for cross-platform compatibility
-    auto network = SimulationNetworkLoader::loadFromYAML("Config/network_config.yaml");
-    network->iterateNetwork(NUMBER_OF_ITERATIONS,0);
+    auto network = SimulationNetworkLoader::loadFromYAML(networkConfigPath);
+    
+    // Bu kısımda normalde number of iterations kere itere ettiriyodum ama baştaki particle sayılarını yazabilmek için ikiye ayırdım. Önce bir kere itere ettiriyorum sonra alive particle count alıyorum ondan sonra geri kalanını çalıştırıyorum. Debug için var sonra değiştirebilirim eski haline. Eski hali şuydu: network->iterateNetwork(NUMBER_OF_ITERATIONS,0);
+    network->iterateNetwork(1,0);
+    std::cout << "Particles in the Beginning: " << network->getAliveParticleCountInNetwork() << std::endl;
+    network->iterateNetwork(NUMBER_OF_ITERATIONS-1,1);
+    
+    
     network->simulationsWrite("Output/Outputs");
+    std::cout << "Particles Remaining Unused at the End: " << network->getAliveParticleCountInNetwork() << std::endl;
+    std::cout << "Particles in Sinks: " << network->getParticlesInSinks() << std::endl;
+    
     return 0;
 }
 
-int networkRunWithGraphics(){
+int networkRunWithGraphics(const std::string& networkConfigPath){
     // Initialize GLFW
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -112,7 +121,7 @@ int networkRunWithGraphics(){
     
     
     // Initialize the simulation with relative path
-    auto network = SimulationNetworkLoader::loadFromYAML("config/network_config.yaml");
+    auto network = SimulationNetworkLoader::loadFromYAML(networkConfigPath);
     Simulation* firstSimulation = network->getFirstSimulation();
 //    Simulation* secondSimulation = network->getSecondSimulation();
 

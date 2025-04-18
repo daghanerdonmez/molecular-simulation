@@ -15,6 +15,7 @@ class Sink: public Connection
 {
 private:
     std::string name;
+    int particleCount;
     
 public:
     Sink();
@@ -26,6 +27,8 @@ public:
     // Name getter and setter
     void setName(const std::string& sinkName);
     const std::string& getName() const;
+    
+    const int getParticleCount() const { return particleCount; }
 };
 
 #endif /* sink_hpp */

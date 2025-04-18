@@ -12,6 +12,7 @@ Sink::Sink() {}
 
 void Sink::receiveParticle(Particle* particle, Direction direction, double overflow)
 {
+    particleCount++;
     // Sink just "kills" the particles it receives - no need to do anything with them
     // The particle pointer is managed elsewhere, so we don't delete it here
 }
