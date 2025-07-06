@@ -16,7 +16,7 @@ class RingReceiver : public Receiver {
 private:
     int orientation;
 public:
-    RingReceiver(glm::dvec3 position, int orientation);
+    RingReceiver(glm::dvec3 position, int countingType, int orientation);
     bool hit(glm::dvec3 particlePosition) const override;
     int getOrientation() const;
     void setOrientation(int orientation);

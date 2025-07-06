@@ -7,7 +7,7 @@
 
 #include "receiver.hpp"
 
-Receiver::Receiver(glm::dvec3 position) : position(position), name(""), totalReceived(0) {
+Receiver::Receiver(glm::dvec3 position, int countingType) : position(position), countingType(countingType), name(""), totalReceived(0) {
     particlesReceived = new int[NUMBER_OF_ITERATIONS]();
 }
 

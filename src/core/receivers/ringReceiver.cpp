@@ -7,4 +7,4 @@
 
 #include "ringReceiver.hpp"
 
-RingReceiver::RingReceiver(glm::dvec3 position, int orientation): Receiver(position), orientation(orientation) {}
+RingReceiver::RingReceiver(glm::dvec3 position, int countingType, int orientation): Receiver(position, countingType), orientation(orientation) {}

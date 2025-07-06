@@ -34,7 +34,7 @@ int main() {
         if (GRAPHICS_ON) {
             networkRunWithGraphics("config/network_config.yaml");
         } else {
-            networkRunWithoutGraphics("config/bulkconfigs/network_config_0.yaml");
+            networkRunWithoutGraphics("config/network_config.yaml");
         }
         printf("Time taken: %.2fs\n", (double)(clock() - tStart)/CLOCKS_PER_SEC);
         return 0;

@@ -7,8 +7,8 @@
 
 #include "trapReceiver.hpp"
 
-TrapReceiver::TrapReceiver(glm::dvec3 position, double radius, double length, double theta, double deltaTheta, double thickness) : 
-    Receiver(position), radius(radius), length(length), theta(theta), deltaTheta(deltaTheta), thickness(thickness) {}
+TrapReceiver::TrapReceiver(glm::dvec3 position, int countingType, double radius, double length, double theta, double deltaTheta, double thickness) :
+Receiver(position, countingType), radius(radius), length(length), theta(theta), deltaTheta(deltaTheta), thickness(thickness) {}
 
 bool TrapReceiver::hit(glm::dvec3 particlePosition) const {
     glm::dvec3 cylParticlePos = cartesianToCylindrical(particlePosition);

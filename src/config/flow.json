@@ -1,127 +1,80 @@
 [
     {
-        "id": "84892262a1f0d1bb",
+        "id": "ac64f11d1532d773",
         "type": "tab",
-        "label": "Flow 2",
+        "label": "Flow 1",
         "disabled": false,
         "info": "",
         "env": []
     },
     {
-        "id": "d2920f2f3ed588a4",
+        "id": "d12625678a264f4f",
         "type": "simulation-config",
-        "z": "84892262a1f0d1bb",
+        "z": "ac64f11d1532d773",
         "name": "Simulation Configuration",
         "outputResults": true,
-        "graphicsOn": false,
+        "graphicsOn": true,
         "mode": 1,
         "timeToRun": 500,
-        "dt": "0.01",
+        "dt": 0.01,
         "iterationsPerFrame": 10,
-        "diffusionCoefficient": "7.94e-12",
-        "graphicsZoomMultiplier": "861",
-        "x": 230,
-        "y": 200,
+        "diffusionCoefficient": 7.94e-11,
+        "graphicsZoomMultiplier": 1000,
+        "x": 190,
+        "y": 120,
         "wires": []
     },
     {
-        "id": "e5ddd913f101a404",
+        "id": "43fd5aeb2dfc1a87",
         "type": "flow",
-        "z": "84892262a1f0d1bb",
+        "z": "ac64f11d1532d773",
         "name": "",
-        "flowValue": "0.0001",
-        "x": 190,
-        "y": 300,
+        "flowValue": "0.001",
+        "x": 150,
+        "y": 180,
         "wires": [
             [
-                "efeaca1e95fbfb06"
+                "afc5b4994109b7fb"
             ]
         ]
     },
     {
-        "id": "efeaca1e95fbfb06",
+        "id": "bd649c6bd072839e",
+        "type": "sink",
+        "z": "ac64f11d1532d773",
+        "name": "",
+        "x": 430,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "afc5b4994109b7fb",
         "type": "pipe",
-        "z": "84892262a1f0d1bb",
-        "name": "a",
-        "length": "8e-4",
-        "radius": "3e-4",
-        "receivers": [],
+        "z": "ac64f11d1532d773",
+        "name": "",
+        "length": "0.01",
+        "radius": "0.002",
+        "receivers": [
+            {
+                "type": "Ring type",
+                "z": "0.005"
+            }
+        ],
         "emitters": [
             {
-                "z": "0",
+                "z": "-0.07",
                 "r": "0",
                 "theta": "0",
                 "emitter_pattern": "1000",
                 "emitter_pattern_type": "complete"
             }
         ],
-        "x": 390,
-        "y": 300,
+        "x": 290,
+        "y": 180,
         "wires": [
             [
-                "b44ed4b23b85aecb",
-                "dcc85f9e232f0dfa"
+                "bd649c6bd072839e"
             ]
         ]
-    },
-    {
-        "id": "b44ed4b23b85aecb",
-        "type": "pipe",
-        "z": "84892262a1f0d1bb",
-        "name": "b",
-        "length": "8e-4",
-        "radius": "3e-4",
-        "receivers": [],
-        "emitters": [],
-        "x": 610,
-        "y": 240,
-        "wires": [
-            [
-                "70a38da4a9ddf94c"
-            ]
-        ]
-    },
-    {
-        "id": "dcc85f9e232f0dfa",
-        "type": "pipe",
-        "z": "84892262a1f0d1bb",
-        "name": "c",
-        "length": "8e-4",
-        "radius": "3e-4",
-        "receivers": [
-            {
-                "type": "Sphere type",
-                "radius": "1e-4",
-                "z": "0",
-                "r": "0",
-                "theta": "0"
-            }
-        ],
-        "emitters": [],
-        "x": 610,
-        "y": 320,
-        "wires": [
-            [
-                "44eafddeff7c7b44"
-            ]
-        ]
-    },
-    {
-        "id": "70a38da4a9ddf94c",
-        "type": "sink",
-        "z": "84892262a1f0d1bb",
-        "name": "",
-        "x": 750,
-        "y": 240,
-        "wires": []
-    },
-    {
-        "id": "44eafddeff7c7b44",
-        "type": "sink",
-        "z": "84892262a1f0d1bb",
-        "name": "",
-        "x": 750,
-        "y": 320,
-        "wires": []
     }
 ]

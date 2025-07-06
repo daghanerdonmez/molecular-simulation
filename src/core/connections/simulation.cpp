@@ -39,7 +39,7 @@ Simulation::Simulation(int particleCount, double radius, double length, glm::dve
         
         // TODO: THIS SHOULD CHANGE IT ONLY ADDS 1
         if (SINGLE_RECEIVER_COUNT != 0) {
-            addReceiver(std::make_unique<SphericalReceiver>(glm::dvec3(SINGLE_RECEIVER_X, SINGLE_RECEIVER_Y, SINGLE_RECEIVER_Z),SINGLE_RECEIVER_RADIUS));
+            addReceiver(std::make_unique<SphericalReceiver>(glm::dvec3(SINGLE_RECEIVER_X, SINGLE_RECEIVER_Y, SINGLE_RECEIVER_Z),0 ,SINGLE_RECEIVER_RADIUS));
         }
     } else if (MODE == 1) {
         this->flow = flow;
@@ -149,7 +149,9 @@ void Simulation::iterateSimulation(int iterationCount, int currentFrame, int ite
                             //check if they are received by the receivers
                             Receiver* receiver = receivers[k].get();
                             if (checkReceivedForParticle(particles[j], *receiver)) {
-                                killParticle(j);
+                                if (receiver->getCountingType() == 0){
+                                    killParticle(j);
+                                }
                                 receiver->increaseParticlesReceived(currentFrame * ITERATIONS_PER_FRAME + i + iterationInCurrentFrame);
                             }
                         }

@@ -29,6 +29,7 @@
 // Include your receiver headers
 #include <src/core/receivers/sphericalReceiver.hpp>   // e.g. if you have "SphericalReceiver" there
 #include <src/core/receivers/ringReceiver.hpp> // e.g. if you have "ringReceiver" there
+#include <src/core/receivers/ringReceiverWithThickness.hpp>
 #include <src/core/receivers/trapReceiver.hpp>
 // Adjust the above includes as needed for your actual file structure
 
@@ -356,13 +357,15 @@ SimulationNetworkLoader::loadFromYAML(const std::string& filename)
                 double z     = rcv["z"]     ? rcv["z"].as<double>()     : 0.0;
                 double rCyl  = rcv["r"]     ? rcv["r"].as<double>()     : 0.0;
                 double theta = rcv["theta"] ? rcv["theta"].as<double>() : 0.0;
+                
+                int countingType = rcv["countingType"] ? rcv["countingType"].as<int>() : 0;
 
                 // Convert from cylindrical -> cartesian
                 glm::dvec3 cylPos(rCyl, theta, z);
                 glm::dvec3 cartPos = cylindricalToCartesian(cylPos);
 
                 // Create a spherical receiver
-                auto sphere = std::make_unique<SphericalReceiver>(cartPos, radius);
+                auto sphere = std::make_unique<SphericalReceiver>(cartPos, countingType, radius);
                 
                 // Set the name if it exists in the YAML
                 if (rcv["name"]) {
@@ -380,19 +383,40 @@ SimulationNetworkLoader::loadFromYAML(const std::string& filename)
                 // For example:
                 double rCyl  = rcv["r"]     ? rcv["r"].as<double>()     : 0.0;
                 double theta = rcv["theta"] ? rcv["theta"].as<double>() : 0.0;
+                
+                int countingType = rcv["countingType"] ? rcv["countingType"].as<int>() : 0;
 
                 glm::dvec3 cylPos(rCyl, theta, z);
                 glm::dvec3 cartPos = cylindricalToCartesian(cylPos);
 
                 // Create your "Ring type" receiver – placeholder name:
-                auto trap = std::make_unique<RingReceiver>(cartPos, 2);
+                auto ring = std::make_unique<RingReceiver>(cartPos, countingType, 2);
                 
                 // Set the name if it exists in the YAML
                 if (rcv["name"]) {
-                    trap->setName(rcv["name"].as<std::string>());
+                    ring->setName(rcv["name"].as<std::string>());
                 }
 
-                simPtr->addReceiver(std::move(trap));
+                simPtr->addReceiver(std::move(ring));
+            }
+            else if(receiverType == "Ring type with thickness") {
+                double z = rcv["z"] ? rcv["z"].as<double>() : 0.0;
+                double rCyl = rcv["r"] ? rcv["r"].as<double>() : 0.0;
+                double theta = rcv["theta"] ? rcv["theta"].as<double>() : 0.0;
+                double thickness = rcv["thickness"] ? rcv["thickness"].as<double>() : 0.0;
+                
+                int countingType = rcv["countingType"] ? rcv["countingType"].as<int>() : 0;
+                
+                glm::dvec3 cylPos(rCyl, theta, z);
+                glm::dvec3 cartPos = cylindricalToCartesian(cylPos);
+                
+                auto ring = std::make_unique<RingReceiverWithThickness>(cartPos, countingType, 2, thickness);
+                
+                if (rcv["name"]) {
+                    ring->setName(rcv["name"].as<std::string>());
+                }
+
+                simPtr->addReceiver(std::move(ring));
             }
             else if(receiverType == "Trap type") {
                 double length = rcv["length"] ? rcv["length"].as<double>() : 0.0;
@@ -400,6 +424,8 @@ SimulationNetworkLoader::loadFromYAML(const std::string& filename)
                 double delta_theta = rcv["delta_theta"] ? rcv["delta_theta"].as<double>() : 0.0;
                 double thickness = rcv["thickness"] ? rcv["thickness"].as<double>() : 0.0;
                 double z = rcv["z"] ? rcv["z"].as<double>() : 0.0;
+                
+                int countingType = rcv["countingType"] ? rcv["countingType"].as<int>() : 0;
 
                 //here i want to give the radius of the simulation to the trap receiver
                 double radius = simPtr->getBoundaryRadius();
@@ -409,7 +435,7 @@ SimulationNetworkLoader::loadFromYAML(const std::string& filename)
                 glm::dvec3 cartPos = cylindricalToCartesian(cylPos);
 
                 // Create a trap receiver
-                auto trap = std::make_unique<TrapReceiver>(cartPos, radius, length, theta, delta_theta, thickness);
+                auto trap = std::make_unique<TrapReceiver>(cartPos, countingType, radius, length, theta, delta_theta, thickness);
                 
                 // Set the name if it exists in the YAML
                 if (rcv["name"]) {

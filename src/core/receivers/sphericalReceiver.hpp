@@ -16,7 +16,7 @@ private:
     double radius;
 
 public:
-    SphericalReceiver(glm::dvec3 position, double radius);
+    SphericalReceiver(glm::dvec3 position, int countingType, double radius);
     bool hit(glm::dvec3 particlePosition) const override;
     double getRadius() const;
 };

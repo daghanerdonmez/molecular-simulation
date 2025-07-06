@@ -21,7 +21,7 @@ private:
     double deltaTheta;
     double thickness;
 public:
-    TrapReceiver(glm::dvec3 position, double radius, double length, double theta, double deltaTheta, double thickness);
+    TrapReceiver(glm::dvec3 position, int countingType, double radius, double length, double theta, double deltaTheta, double thickness);
     bool hit(glm::dvec3 particlePosition) const override;
     double getLength() const;
     double getDeltaTheta() const;

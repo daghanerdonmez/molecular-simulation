@@ -6,5 +6,5 @@
 //
 #include "sphericalReceiver.hpp"
 
-SphericalReceiver::SphericalReceiver(glm::dvec3 position, double radius)
-    : Receiver(position), radius(radius) {}
+SphericalReceiver::SphericalReceiver(glm::dvec3 position, int countingType, double radius)
+: Receiver(position, countingType), radius(radius) {}
